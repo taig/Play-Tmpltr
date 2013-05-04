@@ -39,7 +39,7 @@ object Template
 		{
 			def apply(entity: String, url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( Messages("bootstrapper.button.label.cancel", entity), "plus-sign", url, compact, size, Style.Primary, attributes )
+				Button( Messages("bootstrapper.button.label.add", entity), "plus-sign", url, compact, size, Style.Primary, attributes )
 			}
 		}
 
