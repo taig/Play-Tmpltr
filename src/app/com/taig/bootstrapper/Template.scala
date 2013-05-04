@@ -2,6 +2,7 @@ package com.taig.bootstrapper
 
 import play.api.mvc.Call
 import play.api.templates.Html
+import play.api.i18n.Messages
 
 object Template
 {
@@ -62,7 +63,7 @@ object Template
 		{
 			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( "Bearbeiten", "edit", url, compact, size, Style.Primary, attributes )
+				Button( Messages("bootstrapper.button.label.edit"), "edit", url, compact, size, Style.Primary, attributes )
 			}
 		}
 
