@@ -1,1 +1,5 @@
+bootstrapper.button.label.add=Add {0}
+bootstrapper.button.label.cancel=Cancel
+bootstrapper.button.label.delete=Delete
 bootstrapper.button.label.edit=Edit
+bootstrapper.button.label.save=Save

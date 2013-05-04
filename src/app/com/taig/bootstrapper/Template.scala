@@ -39,7 +39,7 @@ object Template
 		{
 			def apply(entity: String, url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( entity + " hinzufügen", "plus-sign", url, compact, size, Style.Primary, attributes )
+				Button( Messages("bootstrapper.button.label.cancel", entity), "plus-sign", url, compact, size, Style.Primary, attributes )
 			}
 		}
 
@@ -47,7 +47,7 @@ object Template
 		{
 			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( "Abbrechen", "remove-sign", url, compact, size, Style.Inverse, attributes )
+				Button( Messages("bootstrapper.button.label.cancel"), "remove-sign", url, compact, size, Style.Inverse, attributes )
 			}
 		}
 
@@ -55,7 +55,7 @@ object Template
 		{
 			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( "Löschen", "trash", url, compact, size, Style.Danger, attributes )
+				Button( Messages("bootstrapper.button.label.delete"), "trash", url, compact, size, Style.Danger, attributes )
 			}
 		}
 
@@ -71,7 +71,7 @@ object Template
 		{
 			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( "Speichern", "ok-sign", url, compact, size, Style.Success, attributes )
+				Button( Messages("bootstrapper.button.label.save"), "ok-sign", url, compact, size, Style.Success, attributes )
 			}
 		}
 
@@ -108,11 +108,8 @@ object Template
 		object Style
 		{
 			implicit val default = com.taig.bootstrapper.Form.Style.Default
-
 			implicit val horizontal = com.taig.bootstrapper.Form.Style.Horizontal
-
 			implicit val inline = com.taig.bootstrapper.Form.Style.Inline
-
 			implicit val search = com.taig.bootstrapper.Form.Style.Search
 		}
 
