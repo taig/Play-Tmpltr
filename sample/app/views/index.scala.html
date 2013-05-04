@@ -1,3 +1,7 @@
+@()
+
+@import com.taig.bootstrapper.Template.Button
+
 <!DOCTYPE html>
 
 <html>
@@ -12,6 +16,8 @@
 	<body>
 		<div class="container">
 			<h1>Play Bootstrapper</h1>
+
+			@Button.Edit( routes.Application.index() )
 		</div>
 	</body>
 </html>
