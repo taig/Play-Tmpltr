@@ -2,7 +2,6 @@ package com.taig.bootstrapper
 
 import play.api.mvc.Call
 import play.api.templates.Html
-import views.helper.Input.TextArea
 
 object Template
 {
@@ -15,8 +14,8 @@ object Template
 
 	object Button
 	{
-		import views.helper.Icon.Color
-		import views.helper.Button.{Size, Style}
+		import com.taig.bootstrapper.Icon.Color
+		import com.taig.bootstrapper.Button.{Size, Style}
 
 		def apply(label: Option[String], url: Call, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
 		{
@@ -98,7 +97,7 @@ object Template
 
 	object Form
 	{
-		import views.helper.Form.{Method, Style}
+		import com.taig.bootstrapper.Form.{Method, Style}
 
 		def apply(action: Call, method: Method = Method.Get, attributes: Attributes = a)(content: Html)(implicit style: Style): Form =
 		{
@@ -107,18 +106,18 @@ object Template
 
 		object Style
 		{
-			implicit val default = views.helper.Form.Style.Default
+			implicit val default = com.taig.bootstrapper.Form.Style.Default
 
-			implicit val horizontal = views.helper.Form.Style.Horizontal
+			implicit val horizontal = com.taig.bootstrapper.Form.Style.Horizontal
 
-			implicit val inline = views.helper.Form.Style.Inline
+			implicit val inline = com.taig.bootstrapper.Form.Style.Inline
 
-			implicit val search = views.helper.Form.Style.Search
+			implicit val search = com.taig.bootstrapper.Form.Style.Search
 		}
 
 		object Element
 		{
-			import views.helper.Form.Message
+			import com.taig.bootstrapper.Form.Message
 
 			def apply(input: Input[_ <: Input[_]], label: Option[Label] = None, message: Option[Message] = None, attributes: Attributes = a)(implicit style: Style) =
 			{
@@ -128,7 +127,7 @@ object Template
 					val id: Option[String] = input.attrs.get( "id" ).orElse( input.attrs.get( "name" ).map( "_" + _ ) )
 
 					style.build(
-						id.fold[Input[_]]( input )( id => input % ("id" -> id) ),
+						id.fold[Input[_]]( input )( id => input % ( "id" -> id ) ),
 						id.fold( label )( id => label.map( _ % ( "for" -> id ) ) ),
 						message,
 						attributes
@@ -143,24 +142,29 @@ object Template
 
 		object Message
 		{
-			import views.helper.Form.Message
+			import com.taig.bootstrapper.Form.Message
 
 			class Default(text: String, attributes: Attributes) extends Message( None, text, attributes )
+
 			object Default
 			{
 				def apply(text: String, attributes: Attributes = a) = new Default( text, attributes )
 			}
+
 			class Error(text: String, attributes: Attributes) extends Message( "error", text, attributes )
+
 			object Error
 			{
 				def apply(text: String, attributes: Attributes = a) = new Error( text, attributes )
 			}
+
 		}
+
 	}
 
 	object Icon
 	{
-		import views.helper.Icon.Color
+		import com.taig.bootstrapper.Icon.Color
 
 		def apply(image: String, color: Color, attributes: Attributes = a): Icon =
 		{
@@ -170,6 +174,8 @@ object Template
 
 	object Input
 	{
+		import com.taig.bootstrapper.Input.TextArea
+
 		object TextArea
 		{
 			def apply(name: Option[String] = None, attributes: Attributes = a): TextArea = new TextArea(

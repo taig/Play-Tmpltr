@@ -1,7 +1,7 @@
 package com.taig
 
 import play.api.templates.Html
-import scala.xml.{NodeSeq, Text, Elem, Node}
+import scala.xml.{NodeSeq, Text}
 import play.api.mvc.Call
 
 package object bootstrapper

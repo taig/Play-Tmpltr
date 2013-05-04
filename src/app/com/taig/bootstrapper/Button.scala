@@ -1,7 +1,7 @@
 package com.taig.bootstrapper
 
 import play.api.mvc.Call
-import scala.xml.{Elem, NodeSeq, Text}
+import scala.xml.Text
 import Button.{Size, Style}
 
 class Button(val caption: Option[String], url: Call, size: Size, style: Style, icon: Option[Icon], attributes: Attributes) extends HtmlNode[Button](
