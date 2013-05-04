@@ -1,21 +1,11 @@
 import sbt._
-import Keys._
-import play.Project._
 
-object ApplicationBuild extends Build {
+object ApplicationBuild extends Build
+{
+	val appName = "bootstrapper"
+	val appVersion = "0.1"
 
-  val appName         = "bootstrapper"
-  val appVersion      = "1.0-SNAPSHOT"
+	val appDependencies = Seq()
 
-  val appDependencies = Seq(
-    // Add your project dependencies here,
-    jdbc,
-    anorm
-  )
-
-
-  val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
-  )
-
+	val main = play.Project( appName, appVersion, appDependencies ).settings()
 }
