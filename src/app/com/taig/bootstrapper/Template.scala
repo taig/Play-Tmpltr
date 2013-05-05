@@ -6,9 +6,11 @@ import play.api.i18n.Messages
 
 object Template
 {
-	private val a = Attributes.empty
-
 	implicit def callToString(call: Call): String = call.toString
+
+	implicit def stringToOption( string: String ): Option[String] = Some( string )
+
+	private val a = Attributes.empty
 
 	object Actions
 	{
