@@ -1,7 +1,7 @@
 package views.features.button.code
 
 import views.Code
-import com.taig.bootstrapper.Template.Button
+import com.taig.bootstrapper.Template._
 import com.taig.bootstrapper.Template.Button.Size
 import controllers.routes
 

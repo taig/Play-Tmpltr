@@ -8,6 +8,8 @@ object Template
 {
 	private val a = Attributes.empty
 
+	implicit def callToString(call: Call): String = call.toString
+
 	object Actions
 	{
 		def apply(attributes: Attributes = a)(content: Html): Actions = new Actions( content, attributes )
@@ -18,7 +20,7 @@ object Template
 		import com.taig.bootstrapper.Icon.Color
 		import com.taig.bootstrapper.Button.{Size, Style}
 
-		def apply(label: Option[String], url: Call, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
+		def apply(label: Option[String], url: String, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
 		{
 			val color: Color = style match
 			{
@@ -29,7 +31,7 @@ object Template
 			new Button( label, url, size, style, icon.map( new Icon( _, color, a ) ), attributes )
 		}
 
-		def apply(label: String, icon: String, url: Call, compact: Boolean, size: Size, style: Style, attributes: Attributes): Button =
+		def apply(label: String, icon: String, url: String, compact: Boolean, size: Size, style: Style, attributes: Attributes): Button =
 		{
 			val (l, t): (Option[String], Option[(String, String)]) = if( compact ) (None, Some( "title" -> label )) else (label, None)
 			apply( l, url, size, style, Some( icon ), t.fold( attributes )( attributes + _ ) )
@@ -37,7 +39,7 @@ object Template
 
 		object Add
 		{
-			def apply(entity: String, url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(entity: String, url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
 				Button( Messages("bootstrapper.button.label.add", entity), "plus-sign", url, compact, size, Style.Primary, attributes )
 			}
@@ -45,7 +47,7 @@ object Template
 
 		object Cancel
 		{
-			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
 				Button( Messages("bootstrapper.button.label.cancel"), "remove-sign", url, compact, size, Style.Inverse, attributes )
 			}
@@ -53,7 +55,7 @@ object Template
 
 		object Delete
 		{
-			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
 				Button( Messages("bootstrapper.button.label.delete"), "trash", url, compact, size, Style.Danger, attributes )
 			}
@@ -61,7 +63,7 @@ object Template
 
 		object Edit
 		{
-			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
 				Button( Messages("bootstrapper.button.label.edit"), "edit", url, compact, size, Style.Primary, attributes )
 			}
@@ -69,7 +71,7 @@ object Template
 
 		object Save
 		{
-			def apply(url: Call, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
 				Button( Messages("bootstrapper.button.label.save"), "ok-sign", url, compact, size, Style.Success, attributes )
 			}
@@ -100,7 +102,7 @@ object Template
 	{
 		import com.taig.bootstrapper.Form.{Method, Style}
 
-		def apply(action: Call, method: Method = Method.Get, attributes: Attributes = a)(content: Html)(implicit style: Style): Form =
+		def apply(action: String, method: Method = Method.Get, attributes: Attributes = a)(content: Html)(implicit style: Style): Form =
 		{
 			new Form( action, method, style, content, attributes )
 		}
@@ -155,9 +157,7 @@ object Template
 			{
 				def apply(text: String, attributes: Attributes = a) = new Error( text, attributes )
 			}
-
 		}
-
 	}
 
 	object Icon

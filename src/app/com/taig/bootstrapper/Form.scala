@@ -2,9 +2,8 @@ package com.taig.bootstrapper
 
 import play.api.templates.Html
 import scala.xml.{NodeSeq, Unparsed}
-import play.api.mvc.Call
 
-class Form(action: Call, method: Form.Method, style: Form.Style, content: Html, attributes: Attributes) extends HtmlNode[Form](
+class Form(action: String, method: Form.Method, style: Form.Style, content: Html, attributes: Attributes) extends HtmlNode[Form](
 	<form action={action} method={method} class={style}>
 		{Unparsed( content.body )}
 	</form>, attributes
