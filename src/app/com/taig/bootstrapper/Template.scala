@@ -80,7 +80,7 @@ object Template
 			case object Mini extends Size( "mini" )
 			case object Small extends Size( "small" )
 			case object Default extends Size( None )
-			case object Large extends Size( "normal" )
+			case object Large extends Size( "large" )
 		}
 
 		object Style
