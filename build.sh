@@ -18,3 +18,5 @@ rm -rf /tmp/app
 git add .
 git commit -m "Updated documentation."
 git push
+
+git checkout master
