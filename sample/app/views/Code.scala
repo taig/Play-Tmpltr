@@ -18,5 +18,5 @@ trait Code extends NodeSeq
 	override def toString =
 		"<pre class=\"prettyprint linenums lang-" + lang + "\">" +
 			HtmlFormat.escape( code.trim ) +
-		"</pre>" + preview.getOrElse( "" )
+		"</pre>" + preview.fold( "" )( preview => "<div class=\"code-preview\">" + preview + "</div>" )
 }
