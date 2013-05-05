@@ -1,6 +1,22 @@
 @()
 
-@import views.features.button.code.CommonUse
+@import views.features.button.code._
+
+<h4>Basics</h4>
+
+To create a button you have to provide a label (may be <code>None</code>) and a <code>Call</code> from your router. All
+further parameters are optional.
+
+@Basics
+
+The <code>Style</code>, <code>Size</code> and <code>Icon</code> objects are named like the respective classes in
+<a href="http://twitter.github.io/bootstrap/base-css.html#buttons">Twitter Bootstrap</a>. Parameters that expect an
+<code>Option</code> type (in this case label and icon) are backed up by implicit conversions to simplify a button's
+instantiation.
+
+@BasicExamples
+
+<h4>Common Use Cases</h4>
 
 <div class="alert alert-info">
 	The labels on the common use case buttons support Play's internationalization tools. Have a look at the
@@ -8,4 +24,4 @@
 	project's language.
 </div>
 
-@CommonUse
+@CommonUseCases

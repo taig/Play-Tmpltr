@@ -4,7 +4,7 @@ import views.Code
 import com.taig.bootstrapper.Template.Button
 import controllers.routes
 
-object CommonUse extends Code
+object CommonUseCases extends Code
 {
 	val code: String =
 		"""
