@@ -9,10 +9,5 @@ class Icon(image: String, color: Icon.Color, attributes: Attributes) extends Htm
 
 object Icon
 {
-	abstract sealed class Color(identifier: Option[String]) extends Property( "icon", identifier )
-	object Color
-	{
-		case object Black extends Color( None )
-		case object White extends Color( "white" )
-	}
+	class Color(identifier: Option[String]) extends Property( "icon", identifier )
 }

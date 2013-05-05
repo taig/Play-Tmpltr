@@ -3,6 +3,7 @@ package com.taig.bootstrapper
 import play.api.mvc.Call
 import play.api.templates.Html
 import play.api.i18n.Messages
+import com.taig.bootstrapper.Button.Size
 
 object Template
 {
@@ -19,15 +20,16 @@ object Template
 
 	object Button
 	{
-		import com.taig.bootstrapper.Icon.Color
 		import com.taig.bootstrapper.Button.{Size, Style}
+		import com.taig.bootstrapper.Icon.Color
+		import com.taig.bootstrapper.Template.Icon.Color._
 
 		def apply(label: Option[String], url: String, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
 		{
 			val color: Color = style match
 			{
-				case Style.Default | Style.Link => Color.Black
-				case _ => Color.White
+				case Style.Default | Style.Link => Black
+				case _ => White
 			}
 
 			new Button( label, url, size, style, icon.map( new Icon( _, color, a ) ), attributes )
@@ -169,6 +171,12 @@ object Template
 		def apply(image: String, color: Color, attributes: Attributes = a): Icon =
 		{
 			new Icon( image, color, attributes )
+		}
+
+		object Color
+		{
+			case object Black extends Color( None )
+			case object White extends Color( "white" )
 		}
 	}
 
