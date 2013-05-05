@@ -2,14 +2,8 @@
 
 An extended templating utility for [Play Framework] \(Scala\) with [Twitter Bootstrap].
 
-This library provides easy Twitter Bootstrap templates for common HTML-widgets like form elements or buttons.
-
-> Using the _Play Bootstrapper_ library should in general be limitited to the [Template] object file.
-> When you find yourself importing other files into your views you're either extending the library's
-> functionality or you are propably on the wrong track.
-
-> Therefore importing ```com.taig.bootstrapper.Template._``` on the top of your view should be an easy
-> way to get started.
+For more documenation and usage examples there is a special [Project Page] that you can either access via the given link
+or by executing the project's sample application.
 
 ## License
 
@@ -37,4 +31,4 @@ THE SOFTWARE.
 
   [Play Framework]: http://www.playframework.com
   [Twitter Bootstrap]: http://twitter.github.io/bootstrap
-  [Template]: src/app/com/taig/bootstrapper/Template.scala
+  [Project Page]: http://taig.github.io/Play-Bootstrapper
