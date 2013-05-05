@@ -4,17 +4,21 @@
 
 <h4>Basics</h4>
 
-To create a button you have to provide a label (may be <code>None</code>) and a <code>String</code> URL as a target.
-Alternatively you may pass a <code>Call</code> from your router as an URL (and you are highly encouraged to do this
-whenever possible) but then you need to make sure that the implicit conversion
-<code>com.taig.bootstrapper.Template.callToString</code> is in your view's scope. All further parameters are optional.
+<p>
+	To create a button you have to provide a label (may be <code>None</code>) and a <code>String</code> URL as a target.
+	Alternatively you may pass a <code>Call</code> from your router as an URL (and you are highly encouraged to do this
+	whenever possible) but then you need to make sure that the implicit conversion
+	<code>com.taig.bootstrapper.Template.callToString</code> is in your view's scope. All further parameters are optional.
+</p>
 
 @Basics
 
-The <code>Style</code>, <code>Size</code> and <code>Icon</code> objects are named like the respective classes in
-<a href="http://twitter.github.io/bootstrap/base-css.html#buttons">Twitter Bootstrap</a>. Parameters that expect an
-<code>Option</code> type (in this case label and icon) are backed up by implicit conversions to simplify a button's
-instantiation.
+<p>
+	The <code>Style</code>, <code>Size</code> and <code>Icon</code> objects are named like the respective classes in
+	<a href="http://twitter.github.io/bootstrap/base-css.html#buttons">Twitter Bootstrap</a>. Parameters that expect an
+	<code>Option</code> type (in this case label and icon) are backed up by implicit conversions to simplify a button's
+	instantiation.
+</p>
 
 @BasicExamples
 
