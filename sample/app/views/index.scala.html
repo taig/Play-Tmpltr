@@ -1,25 +1,42 @@
-@()
-
-@import com.taig.bootstrapper.Template.Button
-
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<title>Play Bootstrapper</title>
 
-		<link rel="stylesheet" href="@routes.Assets.at("stylesheet/bootstrap.min.css")">
+		<link rel="stylesheet" href="@routes.Assets.at( "stylesheet/bootstrap.min.css" )">
 
-		<script src="@routes.Assets.at("javascript/jquery-1.9.1.min.js")" type="text/javascript"></script>
-		<script src="@routes.Assets.at("javascript/bootstrap.min.js")" type="text/javascript"></script>
+		<script src="@routes.Assets.at( "javascript/jquery-1.9.1.min.js" )" type="text/javascript"></script>
+		<script src="@routes.Assets.at( "javascript/bootstrap.min.js" )" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="container">
 			<h1>Play Bootstrapper</h1>
 
-			@Button.Edit( routes.Application.index() )
-			@Button.Delete( routes.Application.index() )
-			@Button.Add( "User", routes.Application.index() )
+			<p class="lead">
+				A module for the <a href="http://www.playframework.com/" target="_blank">Play Framework</a>
+				(Scala) that helps you at keeping your <a href="http://twitter.github.io/bootstrap/" target="_blank">
+				Twitter Bootstrap</a>-views clean and free of boilerplate code.
+			</p>
+
+			<section id="getting-started">
+				<div class="page-header"><h2>Getting Started</h2></div>
+				<p>TODO: Installation</p>
+			</section>
+
+			<section id="usage">
+				<div class="page-header"><h2>Usage</h2></div>
+				<p>TODO: Usage</p>
+			</section>
+
+			<section id="features">
+				<div class="page-header"><h2>Features</h2></div>
+				<p>TODO: Feature</p>
+			</section>
+
+			<section id="license">
+				<div class="page-header"><h2>License</h2></div>
+				<p>TODO: License</p>
+			</section>
 		</div>
 	</body>
 </html>
