@@ -1,0 +1,11 @@
+@import usage.code._
+
+<p>
+	Using the <em>Play Bootstrapper</em> module should in general be limited to the
+	<a href="https://github.com/Taig/Play-Bootstrapper/blob/master/src/app/com/taig/bootstrapper/Template.scala" target="_blank">
+	Template</a> file. If you find yourself importing other files into your views you're either extending the module's
+	functionality or you are most likely on the wrong track. Therefore importing <code>com.taig.bootstrapper.Template._</code>
+	on the top of your view is a good way to get started.
+</p>
+
+@prettyprint( view_structure() )
