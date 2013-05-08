@@ -11,11 +11,12 @@ object Template
 
 	implicit def stringToOption(string: String): Option[String] = Some( string )
 
-	private val a = Attributes.empty
-
 	object Actions
 	{
-		def apply(attributes: Attributes = a)(content: Html): Actions = new Actions( content, attributes )
+		def apply(attributes: Attributes = Attributes.empty)(content: Html): Actions = new Actions(
+			content,
+			attributes
+		)
 	}
 
 	object Button
@@ -42,7 +43,7 @@ object Template
 		 * @param attributes Additional attributes that will be added to the HTML tag (default: [[Attributes.empty]]).
 		 * @return The HTML representation of the Button.
 		 */
-		def apply(label: Option[String], url: String, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
+		def apply(label: Option[String], url: String, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = Attributes.empty): Button =
 		{
 			val color: Color = style match
 			{
@@ -50,7 +51,7 @@ object Template
 				case _ => White
 			}
 
-			new Button( label, url, size, style, icon.map( new Icon( _, color, a ) ), attributes )
+			new Button( label, url, size, style, icon.map( new Icon( _, color, Attributes.empty ) ), attributes )
 		}
 
 		/**
@@ -79,7 +80,7 @@ object Template
 
 		object Add
 		{
-			def apply(entity: String, url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(entity: String, url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = Attributes.empty): Button =
 			{
 				Button(
 					Messages( "bootstrapper.button.label.add", entity ),
@@ -95,7 +96,7 @@ object Template
 
 		object Cancel
 		{
-			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = Attributes.empty): Button =
 			{
 				Button(
 					Messages( "bootstrapper.button.label.cancel" ),
@@ -111,7 +112,7 @@ object Template
 
 		object Delete
 		{
-			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = Attributes.empty): Button =
 			{
 				Button(
 					Messages( "bootstrapper.button.label.delete" ),
@@ -127,7 +128,7 @@ object Template
 
 		object Edit
 		{
-			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = Attributes.empty): Button =
 			{
 				Button(
 					Messages( "bootstrapper.button.label.edit" ), "edit", url, compact, size, Style.Primary, attributes
@@ -137,7 +138,7 @@ object Template
 
 		object Save
 		{
-			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
+			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = Attributes.empty): Button =
 			{
 				Button(
 					Messages( "bootstrapper.button.label.save" ),
@@ -176,7 +177,7 @@ object Template
 	{
 		import com.taig.bootstrapper.Form.{Method, Style}
 
-		def apply(action: String, method: Method = Method.Get, attributes: Attributes = a)(content: Html)(implicit style: Style): Form =
+		def apply(action: String, method: Method = Method.Get, attributes: Attributes = Attributes.empty)(content: Html)(implicit style: Style): Form =
 		{
 			new Form( action, method, style, content, attributes )
 		}
@@ -193,7 +194,7 @@ object Template
 		{
 			import com.taig.bootstrapper.Form.Message
 
-			def apply(input: Input[_ <: Input[_]], label: Option[Label] = None, message: Option[Message] = None, attributes: Attributes = a)(implicit style: Style) =
+			def apply(input: Input[_ <: Input[_]], label: Option[Label] = None, message: Option[Message] = None, attributes: Attributes = Attributes.empty)(implicit style: Style) =
 			{
 				// If a Label without a "for" attribute is provided, then define it automatically
 				if( label.isDefined && label.get.attrs.get( "for" ).isEmpty )
@@ -222,14 +223,14 @@ object Template
 
 			object Default
 			{
-				def apply(text: String, attributes: Attributes = a) = new Default( text, attributes )
+				def apply(text: String, attributes: Attributes = Attributes.empty) = new Default( text, attributes )
 			}
 
 			class Error(text: String, attributes: Attributes) extends Message( "error", text, attributes )
 
 			object Error
 			{
-				def apply(text: String, attributes: Attributes = a) = new Error( text, attributes )
+				def apply(text: String, attributes: Attributes = Attributes.empty) = new Error( text, attributes )
 			}
 		}
 	}
@@ -238,7 +239,7 @@ object Template
 	{
 		import com.taig.bootstrapper.Icon.Color
 
-		def apply(image: String, color: Color, attributes: Attributes = a): Icon =
+		def apply(image: String, color: Color, attributes: Attributes = Attributes.empty): Icon =
 		{
 			new Icon( image, color, attributes )
 		}
@@ -256,7 +257,7 @@ object Template
 
 		object TextArea
 		{
-			def apply(name: Option[String] = None, attributes: Attributes = a): TextArea = new TextArea(
+			def apply(name: Option[String] = None, attributes: Attributes = Attributes.empty): TextArea = new TextArea(
 				name, attributes
 			)
 		}
@@ -264,7 +265,7 @@ object Template
 
 	object Label
 	{
-		def apply(text: String, `for`: Option[String] = None, attributes: Attributes = a): Label = new Label(
+		def apply(text: String, `for`: Option[String] = None, attributes: Attributes = Attributes.empty): Label = new Label(
 			text, `for`, attributes
 		)
 	}
