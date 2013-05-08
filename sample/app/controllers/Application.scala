@@ -10,7 +10,7 @@ object Application extends Controller
 			views.html.index(
 				"Play Bootstrapper",
 				"https://github.com/Taig/Play-Bootstrapper",
-				"http://taig.github.io/Play-Bootstrapper/doc"
+				"http://taig.github.io/Play-Bootstrapper/doc/#com.taig.bootstrapper.Template$"
 			)
 		)
 	}
