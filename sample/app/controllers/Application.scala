@@ -6,6 +6,12 @@ object Application extends Controller
 {
 	def index = Action
 	{
-		Ok( views.html.index( "Play Bootstrapper", "https://github.com/Taig/Play-Bootstrapper" ) )
+		Ok(
+			views.html.index(
+				"Play Bootstrapper",
+				"https://github.com/Taig/Play-Bootstrapper",
+				"http://taig.github.io/Play-Bootstrapper/doc"
+			)
+		)
 	}
 }

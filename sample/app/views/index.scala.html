@@ -1,4 +1,4 @@
-@( name: String, repository: String )
+@( name: String, repository: String, documentation: String )
 
 @import com.taig.bootstrapper.Template._
 
@@ -31,7 +31,7 @@
 			</p>
 
 			@Button( "View project on GitHub", repository, attributes = "target" -> "_blank" )
-            @Button( "Open documentation", "doc", attributes = "target" -> "_blank" )
+            @Button( "Open documentation", documentation, attributes = "target" -> "_blank" )
 			@Button( "Contact developer", "mailto:my.taig@gmail.com" )
 
 			<section id="getting-started">
