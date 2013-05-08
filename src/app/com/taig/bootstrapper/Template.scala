@@ -31,13 +31,15 @@ object Template
 		 *              for implicit String conversion.
 		 * @param url The Button's <code>href</code> attribute value. Use [[callToString]] for implicit
 		 *            [[play.api.mvc.Call]] conversion.
-		 * @param size The Button's size. Either [[Size.Mini]], [[Size.Small]], [[Size.Default]] (default) or
-		 *             [[Size.Large]].
-		 * @param style The Button's style. Either [[Style.Default]] (default), [[Style.Primary]], [[Style.Info]],
-		 *              [[Style.Success]], [[Style.Warning]], [[Style.Danger]], [[Style.Inverse]] or [[Style.Link]].
-		 * @param icon The icon that will be displayed to the left of the label (if any). Use [[scala.None]] to omit
-		 *             (default). Use [[stringToOption]] for implicit String conversion.
-		 * @param attributes Additional attributes that will be added to the HTML tag; default: [[Attributes.empty]].
+		 * @param size The Button's size. Either [[Size.Mini]], [[Size.Small]], [[Size.Default]] or [[Size.Large]]
+		 *             (default: [[Size.Default]]).
+		 * @param style The Button's style. Either [[Style.Default]], [[Style.Primary]], [[Style.Info]],
+		 *              [[Style.Success]], [[Style.Warning]], [[Style.Danger]], [[Style.Inverse]] or [[Style.Link]]
+		 *              (default: [[Style.Default]]).
+		 * @param icon The icon that will be displayed to the left of the label (if any). Use [[scala.None]] to omit.
+		 *             Use [[stringToOption]] for implicit String conversion. (default:[[scala.None]]; See
+		 *             [[http://twitter.github.io/bootstrap/base-css.html#icons]] to check available icons).
+		 * @param attributes Additional attributes that will be added to the HTML tag (default: [[Attributes.empty]]).
 		 * @return The HTML representation of the Button.
 		 */
 		def apply(label: Option[String], url: String, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
@@ -51,6 +53,24 @@ object Template
 			new Button( label, url, size, style, icon.map( new Icon( _, color, a ) ), attributes )
 		}
 
+		/**
+		 * Create a Button (based on HTML <code>a</code>-tag) that must provide an icon but in return supports a compact
+		 * mode.
+		 *
+		 * @param label The text that will be displayed on the Button or [[scala.None]] to omit. Use [[stringToOption]]
+		 *              for implicit String conversion.
+		 * @param icon The icon that will be displayed to the left of the label (if visible). (See
+		 *             [[http://twitter.github.io/bootstrap/base-css.html#icons]] to check available icons).
+		 * @param url The Button's <code>href</code> attribute value. Use [[callToString]] for implicit
+		 *            [[play.api.mvc.Call]] conversion.
+		 * @param compact If set to <code>true</code> the label will not be shown; instead it will be moved to the
+		 *                Button's <code>title</code> tag (default: <code>false</code>).
+		 * @param size The Button's size. Either [[Size.Mini]], [[Size.Small]], [[Size.Default]] or [[Size.Large]].
+		 * @param style The Button's style. Either [[Style.Default]], [[Style.Primary]], [[Style.Info]],
+		 *              [[Style.Success]], [[Style.Warning]], [[Style.Danger]], [[Style.Inverse]] or [[Style.Link]].
+		 * @param attributes Additional attributes that will be added to the HTML tag.
+		 * @return The HTML representation of the Button.
+		 */
 		def apply(label: String, icon: String, url: String, compact: Boolean, size: Size, style: Style, attributes: Attributes): Button =
 		{
 			val (l, t): (Option[String], Option[(String, String)]) = if( compact ) (None, Some( "title" -> label )) else (label, None)
