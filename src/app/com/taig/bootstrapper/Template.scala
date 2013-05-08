@@ -3,13 +3,12 @@ package com.taig.bootstrapper
 import play.api.mvc.Call
 import play.api.templates.Html
 import play.api.i18n.Messages
-import com.taig.bootstrapper.Button.Size
 
 object Template
 {
 	implicit def callToString(call: Call): String = call.toString
 
-	implicit def stringToOption( string: String ): Option[String] = Some( string )
+	implicit def stringToOption(string: String): Option[String] = Some( string )
 
 	private val a = Attributes.empty
 
@@ -24,6 +23,19 @@ object Template
 		import com.taig.bootstrapper.Icon.Color
 		import com.taig.bootstrapper.Template.Icon.Color._
 
+		/**
+		 * Create a Button (based on HTML <code>a</code>-tag).
+		 *
+		 * @param label The text that will be displayed on the Button (use [[Template.callToString]] for implicit String
+		 *              conversion) or [[scala.None]] if no label shall be used.
+		 * @param url	The <code>href</code> attribute's value (use [[Template.stringToOption]] for implicit
+		 *            	[[play.api.mvc.Call]] conversion).
+		 * @param size
+		 * @param style
+		 * @param icon
+		 * @param attributes
+		 * @return
+		 */
 		def apply(label: Option[String], url: String, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
 		{
 			val color: Color = style match
@@ -45,7 +57,15 @@ object Template
 		{
 			def apply(entity: String, url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( Messages("bootstrapper.button.label.add", entity), "plus-sign", url, compact, size, Style.Primary, attributes )
+				Button(
+					Messages( "bootstrapper.button.label.add", entity ),
+					"plus-sign",
+					url,
+					compact,
+					size,
+					Style.Primary,
+					attributes
+				)
 			}
 		}
 
@@ -53,7 +73,15 @@ object Template
 		{
 			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( Messages("bootstrapper.button.label.cancel"), "remove-sign", url, compact, size, Style.Inverse, attributes )
+				Button(
+					Messages( "bootstrapper.button.label.cancel" ),
+					"remove-sign",
+					url,
+					compact,
+					size,
+					Style.Inverse,
+					attributes
+				)
 			}
 		}
 
@@ -61,7 +89,15 @@ object Template
 		{
 			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( Messages("bootstrapper.button.label.delete"), "trash", url, compact, size, Style.Danger, attributes )
+				Button(
+					Messages( "bootstrapper.button.label.delete" ),
+					"trash",
+					url,
+					compact,
+					size,
+					Style.Danger,
+					attributes
+				)
 			}
 		}
 
@@ -69,7 +105,9 @@ object Template
 		{
 			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( Messages("bootstrapper.button.label.edit"), "edit", url, compact, size, Style.Primary, attributes )
+				Button(
+					Messages( "bootstrapper.button.label.edit" ), "edit", url, compact, size, Style.Primary, attributes
+				)
 			}
 		}
 
@@ -77,7 +115,15 @@ object Template
 		{
 			def apply(url: String, compact: Boolean = false, size: Size = Size.Default, attributes: Attributes = a): Button =
 			{
-				Button( Messages("bootstrapper.button.label.save"), "ok-sign", url, compact, size, Style.Success, attributes )
+				Button(
+					Messages( "bootstrapper.button.label.save" ),
+					"ok-sign",
+					url,
+					compact,
+					size,
+					Style.Success,
+					attributes
+				)
 			}
 		}
 
