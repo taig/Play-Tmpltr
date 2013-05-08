@@ -3,6 +3,7 @@ package com.taig.bootstrapper
 import play.api.mvc.Call
 import play.api.templates.Html
 import play.api.i18n.Messages
+import com.taig.bootstrapper.Button.Style
 
 object Template
 {
@@ -26,15 +27,18 @@ object Template
 		/**
 		 * Create a Button (based on HTML <code>a</code>-tag).
 		 *
-		 * @param label The text that will be displayed on the Button (use [[Template.callToString]] for implicit String
-		 *              conversion) or [[scala.None]] if no label shall be used.
-		 * @param url	The <code>href</code> attribute's value (use [[Template.stringToOption]] for implicit
-		 *            	[[play.api.mvc.Call]] conversion).
-		 * @param size
-		 * @param style
-		 * @param icon
-		 * @param attributes
-		 * @return
+		 * @param label The text that will be displayed on the Button or [[scala.None]] to omit. Use [[stringToOption]]
+		 *              for implicit String conversion.
+		 * @param url The Button's <code>href</code> attribute value. Use [[callToString]] for implicit
+		 *            [[play.api.mvc.Call]] conversion.
+		 * @param size The Button's size. Either [[Size.Mini]], [[Size.Small]], [[Size.Default]] (default) or
+		 *             [[Size.Large]].
+		 * @param style The Button's style. Either [[Style.Default]] (default), [[Style.Primary]], [[Style.Info]],
+		 *              [[Style.Success]], [[Style.Warning]], [[Style.Danger]], [[Style.Inverse]] or [[Style.Link]].
+		 * @param icon The icon that will be displayed to the left of the label (if any). Use [[scala.None]] to omit
+		 *             (default). Use [[stringToOption]] for implicit String conversion.
+		 * @param attributes Additional attributes that will be added to the HTML tag; default: [[Attributes.empty]].
+		 * @return The HTML representation of the Button.
 		 */
 		def apply(label: Option[String], url: String, size: Size = Size.Default, style: Style = Style.Default, icon: Option[String] = None, attributes: Attributes = a): Button =
 		{
