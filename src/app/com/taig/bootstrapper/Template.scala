@@ -24,9 +24,10 @@ object Template
 		 * @param content The [[play.api.templates.Html]] content that will be placed within the form action.
 		 * @return The HTML representation of the Action.
 		 */
-		def apply(attributes: Attributes = Attributes.empty)(content: Html): Actions = new Actions(
-			content, attributes
-		)
+		def apply(attributes: Attributes = Attributes.empty)(content: Html): Actions =
+		{
+			new Actions(content, attributes)
+		}
 	}
 
 	/**
@@ -328,9 +329,10 @@ object Template
 
 		object TextArea
 		{
-			def apply(name: Option[String] = None, attributes: Attributes = Attributes.empty): TextArea = new TextArea(
-				name, attributes
-			)
+			def apply(name: Option[String] = None, attributes: Attributes = Attributes.empty): TextArea =
+			{
+				new TextArea( name, attributes )
+			}
 		}
 	}
 
@@ -339,8 +341,9 @@ object Template
 	 */
 	object Label
 	{
-		def apply(text: String, `for`: Option[String] = None, attributes: Attributes = Attributes.empty): Label = new Label(
-			text, `for`, attributes
-		)
+		def apply(text: String, `for`: Option[String] = None, attributes: Attributes = Attributes.empty): Label =
+		{
+			new Label(text, `for`, attributes)
+		}
 	}
 }
