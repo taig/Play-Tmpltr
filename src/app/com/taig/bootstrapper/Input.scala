@@ -18,13 +18,6 @@ object Input
 	object Field
 	{
 		class Type(identifier: String) extends Property( None, identifier )
-		object Type
-		{
-			case object Checkbox extends Type( "checkbox" )
-			case object Password extends Type( "password" )
-			case object Radio extends Type( "radio" )
-			case object Text extends Type( "text" )
-		}
 	}
 
 	class TextArea(name: Option[String], attributes: Attributes) extends Input[TextArea](

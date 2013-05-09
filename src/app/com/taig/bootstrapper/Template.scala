@@ -307,7 +307,24 @@ object Template
 	 */
 	object Input
 	{
-		import com.taig.bootstrapper.Input.TextArea
+		import com.taig.bootstrapper.Input.{Field, TextArea}
+		import com.taig.bootstrapper.Input.Field.Type
+
+		object Field
+		{
+			def apply(`type`: Type, name: Option[String], attributes: Attributes = Attributes.empty): Field =
+			{
+				new Field( `type`, name, attributes )
+			}
+
+			object Type
+			{
+				case object Checkbox extends Type( "checkbox" )
+				case object Password extends Type( "password" )
+				case object Radio extends Type( "radio" )
+				case object Text extends Type( "text" )
+			}
+		}
 
 		object TextArea
 		{
