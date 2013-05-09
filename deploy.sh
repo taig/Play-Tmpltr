@@ -30,7 +30,7 @@ else																							# Run deploy.
     		echo "[${PAGES}] Play application already running."
     	else
 			echo "[${PAGES}] Launching play application ..."
-			(play "start ${PORT}" | grep error) &              	                				# Start play application in background.
+			(play "start ${PORT}" | grep --color=never error) &                    				# Start play application in background.
 			wget -r -l 1 -k -p -nH -t 0 --retry-connrefused -P ${TEMP}/${APP} localhost:${PORT} 2> /dev/null
 			echo "[${PAGES}] Results retrieved."
 			play stop > /dev/null                                                  				# Stop play server.
@@ -47,7 +47,7 @@ else																							# Run deploy.
 		cd ${ROOT}/${APP}
 
 		echo "[${DOC}] Compiling sources ..."
-		play stage | grep error	                                            					# Generate scalaDoc.
+		play stage | grep --color=never error	                                            	# Generate scalaDoc.
 		cp -r ${ROOT}/${APP}/target/scala-2.10/api ${TEMP}/${APP}                               # Copy scalaDoc to temp directory.
 		echo "[${DOC}] Results retrieved."
 	fi
