@@ -228,31 +228,30 @@ object Template
 			implicit val search = com.taig.bootstrapper.Form.Style.Search
 		}
 
-		object Element
-		{
-			import com.taig.bootstrapper.Form.Message
-
-			def apply(input: Input[_ <: Input[_]], label: Option[Label] = None, message: Option[Message] = None, attributes: Attributes = Attributes.empty)(implicit style: Style) =
-			{
-				// If a Label without a "for" attribute is provided, then define it automatically
-				if( label.isDefined && label.get.attrs.get( "for" ).isEmpty )
-				{
-					val id: Option[String] = input.attrs.get( "id" ).orElse( input.attrs.get( "name" ).map( "_" + _ ) )
-
-					style.build(
-						id.fold[Input[_]]( input )( id => input % ( "id" -> id ) ),
-						id.fold( label )( id => label.map( _ % ( "for" -> id ) ) ),
-						message,
-						attributes
-					)
-				}
-				else
-				{
-					style.build( input, label, message, attributes )
-				}
-			}
-		}
-
+		//		object Element
+		//		{
+		//			import com.taig.bootstrapper.Form.Message
+		//
+		//			def apply(input: Input[_ <: Input[_]], label: Option[Label] = None, message: Option[Message] = None, attributes: Attributes = Attributes.empty)(implicit style: Style) =
+		//			{
+		//				// If a Label without a "for" attribute is provided, then define it automatically
+		//				if( label.isDefined && label.get.attrs.get( "for" ).isEmpty )
+		//				{
+		//					val id: Option[String] = input.attrs.get( "id" ).orElse( input.attrs.get( "name" ).map( "_" + _ ) )
+		//
+		//					style.build(
+		//						id.fold[Input[_]]( input )( id => input % ( "id" -> id ) ),
+		//						id.fold( label )( id => label.map( _ % ( "for" -> id ) ) ),
+		//						message,
+		//						attributes
+		//					)
+		//				}
+		//				else
+		//				{
+		//					style.build( input, label, message, attributes )
+		//				}
+		//			}
+		//		}
 		object Message
 		{
 			import com.taig.bootstrapper.Form.Message
@@ -269,6 +268,49 @@ object Template
 			object Error
 			{
 				def apply(text: String, attributes: Attributes = Attributes.empty) = new Error( text, attributes )
+			}
+		}
+
+		/**
+		 * @see [[http://twitter.github.io/bootstrap/base-css.html#forms"]] (see "Supported form controls")
+		 * @see [[com.taig.bootstrapper.Form.Element]]
+		 */
+		object Element
+		{
+			import com.taig.bootstrapper.Form.Element.{Input, TextArea}
+			import com.taig.bootstrapper.Form.Element.Input.Type
+
+			object Input
+			{
+				/**
+				 * Render an Input Field (<code>&lt;input /&gt;</code>).
+				 *
+				 * @param `type` The Input tag's <code>type</code> attribute value. Either [[Type.Text]], [[Type.Password]],
+				 *               [[Type.Radio]] or [[Type.Checkbox]].
+				 * @param name The Input tag's <code>name</code> attribute value.
+				 * @param attributes Additional attributes that will be added to the HTML tag.
+				 * @return The HTML representation of the Input element.
+				 */
+				def apply(`type`: Type, name: Option[String], attributes: Attributes = Attributes.empty): Input =
+				{
+					new Input( `type`, name, attributes )
+				}
+
+				object Type
+				{
+					case object Checkbox extends Type( "checkbox" )
+					case object Password extends Type( "password" )
+					case object Radio extends Type( "radio" )
+					case object Text extends Type( "text" )
+				}
+			}
+
+			object TextArea
+			{
+				def apply(name: Option[String] = None, attributes: Attributes = Attributes.empty): TextArea =
+				{
+					new TextArea( name, attributes )
+				}
 			}
 		}
 	}
@@ -299,49 +341,6 @@ object Template
 		{
 			case object Black extends Color( None )
 			case object White extends Color( "white" )
-		}
-	}
-
-	/**
-	 * @see [[http://twitter.github.io/bootstrap/base-css.html#forms"]] (see "Supported form controls")
-	 * @see [[com.taig.bootstrapper.Input]]
-	 */
-	object Input
-	{
-		import com.taig.bootstrapper.Input.{Field, TextArea}
-		import com.taig.bootstrapper.Input.Field.Type
-
-		object Field
-		{
-			/**
-			 * Render an Input Field (<code>&lt;input /&gt;</code>).
-			 *
-			 * @param `type` The Input tag's <code>type</code> attribute value. Either [[Type.Text]], [[Type.Password]],
-			 *               [[Type.Radio]] or [[Type.Checkbox]].
-			 * @param name The Input tag's <code>name</code> attribute value.
-			 * @param attributes Additional attributes that will be added to the HTML tag.
-			 * @return The HTML representation of the Input element.
-			 */
-			def apply(`type`: Type, name: Option[String], attributes: Attributes = Attributes.empty): Field =
-			{
-				new Field( `type`, name, attributes )
-			}
-
-			object Type
-			{
-				case object Checkbox extends Type( "checkbox" )
-				case object Password extends Type( "password" )
-				case object Radio extends Type( "radio" )
-				case object Text extends Type( "text" )
-			}
-		}
-
-		object TextArea
-		{
-			def apply(name: Option[String] = None, attributes: Attributes = Attributes.empty): TextArea =
-			{
-				new TextArea( name, attributes )
-			}
 		}
 	}
 
