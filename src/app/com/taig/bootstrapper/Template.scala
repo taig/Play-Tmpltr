@@ -14,8 +14,7 @@ object Template
 	object Actions
 	{
 		def apply(attributes: Attributes = Attributes.empty)(content: Html): Actions = new Actions(
-			content,
-			attributes
+			content, attributes
 		)
 	}
 
@@ -176,6 +175,9 @@ object Template
 		}
 	}
 
+	/**
+	 * Render a <a href="http://twitter.github.io/bootstrap/base-css.html#buttons">Form</a>.
+	 */
 	object Form
 	{
 		import com.taig.bootstrapper.Form.{Method, Style}
@@ -238,6 +240,9 @@ object Template
 		}
 	}
 
+	/**
+	 * Render an <a href="http://twitter.github.io/bootstrap/base-css.html#icons">Iocn</a>.
+	 */
 	object Icon
 	{
 		import com.taig.bootstrapper.Icon.Color
@@ -254,6 +259,9 @@ object Template
 		}
 	}
 
+	/**
+	 * Render an <a href="http://twitter.github.io/bootstrap/base-css.html#buttons">Input</a> element.
+	 */
 	object Input
 	{
 		import com.taig.bootstrapper.Input.TextArea
@@ -266,6 +274,9 @@ object Template
 		}
 	}
 
+	/**
+	 * Render a Label.
+	 */
 	object Label
 	{
 		def apply(text: String, `for`: Option[String] = None, attributes: Attributes = Attributes.empty): Label = new Label(
