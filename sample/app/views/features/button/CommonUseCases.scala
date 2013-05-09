@@ -1,4 +1,4 @@
-package views.features.button.code
+package views.features.button
 
 import views.Code
 import com.taig.bootstrapper.Template._
