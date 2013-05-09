@@ -19,6 +19,9 @@ object Template
 		)
 	}
 
+	/**
+	 * Render a <a href="http://twitter.github.io/bootstrap/base-css.html#buttons">Button</a>.
+	 */
 	object Button
 	{
 		import com.taig.bootstrapper.Button.{Size, Style}
