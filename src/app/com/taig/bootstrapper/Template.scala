@@ -197,7 +197,7 @@ object Template
 		import com.taig.bootstrapper.Form.{Method, Style}
 
 		/**
-		 * Render a Form wrapper containing a given Html input.
+		 * Render a Form wrapper containing a given [[play.api.templates.Html]] input.
 		 *
 		 * @param action The Form tag's <code>action</code> attribute value.
 		 * @param method The Form tag's <code>method</code> attribute value. Either [[Method.Get]] or [[Method.Post]]
