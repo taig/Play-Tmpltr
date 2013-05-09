@@ -15,11 +15,6 @@ class Form(action: String, method: Form.Method, style: Form.Style, content: Html
 object Form
 {
 	class Method(identifier: String) extends Property( None, identifier )
-	object Method
-	{
-		case object Get extends Method( "GET" )
-		case object Post extends Method( "POST" )
-	}
 
 	abstract sealed class Style(identifier: Option[String]) extends Property( "form", identifier )
 	{
