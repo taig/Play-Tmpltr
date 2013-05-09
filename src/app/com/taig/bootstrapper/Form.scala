@@ -18,20 +18,20 @@ object Form
 
 	abstract sealed class Style(identifier: Option[String]) extends Property( "form", identifier )
 	{
-		def build(input: Input[_], label: Option[Label], message: Option[Message], attributes: Attributes): NodeSeq
+		def build(input: Element[_], label: Option[Label], message: Option[Message], attributes: Attributes): NodeSeq
 	}
 	object Style
 	{
 		object Default extends Style( None )
 		{
-			def build(input: Input[_], label: Option[Label], message: Option[Message], attributes: Attributes) = Seq(
+			def build(input: Element[_], label: Option[Label], message: Option[Message], attributes: Attributes) = Seq(
 				label.getOrElse( null ), input
 			)
 		}
 
 		object Horizontal extends Style( "horizontal" )
 		{
-			def build(input: Input[_], label: Option[Label], message: Option[Message], attributes: Attributes): HtmlNode[HtmlNode[_]] = new HtmlNode[HtmlNode[_]](
+			def build(input: Element[_], label: Option[Label], message: Option[Message], attributes: Attributes): HtmlNode[HtmlNode[_]] = new HtmlNode[HtmlNode[_]](
 				<div class={"control-group " + message.fold( "" )( _.`type`.getOrElse( "" ) )}>
 					{label.orNull}{input}{message.orNull}
 				</div>, attributes
@@ -43,12 +43,12 @@ object Form
 
 		object Inline extends Style( "inline" )
 		{
-			def build(input: Input[_], label: Option[Label], message: Option[Message], attributes: Attributes) = input
+			def build(input: Element[_], label: Option[Label], message: Option[Message], attributes: Attributes) = input
 		}
 
 		object Search extends Style( "search" )
 		{
-			def build(input: Input[_], label: Option[Label], message: Option[Message], attributes: Attributes) = input
+			def build(input: Element[_], label: Option[Label], message: Option[Message], attributes: Attributes) = input
 		}
 	}
 
