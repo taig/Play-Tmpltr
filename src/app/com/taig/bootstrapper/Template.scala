@@ -26,7 +26,7 @@ object Template
 		 */
 		def apply(attributes: Attributes = Attributes.empty)(content: Html): Actions =
 		{
-			new Actions(content, attributes)
+			new Actions( content, attributes )
 		}
 	}
 
@@ -199,8 +199,8 @@ object Template
 		/**
 		 * Render a Form wrapper containing a given Html input.
 		 *
-		 * @param action The Form tag's action attribute value.
-		 * @param method The Form tag's method attribute value. Either [[Method.Get]] or [[Method.Post]]
+		 * @param action The Form tag's <code>action</code> attribute value.
+		 * @param method The Form tag's <code>method</code> attribute value. Either [[Method.Get]] or [[Method.Post]]
 		 *               (default: [[Method.Get]]).
 		 * @param attributes Additional attributes that will be added to the HTML tag.
 		 * @param content The [[play.api.templates.Html]] content that will be placed within the form.
@@ -313,6 +313,15 @@ object Template
 
 		object Field
 		{
+			/**
+			 * Render an Input Field (<code>&lt;input /&gt;</code>).
+			 *
+			 * @param `type` The Input tag's <code>type</code> attribute value. Either [[Type.Text]], [[Type.Password]],
+			 *               [[Type.Radio]] or [[Type.Checkbox]].
+			 * @param name The Input tag's <code>name</code> attribute value.
+			 * @param attributes Additional attributes that will be added to the HTML tag.
+			 * @return The HTML representation of the Input element.
+			 */
 			def apply(`type`: Type, name: Option[String], attributes: Attributes = Attributes.empty): Field =
 			{
 				new Field( `type`, name, attributes )
@@ -343,7 +352,7 @@ object Template
 	{
 		def apply(text: String, `for`: Option[String] = None, attributes: Attributes = Attributes.empty): Label =
 		{
-			new Label(text, `for`, attributes)
+			new Label( text, `for`, attributes )
 		}
 	}
 }
