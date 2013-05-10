@@ -6,7 +6,7 @@ import com.taig.bootstrapper.Template.Button.Size
 import com.taig.bootstrapper.Template.Button.Style
 import controllers.routes
 
-object BasicExamples extends Code
+object Usage extends Code
 {
 	val code =
 		"""
