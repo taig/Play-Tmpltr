@@ -285,8 +285,9 @@ object Template
 				/**
 				 * Render an Input Field (<code>&lt;input /&gt;</code>).
 				 *
-				 * @param `type` The Input tag's <code>type</code> attribute value. Either [[Type.Text]], [[Type.Password]],
-				 *               [[Type.Radio]] or [[Type.Checkbox]].
+				 * @param `type` The Input tag's <code>type</code> attribute value. Either [[Type.Button]],
+				 *               [[Type.Checkbox]], [[Type.File]], [[Type.Hidden]], [[Type.Password]], [[Type.Radio]],
+				 *               [[Type.Reset]], [[Type.Submit]] or [[Type.Text]].
 				 * @param name The Input tag's <code>name</code> attribute value (default: [[scala.None]]).
 				 * @param attributes Additional attributes that will be added to the HTML tag.
 				 * @return The HTML representation of the Input element.
@@ -314,11 +315,8 @@ object Template
 					def apply(name: Option[String] = None, value: Option[String] = None, checked: Boolean = false, attributes: Attributes = Attributes.empty): Input =
 					{
 						Input(
-							Type.Checkbox,
-							name,
-							attributes ++ Attributes(
-								"value" -> value,
-								"checked" -> ( if( checked ) "checked" else None )
+							Type.Checkbox, name, attributes ++ Attributes(
+								"value" -> value, "checked" -> ( if( checked ) "checked" else None )
 							)
 						)
 					}
@@ -351,11 +349,8 @@ object Template
 					def apply(name: Option[String] = None, value: Option[String] = None, checked: Boolean = false, attributes: Attributes = Attributes.empty): Input =
 					{
 						Input(
-							Type.Radio,
-							name,
-							attributes ++ Attributes(
-								"value" -> value,
-								"checked" -> ( if( checked ) "checked" else None )
+							Type.Radio, name, attributes ++ Attributes(
+								"value" -> value, "checked" -> ( if( checked ) "checked" else None )
 							)
 						)
 					}
