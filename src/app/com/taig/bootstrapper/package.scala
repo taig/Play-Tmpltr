@@ -17,9 +17,13 @@ package object bootstrapper
 
 	implicit def stringToLabelOption(label: String): Option[Label] = Option( Template.Label( label ) )
 
-	implicit def stringToOption( string: String ): Option[String] = Some( string )
+	implicit def stringToOption(string: String): Option[String] = Some( string )
 
-	implicit def tupleToArguments(argument: (String, String)): Attributes = Attributes( argument._1 -> argument._2 )
+	implicit def tupleToArguments(argument: (String, Option[String])): Attributes = argument match
+	{
+		case (key, Some( value )) => Attributes( key -> value )
+		case _ => Attributes.empty
+	}
 
 	implicit def xmlToHtml(element: NodeSeq): Html = Html( element.toString )
 }
