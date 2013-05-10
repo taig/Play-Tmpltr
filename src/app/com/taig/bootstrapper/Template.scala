@@ -299,6 +299,7 @@ object Template
 				object Type
 				{
 					case object Checkbox extends Type( "checkbox" )
+					case object Hidden extends Type( "hidden" )
 					case object Password extends Type( "password" )
 					case object Radio extends Type( "radio" )
 					case object Text extends Type( "text" )
@@ -328,7 +329,14 @@ object Template
 
 				object Hidden
 				{
-					// TODO
+					def apply(name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					{
+						Input(
+							Type.Hidden,
+							name,
+							attributes ++ Attributes( "value" -> value, "placeholder" -> placeholder )
+						)
+					}
 				}
 
 				object Password
