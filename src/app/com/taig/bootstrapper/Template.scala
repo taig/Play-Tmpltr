@@ -299,6 +299,7 @@ object Template
 				object Type
 				{
 					case object Checkbox extends Type( "checkbox" )
+					case object File extends Type( "file" )
 					case object Hidden extends Type( "hidden" )
 					case object Password extends Type( "password" )
 					case object Radio extends Type( "radio" )
