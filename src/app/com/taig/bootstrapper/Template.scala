@@ -329,12 +329,12 @@ object Template
 
 				object Hidden
 				{
-					def apply(name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					def apply(name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
 					{
 						Input(
 							Type.Hidden,
 							name,
-							attributes ++ Attributes( "value" -> value, "placeholder" -> placeholder )
+							attributes ++ Attributes( "value" -> value )
 						)
 					}
 				}
