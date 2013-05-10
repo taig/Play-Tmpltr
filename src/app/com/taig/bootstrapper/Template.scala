@@ -303,6 +303,14 @@ object Template
 					case object Radio extends Type( "radio" )
 					case object Text extends Type( "text" )
 				}
+
+				object Text
+				{
+					def apply( name: Option[String] = None, value: Option[String] = None, placeholder: Option[String], attributes: Attributes = Attributes.empty ): Input =
+					{
+						Input( Type.Text, name, attributes ++ Attributes( "value" -> value.orNull, "placeholder" -> placeholder.orNull ) )
+					}
+				}
 			}
 
 			object TextArea
