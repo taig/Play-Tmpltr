@@ -6,13 +6,14 @@ readonly SOURCE=src
 readonly SAMPLE=sample
 readonly PAGES=pages
 readonly DOC=doc
+readonly PUBLISH=publish
 readonly ALL=all
 
 cd ${ROOT}
 
-if [[ $# -ne 1 || ! ( $1 = ${PAGES} || $1 = ${DOC} || $1 = ${ALL} ) ]]; then					# Validate parameter.
+if [[ $# -ne 1 || ! ( $1 = ${PAGES} || $1 = ${DOC} || $1 = ${PUBLISH} || $1 = ${ALL} ) ]]; then	# Validate parameter.
 	echo "usage: deploy token"
-	echo "       token = ${PAGES} | ${DOC} | ${ALL}"
+	echo "       token = ${PAGES} | ${DOC} | ${PUBLISH} | ${ALL}"
 elif ! git diff-index --quiet HEAD --; then														# Check for uncommited changes.
 	echo "Commit current working directory before deploying."
 else																							# Run deploy.
@@ -40,7 +41,7 @@ else																							# Run deploy.
 	) &
 
 	(
-	if [[ $1 = "doc" || $1 = "all"  ]]; then													# Deploy scalaDoc.
+	if [[ $1 = ${DOC} || $1 = ${ALL}  ]]; then													# Deploy scalaDoc.
 		APP=${SOURCE}
 
 		echo "[${DOC}] Deploying ..."
@@ -53,27 +54,40 @@ else																							# Run deploy.
 	fi
 	) &
 
+	(
+	if [[ $1 = ${PUBLISH} || $1 = ${ALL} ]]; then
+		echo "[$PUBLISH] Local ..."
+		cd ${ROOT}/${SOURCE}
+
+		play clean publish-local | grep --color=never error
+		cd ${ROOT}/${SAMPLE}
+		play reload > /dev/null
+	fi
+	) &
+
 	wait																						# Wait for tasks to finish.
 
-	git checkout gh-pages 2> /dev/null															# Prepare deploy branch.
+	if [[ $1 = ${PAGES} || $1 = ${DOC} || $1 = ${ALL} ]]; then									# Deploy changes.
+		git checkout gh-pages 2> /dev/null														# Prepare deploy branch.
 
-	if [[ $1 = "pages" || $1 = "all" ]]; then													# Prepare page deploy.
-		APP=${SAMPLE}
+		if [[ $1 = ${PAGES} || $1 = ${ALL} ]]; then												# Prepare page deploy.
+			APP=${SAMPLE}
 
-		rm -rf ${ROOT}/index.html ${ROOT}/assets												# Remove old page files.
-		mv ${TEMP}/${APP}/* ${ROOT}																# Move new page to project.
-		git add ${ROOT}/index.html ${ROOT}/assets 2> /dev/null									# Stage page files.
+			rm -rf ${ROOT}/index.html ${ROOT}/assets											# Remove old page files.
+			mv ${TEMP}/${APP}/* ${ROOT}															# Move new page to project.
+			git add ${ROOT}/index.html ${ROOT}/assets 2> /dev/null								# Stage page files.
+		fi
+
+		if [[ $1 = ${DOC} || $1 = ${ALL} ]]; then												# Prepare scalaDoc deploy.
+			APP=${SOURCE}
+
+			rm -rf ${ROOT}/doc																	# Remove old scalaDoc files.
+			mv ${TEMP}/${APP} ${ROOT}/doc														# Move new scalaDoc to project.
+			git add ${ROOT}/doc 2> /dev/null													# Stage page files.
+		fi
+
+		git commit -m "Deployed updates." > /dev/null
+		git push origin gh-pages
+		git checkout - 2> /dev/null
 	fi
-
-	if [[ $1 = "doc" || $1 = "all" ]]; then														# Prepare scalaDoc deploy.
-		APP=${SOURCE}
-
-		rm -rf ${ROOT}/doc																		# Remove old scalaDoc files.
-		mv ${TEMP}/${APP} ${ROOT}/doc															# Move new scalaDoc to project.
-		git add ${ROOT}/doc 2> /dev/null														# Stage page files.
-	fi
-
-	git commit -m "Deployed updates." > /dev/null												# Deploy changes.
-	git push origin gh-pages
-	git checkout - 2> /dev/null
 fi
