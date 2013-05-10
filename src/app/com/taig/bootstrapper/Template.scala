@@ -371,7 +371,14 @@ object Template
 
 				object Submit
 				{
-					// TODO
+					def apply(name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					{
+						Input(
+							Type.Submit,
+							name,
+							attributes ++ Attributes( "value" -> value )
+						)
+					}
 				}
 
 				object Text
