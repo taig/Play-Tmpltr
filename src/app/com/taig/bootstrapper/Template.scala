@@ -306,9 +306,9 @@ object Template
 
 				object Text
 				{
-					def apply( name: Option[String] = None, value: Option[String] = None, placeholder: Option[String], attributes: Attributes = Attributes.empty ): Input =
+					def apply( name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty ): Input =
 					{
-						Input( Type.Text, name, attributes ++ Attributes( "value" -> value.orNull, "placeholder" -> placeholder.orNull ) )
+						Input( Type.Text, name, attributes ++ Attributes( "value" -> value, "placeholder" -> placeholder ) )
 					}
 				}
 			}

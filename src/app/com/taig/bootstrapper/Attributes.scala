@@ -35,7 +35,10 @@ class Attributes private[bootstrapper](map: Map[String, String]) extends Map[Str
 
 object Attributes
 {
-	def apply(attributes: (String, String)*) = new Attributes( Map( attributes: _* ) )
+	def apply(attributes: (String, Option[String])*): Attributes =
+	{
+		new Attributes( attributes.collect { case (key, Some( value )) => (key, value) }.toMap )
+	}
 
 	def empty = new Attributes( Map.empty )
 }
