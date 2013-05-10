@@ -287,11 +287,11 @@ object Template
 				 *
 				 * @param `type` The Input tag's <code>type</code> attribute value. Either [[Type.Text]], [[Type.Password]],
 				 *               [[Type.Radio]] or [[Type.Checkbox]].
-				 * @param name The Input tag's <code>name</code> attribute value.
+				 * @param name The Input tag's <code>name</code> attribute value (default: [[scala.None]]).
 				 * @param attributes Additional attributes that will be added to the HTML tag.
 				 * @return The HTML representation of the Input element.
 				 */
-				def apply(`type`: Type, name: Option[String], attributes: Attributes = Attributes.empty): Input =
+				def apply(`type`: Type, name: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
 				{
 					new Input( `type`, name, attributes )
 				}
