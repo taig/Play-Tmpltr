@@ -2,92 +2,53 @@
 
 readonly TEMP=/tmp/app
 readonly ROOT=~/Development/Scala/bootstrapper
-readonly SOURCE=src
+readonly LIBRARY=play-bootstrapper
 readonly SAMPLE=sample
-readonly PAGES=pages
-readonly DOC=doc
-readonly PUBLISH=publish
-readonly ALL=all
+readonly CLEAN=--clean
+readonly PORT=9999
 
 cd ${ROOT}
 
-if [[ $# -ne 1 || ! ( $1 = ${PAGES} || $1 = ${DOC} || $1 = ${PUBLISH} || $1 = ${ALL} ) ]]; then	# Validate parameter.
-	echo "usage: deploy token"
-	echo "       token = ${PAGES} | ${DOC} | ${PUBLISH} | ${ALL}"
+if [[ $# -gt 1 || ( $# -eq 1 && $1 != ${CLEAN} ) ]]; then										# Validate parameter.
+	echo "usage: deploy ${CLEAN}"
 elif ! git diff-index --quiet HEAD --; then														# Check for uncommited changes.
 	echo "Commit current working directory before deploying."
 else																							# Run deploy.
 	rm -rf ${TEMP} && mkdir -p ${TEMP}															# Clean temporary storage.
 
-	(
-	if [[ $1 = ${PAGES} || $1 = ${ALL}  ]]; then												# Deploy pages.
-		APP=${SAMPLE}
-		PORT=9999
+	if [[ $# -eq 1 && $1 == ${CLEAN} ]]; then													# Clean play application.
+		play clean > /dev/null
+	fi
 
-		echo "[${PAGES}] Deploying ..."
-		cd ${ROOT}/${APP}
 
-		if [[ -a ${ROOT}/${APP}/RUNNING_PID ]]; then											# Check if play is already running.
-    		echo "[${PAGES}] Play application already running."
+	(																							# Deploy sample pages.
+		if [[ -a ${ROOT}/RUNNING_PID ]]; then													# Check if play is already running.
+    		echo "[pages] Play application already running. Cancelled deploy."
     	else
-			echo "[${PAGES}] Launching play application ..."
 			(play "start ${PORT}" | grep --color=never error) &                    				# Start play application in background.
-			wget -r -l 1 -k -p -nH -t 0 --retry-connrefused -P ${TEMP}/${APP} localhost:${PORT} 2> /dev/null
-			echo "[${PAGES}] Results retrieved."
+			wget -r -l 1 -k -p -nH -t 0 --retry-connrefused -P ${TEMP}/${SAMPLE} localhost:${PORT} 2> /dev/null
 			play stop > /dev/null                                                  				# Stop play server.
-			echo "[${PAGES}] Play application terminated."
 		fi
-	fi
 	) &
 
 	(
-	if [[ $1 = ${DOC} || $1 = ${ALL}  ]]; then													# Deploy scalaDoc.
-		APP=${SOURCE}
-
-		echo "[${DOC}] Deploying ..."
-		cd ${ROOT}/${APP}
-
-		echo "[${DOC}] Compiling sources ..."
-		play stage | grep --color=never error	                                            	# Generate scalaDoc.
-		cp -r ${ROOT}/${APP}/target/scala-2.10/api ${TEMP}/${APP}                               # Copy scalaDoc to temp directory.
-		echo "[${DOC}] Results retrieved."
-	fi
-	) &
-
-	(
-	if [[ $1 = ${PUBLISH} || $1 = ${ALL} ]]; then
-		echo "[$PUBLISH] Local ..."
-		cd ${ROOT}/${SOURCE}
-
-		play clean publish-local | grep --color=never error
-		cd ${ROOT}/${SAMPLE}
-		play reload > /dev/null
-	fi
+		play "project play-bootstrapper" doc | grep --color=never error                        	# Generate scalaDoc.
+		cp -r ${ROOT}/module/library/target/scala-2.10/api ${TEMP}/${LIBRARY}                   # Copy scalaDoc to temp directory.
 	) &
 
 	wait																						# Wait for tasks to finish.
 
-	if [[ $1 = ${PAGES} || $1 = ${DOC} || $1 = ${ALL} ]]; then									# Deploy changes.
-		git checkout gh-pages 2> /dev/null														# Prepare deploy branch.
+	git checkout gh-pages 2> /dev/null															# Prepare deploy branch.
 
-		if [[ $1 = ${PAGES} || $1 = ${ALL} ]]; then												# Prepare page deploy.
-			APP=${SAMPLE}
+	rm -rf ${ROOT}/index.html ${ROOT}/assets													# Remove old page files.
+	mv ${TEMP}/${SAMPLE}/* ${ROOT}																# Move new page to project.
+	git add ${ROOT}/index.html ${ROOT}/assets 2> /dev/null										# Stage page files.
 
-			rm -rf ${ROOT}/index.html ${ROOT}/assets											# Remove old page files.
-			mv ${TEMP}/${APP}/* ${ROOT}															# Move new page to project.
-			git add ${ROOT}/index.html ${ROOT}/assets 2> /dev/null								# Stage page files.
-		fi
+	rm -rf ${ROOT}/doc																			# Remove old scalaDoc files.
+	mv ${TEMP}/${LIBRARY} ${ROOT}/doc															# Move new scalaDoc to project.
+	git add ${ROOT}/doc 2> /dev/null															# Stage scalaDoc files.
 
-		if [[ $1 = ${DOC} || $1 = ${ALL} ]]; then												# Prepare scalaDoc deploy.
-			APP=${SOURCE}
-
-			rm -rf ${ROOT}/doc																	# Remove old scalaDoc files.
-			mv ${TEMP}/${APP} ${ROOT}/doc														# Move new scalaDoc to project.
-			git add ${ROOT}/doc 2> /dev/null													# Stage page files.
-		fi
-
-		git commit -m "Deployed updates." > /dev/null
-		git push origin gh-pages
-		git checkout - 2> /dev/null
-	fi
+	git commit -m "Deployed updates." > /dev/null
+	git push origin gh-pages
+	git checkout - 2> /dev/null
 fi
