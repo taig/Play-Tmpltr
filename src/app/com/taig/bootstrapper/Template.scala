@@ -304,11 +304,80 @@ object Template
 					case object Text extends Type( "text" )
 				}
 
+				object Button
+				{
+					// TODO
+				}
+
+				object Checkbox
+				{
+					def apply(name: Option[String] = None, value: Option[String] = None, checked: Boolean = false, attributes: Attributes = Attributes.empty): Input =
+					{
+						Input(
+							Type.Checkbox,
+							name,
+							attributes ++ Attributes(
+								"value" -> value,
+								"checked" -> ( if( checked ) "checked" else None )
+							)
+						)
+					}
+				}
+
+				object File
+				{
+					// TODO
+				}
+
+				object Hidden
+				{
+					// TODO
+				}
+
+				object Password
+				{
+					def apply(name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					{
+						Input(
+							Type.Password,
+							name,
+							attributes ++ Attributes( "value" -> value, "placeholder" -> placeholder )
+						)
+					}
+				}
+
+				object Radio
+				{
+					def apply(name: Option[String] = None, value: Option[String] = None, checked: Boolean = false, attributes: Attributes = Attributes.empty): Input =
+					{
+						Input(
+							Type.Radio,
+							name,
+							attributes ++ Attributes(
+								"value" -> value,
+								"checked" -> ( if( checked ) "checked" else None )
+							)
+						)
+					}
+				}
+
+				object Reset
+				{
+					// TODO
+				}
+
+				object Submit
+				{
+					// TODO
+				}
+
 				object Text
 				{
-					def apply( name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty ): Input =
+					def apply(name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
 					{
-						Input( Type.Text, name, attributes ++ Attributes( "value" -> value, "placeholder" -> placeholder ) )
+						Input(
+							Type.Text, name, attributes ++ Attributes( "value" -> value, "placeholder" -> placeholder )
+						)
 					}
 				}
 			}
