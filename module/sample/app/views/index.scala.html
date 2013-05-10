@@ -1,4 +1,4 @@
-@( name: String, repository: String, documentation: String )
+@( name: String, repository: String, library: String, sample: String, documentation: String )
 
 @import com.taig.bootstrapper.Template._
 
@@ -31,7 +31,7 @@
 			</p>
 
 			@Button( "GitHub", repository, icon = "globe", attributes = "target" -> "_blank" )
-            @Button( "API", documentation, icon = "book", attributes = "target" -> "_blank" )
+            @Button( "API", documentation + "/#com.taig.bootstrapper.Template$", icon = "book", attributes = "target" -> "_blank" )
 			@Button( "Contact", "mailto:my.taig@gmail.com", icon = "envelope" )
 
 			<section id="getting-started">
@@ -41,7 +41,7 @@
 
 			<section id="usage">
 				<div class="page-header"><h2>Usage</h2></div>
-				@usage.index()
+				@usage.index( library, sample )
 			</section>
 
 			<section id="features">
