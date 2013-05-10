@@ -3,7 +3,6 @@ package com.taig.bootstrapper
 import play.api.mvc.Call
 import play.api.templates.Html
 import play.api.i18n.Messages
-import com.taig.bootstrapper.Button.Style
 
 object Template
 {
