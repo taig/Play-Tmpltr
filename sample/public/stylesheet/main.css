@@ -2,6 +2,13 @@
     margin-bottom: 24px;
 }
 
+pre.prettyprint {
+    display: block;
+    overflow: auto;
+    white-space: pre;
+    word-wrap: normal;
+}
+
 section {
     margin-bottom: 60px;
 }
