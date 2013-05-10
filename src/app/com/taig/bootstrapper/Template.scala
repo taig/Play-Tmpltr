@@ -302,6 +302,7 @@ object Template
 					case object Hidden extends Type( "hidden" )
 					case object Password extends Type( "password" )
 					case object Radio extends Type( "radio" )
+					case object Submit extends Type( "submit" )
 					case object Text extends Type( "text" )
 				}
 
