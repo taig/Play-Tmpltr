@@ -14,6 +14,59 @@
 @input.text.Signature
 @input.text.Usage
 
+<h5>Password</h5>
+
+<p>
+	Creating a password field works pretty much just like creating a text field, except you have to call
+	<code>@@Input.Password</code> instead of <code>@@Input.Text</code>.
+</p>
+
+<h5>Hidden</h5>
+
+<p>
+	Surprisingly the same thing applies for hidden fields. Give <code>@@Input.Hidden</code> a go.
+</p>
+
+<h5>Checkbox</h5>
+
+<p>
+	A checkbox, however, has a slightly different method signature than the previous input fields.
+</p>
+
+@input.checkbox.Signature
+
+<p>
+	But as you can see, the main difference is that the paramter <code>placeholder</code> got replaced by
+	<code>checked</code>. Pretty straight forward, isn't it?
+</p>
+
+@input.checkbox.Usage
+
+<h5>Radio</h5>
+
+<p>
+	Well, it works just as <code>@@Input.Checkbox</code>. Just make sure to call <code>@@Input.Radio</code> instead.
+	The <code>apply</code> method's signatures are equal.
+</p>
+
+<h5>Submit</h5>
+
+<p>
+	TODO
+</p>
+
+<h5>Reset</h5>
+
+<p>
+	TODO
+</p>
+
+<h5>File</h5>
+
+<p>
+	TODO
+</p>
+
 <h4>TextArea</h4>
 
 @textarea.Usage
