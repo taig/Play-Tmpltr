@@ -302,6 +302,7 @@ object Template
 					case object Hidden extends Type( "hidden" )
 					case object Password extends Type( "password" )
 					case object Radio extends Type( "radio" )
+					case object Reset extends Type( "reset" )
 					case object Submit extends Type( "submit" )
 					case object Text extends Type( "text" )
 				}
@@ -366,7 +367,14 @@ object Template
 
 				object Reset
 				{
-					// TODO
+					def apply(name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					{
+						Input(
+							Type.Reset,
+							name,
+							attributes ++ Attributes( "value" -> value )
+						)
+					}
 				}
 
 				object Submit
