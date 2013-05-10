@@ -327,7 +327,10 @@ object Template
 
 				object File
 				{
-					// TODO
+					def apply(name: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					{
+						Input( Type.File, name, attributes )
+					}
 				}
 
 				object Hidden
