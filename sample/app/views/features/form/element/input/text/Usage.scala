@@ -1,10 +1,10 @@
-package views.features.form.element
+package views.features.form.element.input.text
 
 import views.Code
 import com.taig.bootstrapper.Attributes
 import com.taig.bootstrapper.Template.Form.Element._
 
-object BasicExamples extends Code
+object Usage extends Code
 {
 	val code =
 		"""
