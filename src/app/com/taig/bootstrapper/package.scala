@@ -25,7 +25,7 @@ package object bootstrapper
 
 	implicit def stringToOption(string: String): Option[String] = Some( string )
 
-	implicit def stringTupleToAttribute( attribute: (String, String) ): Attributes = new Attributes( Map( attribute ) )
+	implicit def stringToTupleToAttribute( attribute: (String, String) ): Attributes = new Attributes( Map( attribute ) )
 
 	implicit def xmlToHtml(element: NodeSeq): Html = Html( element.toString )
 }
