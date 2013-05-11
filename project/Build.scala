@@ -9,7 +9,7 @@ object ApplicationBuild extends Build
 
 	val library = Project( "play-tmpltr", version, path = file( "module" ) / "library" )
 
-//	val sample = Project( "sample", version, path = file( "module" ) / "sample" ).dependsOn( library )
+	val sample = Project( "sample", version, path = file( "module" ) / "sample" ).dependsOn( library )
 
-	val main = Project( "tmpltr", version ).dependsOn( library ).aggregate( library )
+	val main = Project( "tmpltr", version ).dependsOn( library, sample ).aggregate( library, sample )
 }

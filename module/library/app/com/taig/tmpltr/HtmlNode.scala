@@ -1,6 +1,6 @@
-package com.taig.bootstrapper
+package com.taig.tmpltr
 
-import scala.xml._
+import scala.xml.{Elem, NodeSeq, Null, TopScope}
 
 abstract class HtmlNode[N](label: String, minimizeEmpty: Boolean, child: NodeSeq, val attrs: Attributes) extends Elem(
 	null, label, Null, TopScope, minimizeEmpty, child: _*
@@ -12,7 +12,7 @@ abstract class HtmlNode[N](label: String, minimizeEmpty: Boolean, child: NodeSeq
 
 	def %(attributes: Attributes): N
 
-	override def toString =
+	override def toString: String =
 	{
 		"<" + label + attrs + ( if( child.isEmpty && minimizeEmpty ) " />"
 		else

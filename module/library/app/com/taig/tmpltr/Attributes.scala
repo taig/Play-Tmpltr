@@ -1,8 +1,8 @@
-package com.taig.bootstrapper
+package com.taig.tmpltr
 
 import scala.collection.immutable.MapLike
 
-class Attributes private[bootstrapper](map: Map[String, String]) extends Map[String, String] with MapLike[String, String, Attributes]
+class Attributes private[tmpltr](map: Map[String, String]) extends Map[String, String] with MapLike[String, String, Attributes]
 {
 	def get(key: String) = map.get( key )
 
