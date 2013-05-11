@@ -30,6 +30,8 @@ object a
 	object Target
 	{
 		object Blank extends Target( "blank" )
+		object Parent extends Target( "parent" )
 		object Self extends Target( "self" )
+		object Top extends Target( "top" )
 	}
 }
