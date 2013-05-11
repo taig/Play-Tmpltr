@@ -17,11 +17,10 @@ package object bootstrapper
 		case _ => Attributes.empty
 	}
 
-	implicit def propertyToString(property: Property): String = property.toString
 
 	implicit def stringsToAttributes(attributes: Seq[(String, String)]): Attributes = mapToAttributes( attributes.toMap )
 
-	implicit def stringToLabelOption(label: String): Option[Label] = Option( Template.Label( label ) )
+	implicit def stringToHtml( string: String ): Html = Html( string )
 
 	implicit def stringToOption(string: String): Option[String] = Some( string )
 

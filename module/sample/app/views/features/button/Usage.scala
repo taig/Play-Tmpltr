@@ -1,9 +1,11 @@
 package views.features.button
 
 import views.Code
-import com.taig.bootstrapper.Template._
-import com.taig.bootstrapper.Template.Button.Size
-import com.taig.bootstrapper.Template.Button.Style
+import com.taig.bootstrapper.bootstrap.Template
+import Template._
+import com.taig.bootstrapper.bootstrap.Template
+import Template.Button.Size
+import Template.Button.Style
 import controllers.routes
 
 object Usage extends Code

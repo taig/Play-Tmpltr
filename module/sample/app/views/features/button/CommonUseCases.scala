@@ -1,8 +1,10 @@
 package views.features.button
 
 import views.Code
-import com.taig.bootstrapper.Template._
+import com.taig.bootstrapper.bootstrap.Template
+import Template._
 import controllers.routes
+import com.taig.bootstrapper.bootstrap.Template
 
 object CommonUseCases extends Code
 {

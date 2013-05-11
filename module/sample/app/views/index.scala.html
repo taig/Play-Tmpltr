@@ -1,6 +1,10 @@
 @( name: String, repository: String, library: String, sample: String, documentation: String )
+@import com.taig.bootstrapper.bootstrap.Icon
+@import com.taig.bootstrapper.html.Icon
 
-@import com.taig.bootstrapper.Template._
+@import com.taig.bootstrapper._
+@import com.taig.bootstrapper.html.Link
+@import com.taig.bootstrapper.
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +29,7 @@
 			<h1>@Icon( "fire", Icon.Color.Black, "style" -> "margin-top: 18px;" ) @name</h1>
 
 			<p class="lead">
-				A module for the <a href="http://www.playframework.com/" target="_blank">Play Framework 2</a>
+				A module for the @Link( "http://www.playframework.com/" )( "Play Framework 2" )
 				(Scala) that helps you at keeping your <a href="http://twitter.github.io/bootstrap/" target="_blank">
 				Twitter Bootstrap</a>-views clean and free from boilerplate code.
 			</p>

@@ -1,7 +1,9 @@
 package views.features.form.element.input.checkbox
 
 import views.Code
-import com.taig.bootstrapper.Template.Form.Element._
+import com.taig.bootstrapper.bootstrap.Template
+import Template.Form.Element._
+import com.taig.bootstrapper.bootstrap.Template
 
 object Usage extends Code
 {
