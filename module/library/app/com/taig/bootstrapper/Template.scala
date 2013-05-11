@@ -337,9 +337,7 @@ object Template
 				{
 					def apply(name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
 					{
-						Input(
-							Type.Hidden, name, attributes ++ Attributes( "value" -> value )
-						)
+						Input( Type.Hidden, name, attributes ++ Attributes( "value" -> value ) )
 					}
 				}
 
