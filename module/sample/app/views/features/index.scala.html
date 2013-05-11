@@ -1,6 +1,6 @@
-@( library: String )
+@( library: String, sample: String, documentation: String )
 
-@import features.button
+@import features.{button, form}
 
 <p>
 	All templating features aim to provide maximum flexibility to allow for a widget to enter all possible states
@@ -11,10 +11,10 @@
 </p>
 
 <h3>Buttons</h3>
-@button.index( library )
+@button.index( library, sample, documentation )
 
 <h3>Forms</h3>
-@form.index()
+@form.index( library, sample, documentation )
 
 <h3>Form Elements</h3>
-@form.element.index()
+@form.element.index( library, sample, documentation )
