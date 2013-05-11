@@ -2,6 +2,7 @@
 
 @import com.taig.tmpltr.html._
 @import com.taig.tmpltr.html.a.Target
+@import com.taig.tmpltr.html.button.Type
 
 @a( "#", "class" -> "my classes go here" ){ Hello World! }
 @a( "#", Target.Self, "class" -> "my classes go here" ){ Hello Beautiful! }
@@ -10,5 +11,11 @@
 
 @p( "class" -> "crazy stuff" ) {
 	Of yourse paragraphs can also have classes and shit. And @span{ span } elements are all around the place, too. You
-	can @a( "#" ){ nest that shit } as you want to.
+	can @a( "#" ){ nest that shit } as @br() you want to.
 }
+
+@canvas(){ Your browser does not support Canvas )-: }
+
+@button(Type.Reset){ Hello Button! }
+
+@input.text( "le_name", None, "le placeholder" )

@@ -9,13 +9,13 @@ package object html
 //	implicit def optionStringToOptionText(option: Option[String]): Option[Text] = option.map( Text( _ ) )
 //
 	implicit def optionPropertyToOptionString(property: Option[Property]): Option[String] = property.map( _.identifier )
-//
-//	implicit def optionTupleToAttribute(attribute: (String, Option[String])): Attributes = attribute match
-//	{
-//		case (key, Some( value )) => Attributes( key -> value )
-//		case _ => Attributes.empty
-//	}
-//
+
+	implicit def optionTupleToAttribute[T](attribute: (String, Option[Property])): Attributes = attribute match
+	{
+		case (key, Some( value )) => Attributes( key -> value.identifier )
+		case _ => Attributes.empty
+	}
+
 	implicit def stringsToAttributes(attributes: Seq[(String, String)]): Attributes = mapToAttributes( attributes.toMap )
 
 //	implicit def stringToHtml(string: String): Html = Html( string )
