@@ -6,7 +6,7 @@ import scala.xml.Unparsed
 import play.api.mvc.Content
 
 abstract class Tag[T <: Tag[T]] protected(tag: String, attributes: Attributes = Attributes.empty, content: Content = Text.empty, minimizeEmpty: Boolean = true) extends HtmlNode[T](
-	tag, minimizeEmpty, Unparsed( content.body ), attributes
+	tag, minimizeEmpty, Unparsed( content.body.trim ), attributes
 )
 
 object Tag
