@@ -1,11 +1,11 @@
 package com.taig.tmpltr.html
 
-import com.taig.tmpltr.Tag.Html.Body.HyperLink
+import com.taig.tmpltr.Tag
 import com.taig.tmpltr.{Property, Attributes}
 import play.api.templates.Html
 import com.taig.tmpltr.html.a.Target
 
-class a(href: Option[String], target: Option[Target], attributes: Attributes)(content: Html) extends HyperLink[a](
+class a(href: Option[String], target: Option[Target], attributes: Attributes)(content: Html) extends Tag.Html.Body.HyperLink[a](
 	attributes ++ Attributes( "href" -> href, "target" -> target )
 )( content )
 {
