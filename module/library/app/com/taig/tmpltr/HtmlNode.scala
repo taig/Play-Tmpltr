@@ -7,10 +7,12 @@ abstract class HtmlNode[N](label: String, minimizeEmpty: Boolean, child: NodeSeq
 )
 {
 	def this(element: Elem, attributes: Attributes = Attributes.empty) = this(
-		element.label, element.minimizeEmpty, element.child, attributes ++ element.attributes.asAttrMap
+		element.label, element.minimizeEmpty, element.child, new Attributes( attributes ++ element.attributes.asAttrMap )
 	)
 
 	def %(attributes: Attributes): N
+
+	protected def %( builder: Attributes => N, attributes: Attributes ): N = builder( new Attributes( attrs ++ attributes ) )
 
 	override def toString: String =
 	{
