@@ -123,7 +123,7 @@ object Tag
 
 				abstract class Fieldset[F <: Fieldset[F]](attributes: Attributes)(content: HTML) extends Tag[F]( "fieldset", attributes, content )
 
-				abstract class Input[I <: Input[I]](attributes: Attributes)(content: HTML) extends Tag[I]( "input", attributes, content )
+				abstract class Input[I <: Input[I]](attributes: Attributes) extends Tag[I]( "input", attributes )
 
 				abstract class KeyGenerator[K <: KeyGenerator[K]](attributes: Attributes)(content: HTML) extends Tag[K]( "keygen", attributes, content )
 
