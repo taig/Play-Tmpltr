@@ -33,17 +33,17 @@ object Tag
 		abstract class Body[B <: Body[B]](attributes: Attributes)(content: HTML) extends Tag[B]( "body", attributes, content )
 		object Body
 		{
-			trait List
+			object List
 			{
 				abstract class Item[I <: Item[I]](attributes: Attributes)(content: HTML) extends Tag[I]( "li", attributes, content )
 			}
 
-			trait Media
+			object Media
 			{
 				abstract class Source[S <: Source[S]](attributes: Attributes)(content: HTML) extends Tag[S]( "source", attributes, content )
 			}
 
-			trait Selection
+			object Selection
 			{
 				abstract class Option[O <: Option[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "option", attributes, content )
 			}
@@ -57,7 +57,10 @@ object Tag
 			abstract class Aside[A <: Aside[A]](attributes: Attributes)(content: HTML) extends Tag[A]( "aside", attributes, content )
 
 			abstract class Audio[A <: Audio[A]](attributes: Attributes)(content: HTML) extends Tag[A]( "audio", attributes, content )
-			object Audio extends Media
+			object Audio
+			{
+				abstract class Source[S <: Source[S]](attributes: Attributes)(content: HTML) extends Media.Source( attributes)( content )
+			}
 
 			abstract class BiDirectionalOverride[B <: BiDirectionalOverride[B]](attributes: Attributes)(content: HTML) extends Tag[B]( "bdo", attributes, content )
 
@@ -73,8 +76,6 @@ object Tag
 
 			abstract class Break[B <: Break[B]](attributes: Attributes) extends Tag[B]( "br", attributes )
 
-			abstract class Button[B <: Button[B]](attributes: Attributes)(content: HTML) extends Tag[B]( "button", attributes, content )
-
 			abstract class Canvas[C <: Canvas[C]](attributes: Attributes)(content: HTML) extends Tag[C]( "canvas", attributes, content )
 
 			abstract class Cite[C <: Cite[C]](attributes: Attributes)(content: HTML) extends Tag[C]( "cite", attributes, content )
@@ -82,7 +83,10 @@ object Tag
 			abstract class Code[C <: Code[C]](attributes: Attributes)(content: HTML) extends Tag[C]( "code", attributes, content )
 
 			abstract class Data[D <: Data[D]](attributes: Attributes)(content: HTML) extends Tag[D]( "datalist", attributes, content )
-			object Data extends Selection
+			object Data
+			{
+				abstract class Option[O <: Option[O]](attributes: Attributes)(content: HTML) extends Selection.Option[O]( attributes )( content )
+			}
 
 			abstract class Definition[D <: Definition[D]](attributes: Attributes)(content: HTML) extends Tag[D]( "dfn", attributes, content )
 
@@ -115,6 +119,8 @@ object Tag
 			abstract class Form[T <: Form[T]](attributes: Attributes)(content: HTML) extends Tag[T]( "form", attributes, content )
 			object Form
 			{
+				abstract class Button[B <: Button[B]](attributes: Attributes)(content: HTML) extends Tag[B]( "button", attributes, content )
+
 				abstract class Fieldset[F <: Fieldset[F]](attributes: Attributes)(content: HTML) extends Tag[F]( "fieldset", attributes, content )
 
 				abstract class Input[I <: Input[I]](attributes: Attributes)(content: HTML) extends Tag[I]( "input", attributes, content )
@@ -131,7 +137,10 @@ object Tag
 				object Select
 				{
 					abstract class Options[O <: Options[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "optgroup", attributes, content )
-					object Options extends Selection
+					object Options
+					{
+						abstract class Option[O <: Option[O]](attributes: Attributes)(content: HTML) extends Selection.Option[O]( attributes )( content )
+					}
 				}
 
 				abstract class TextArea[T <: TextArea[T]](attributes: Attributes)(content: Text) extends Tag[T]( "textarea", attributes, content )
@@ -179,7 +188,10 @@ object Tag
 			}
 
 			abstract class OrderedList[O <: OrderedList[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "ol", attributes, content )
-			object OrderedList extends List
+			object OrderedList
+			{
+				abstract class Item[I <: Item[I]](attributes: Attributes)(content: HTML) extends List.Item[I]( attributes )( content )
+			}
 
 			abstract class Outdated[O <: Outdated[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "s", attributes, content )
 
@@ -239,14 +251,17 @@ object Tag
 			abstract class Time[T <: Time[T]](attributes: Attributes)(content: HTML) extends Tag[T]( "time", attributes, content )
 
 			abstract class UnorderedList[O <: UnorderedList[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "ul", attributes, content )
-			object UnorderedList extends List
+			object UnorderedList
+			{
+				abstract class Item[I <: Item[I]](attributes: Attributes)(content: HTML) extends List.Item[I]( attributes )( content )
+			}
 
 			abstract class Variable[V <: Variable[V]](attributes: Attributes)(content: HTML) extends Tag[V]( "var", attributes, content )
 
 			abstract class Video[V <: Video[V]](attributes: Attributes)(content: HTML) extends Tag[V]( "video", attributes, content )
-			object Video extends Media
+			object Video
 			{
-				abstract class Track[T <: Track[T]](attributes: Attributes)(content: HTML) extends Tag[T]( "track", attributes, content )
+				abstract class Source[S <: Source[S]](attributes: Attributes)(content: HTML) extends Media.Source( attributes)( content )
 			}
 
 			abstract class WordBreak[W <: WordBreak[W]](attributes: Attributes)(content: HTML) extends Tag[W]( "wbr", attributes, content )
