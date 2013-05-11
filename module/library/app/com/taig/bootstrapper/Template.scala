@@ -338,9 +338,7 @@ object Template
 					def apply(name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
 					{
 						Input(
-							Type.Hidden,
-							name,
-							attributes ++ Attributes( "value" -> value )
+							Type.Hidden, name, attributes ++ Attributes( "value" -> value )
 						)
 					}
 				}
@@ -371,25 +369,17 @@ object Template
 
 				object Reset
 				{
-					def apply(name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					def apply(value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
 					{
-						Input(
-							Type.Reset,
-							name,
-							attributes ++ Attributes( "value" -> value )
-						)
+						Input( Type.Reset, None, attributes ++ Attributes( "value" -> value ) )
 					}
 				}
 
 				object Submit
 				{
-					def apply(name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
+					def apply(value: Option[String] = None, name: Option[String] = None, attributes: Attributes = Attributes.empty): Input =
 					{
-						Input(
-							Type.Submit,
-							name,
-							attributes ++ Attributes( "value" -> value )
-						)
+						Input( Type.Submit, name, attributes ++ Attributes( "value" -> value ) )
 					}
 				}
 
