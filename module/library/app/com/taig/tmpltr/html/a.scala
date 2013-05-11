@@ -9,7 +9,7 @@ class a(href: Option[String], target: Option[Target], attributes: Attributes)(co
 	attributes ++ Attributes( "href" -> href, "target" -> target )
 )( content )
 {
-	def %(attributes: Attributes) = %( new a( href, target, _: Attributes )( content ), attributes )
+	protected def copy = new a( href, target, _: Attributes )( content )
 }
 
 object a

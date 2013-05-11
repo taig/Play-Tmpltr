@@ -10,9 +10,9 @@ abstract class HtmlNode[N](label: String, minimizeEmpty: Boolean, child: NodeSeq
 		element.label, element.minimizeEmpty, element.child, new Attributes( attributes ++ element.attributes.asAttrMap )
 	)
 
-	def %(attributes: Attributes): N
+	def %(attributes: Attributes): N = copy( new Attributes( attrs ++ attributes ) )
 
-	protected def %( builder: Attributes => N, attributes: Attributes ): N = builder( new Attributes( attrs ++ attributes ) )
+	protected def copy: Attributes => N
 
 	override def toString: String =
 	{
