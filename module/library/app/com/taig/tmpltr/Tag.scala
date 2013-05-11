@@ -2,15 +2,17 @@ package com.taig.tmpltr
 
 import play.api.templates.{Txt => Text}
 import play.api.templates.{Html => HTML}
-import scala.xml.Unparsed
+import scala.xml.{NodeSeq, Unparsed}
 import play.api.mvc.Content
 
-abstract class Tag[T <: Tag[T]] protected(tag: String, attributes: Attributes = Attributes.empty, content: Content = Text.empty, minimizeEmpty: Boolean = true) extends HtmlNode[T](
-	tag, minimizeEmpty, Unparsed( content.body.trim ), attributes
+abstract class Tag[T <: Tag[T]] protected(tag: String, attributes: Attributes = Attributes.empty, content: Option[Content] = None, minimizeEmpty: Boolean = true) extends HtmlNode[T](
+	tag, minimizeEmpty, content.fold( NodeSeq.Empty )( content => Unparsed( content.body.trim ) ), attributes
 )
 
 object Tag
 {
+	implicit def contentToOption( content: Content ): Option[Content] = Some( content )
+
 	abstract class Html[H <: Html[H]](attributes: Attributes)(content: HTML) extends Tag[H]( "html", attributes, content )
 	object Html
 	{
