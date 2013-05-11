@@ -23,7 +23,7 @@ object a
 
 	def apply(href: Option[String], attributes: (String, String)*)(content: Html): a =
 	{
-		new a( href, None, attributes )( content )
+		apply( href, None, attributes: _* )( content )
 	}
 
 	class Target(target: String) extends Property( "_" + target )
