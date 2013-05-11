@@ -1,7 +1,6 @@
 package com.taig.tmpltr.html
 
 import com.taig.tmpltr.{Property, Attributes, Tag}
-import play.api.templates.Html
 
 class input(attributes: Attributes) extends Tag.Html.Body.Form.Input[input]( attributes )
 {
@@ -23,8 +22,6 @@ object input
 	}
 
 	def apply(attributes: (String, String)*): input = apply( None, None, attributes: _* )
-
-	def apply(content: Html): input = apply( )
 
 	class Type(`type`: String) extends Property( `type` )
 	object Type
@@ -54,18 +51,45 @@ object input
 		object Week extends Type( "week" )
 	}
 
-	class hidden(attributes: Attributes) extends input( attributes )
+	object checkbox extends
+	{
+		def apply( name: Option[String], value: Option[String], checked: Boolean, attributes: (String, String)* ): input =
+		{
+			input( Type.Checkbox, name, value, (attributes ++ Attributes( "checked" -> ( if( checked ) "checked" else None ) ) ): _* )
+		}
+
+		def apply( name: Option[String], value: Option[String], attributes: (String, String)* ): input =
+		{
+			apply( name, value, false, attributes: _* )
+		}
+
+		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, attributes: _* )
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+	}
+
+	object file
+	{
+		def apply( name: Option[String], attributes: (String, String)* ): input =
+		{
+			input( Type.File, name, None, attributes: _* )
+		}
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+	}
+
 	object hidden
 	{
 		def apply( name: Option[String], value: Option[String], attributes: (String, String)* ): input =
 		{
-			input( Type.Password, name, value, attributes: _* )
+			input( Type.Hidden, name, value, attributes: _* )
 		}
 
 		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, attributes: _* )
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
 	}
 
-	class password(attributes: Attributes) extends input( attributes )
 	object password
 	{
 		def apply( name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* ): input =
@@ -74,9 +98,49 @@ object input
 		}
 
 		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, None, attributes: _* )
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
 	}
 
-	class text(attributes: Attributes) extends input( attributes )
+	object radio extends
+	{
+		def apply( name: Option[String], value: Option[String], checked: Boolean, attributes: (String, String)* ): input =
+		{
+			input( Type.Radio, name, value, (attributes ++ Attributes( "checked" -> ( if( checked ) "checked" else None ) ) ): _* )
+		}
+
+		def apply( name: Option[String], value: Option[String], attributes: (String, String)* ): input =
+		{
+			apply( name, value, false, attributes: _* )
+		}
+
+		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, attributes: _* )
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+	}
+
+	object reset extends
+	{
+		def apply( value: Option[String], attributes: (String, String)* ): input =
+		{
+			input( Type.Reset, None, value, attributes: _* )
+		}
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+	}
+
+	object submit extends
+	{
+		def apply( value: Option[String], name: Option[String], attributes: (String, String)* ): input =
+		{
+			input( Type.Submit, name, value, attributes: _* )
+		}
+
+		def apply( value: Option[String], attributes: (String, String)* ): input = apply( value, None, attributes: _* )
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+	}
+
 	object text
 	{
 		def apply( name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* ): input =
@@ -85,5 +149,7 @@ object input
 		}
 
 		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, None, attributes: _* )
+
+		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
 	}
 }
