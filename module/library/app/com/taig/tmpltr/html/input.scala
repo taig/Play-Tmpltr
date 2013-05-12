@@ -9,8 +9,6 @@ class input(attributes: Attributes) extends Tag.Html.Body.Form.Input[input]( att
 
 object input
 {
-	implicit def typeToOption( `type`: Type ): Option[Type] = Some( `type` )
-
 	def apply(`type`: Option[Type], name: Option[String], value: Option[String], attributes: (String, String)*): input =
 	{
 		new input( attributes ++ Attributes( "type" -> `type`, "name" -> name, "value" -> value ) )

@@ -10,8 +10,6 @@ class button(attributes: Attributes)(content: Html) extends Tag.Html.Body.Form.B
 
 object button
 {
-	implicit def typeToOption(`type`: Type): Option[Type] = Some( `type` )
-
 	def apply(`type`: Option[Type], name: Option[String], attributes: (String, String)*)(content: Html): button =
 	{
 		new button( attributes ++ Attributes( "type" -> `type`, "name" -> name ) )( content )

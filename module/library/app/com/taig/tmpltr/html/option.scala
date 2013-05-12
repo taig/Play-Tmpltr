@@ -10,6 +10,11 @@ class option(attributes: Attributes)(content: Html) extends Tag.Html.Body.Select
 
 object option
 {
+	def apply(value: Option[String], attributes: (String, String)*)(content: Html): option =
+	{
+		new option( attributes ++ Attributes( "value" -> value ) )( content )
+	}
+
 	def apply(attributes: (String, String)*)(content: Html): option = new option( attributes )( content )
 
 	def apply(content: Html): option = apply( )( content )

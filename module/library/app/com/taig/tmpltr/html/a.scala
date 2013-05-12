@@ -14,8 +14,6 @@ class a(href: Option[String], target: Option[Target], attributes: Attributes)(co
 
 object a
 {
-	implicit def targetToOption(target: Target): Option[Target] = Some( target )
-
 	def apply(href: Option[String], target: Option[Target], attributes: (String, String)*)(content: Html): a =
 	{
 		new a( href, target, attributes )( content )
