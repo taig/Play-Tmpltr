@@ -256,6 +256,8 @@ object Tag
 
 			abstract class Time[T <: Time[T]](attributes: Attributes)(content: HTML) extends Tag[T]( "time", attributes, content )
 
+			abstract class Underlined[O <: Underlined[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "u", attributes, content )
+
 			abstract class UnorderedList[O <: UnorderedList[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "ul", attributes, content )
 			object UnorderedList
 			{
