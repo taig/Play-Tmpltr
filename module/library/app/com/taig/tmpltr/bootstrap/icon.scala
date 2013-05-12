@@ -1,12 +1,11 @@
 package com.taig.tmpltr.bootstrap
 
-import com.taig.tmpltr.Tag.Html.Body.Italic
 import com.taig.tmpltr._
 import play.api.templates.Html
 import com.taig.tmpltr.bootstrap.icon.Color
 import com.taig.tmpltr.bootstrap.icon.Image
 
-class icon(image: Image, color: Color, attributes: Attributes) extends Italic[icon](
+class icon(image: Image, color: Color, attributes: Attributes) extends Tag.Html.Body.Italic[icon](
 	attributes ++ ( "class" -> ( image + " " + color ) )
 )( Html.empty )
 {
