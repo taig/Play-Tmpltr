@@ -9,6 +9,8 @@ package object tmpltr
 
 	implicit def htmlToOptionString(html: Html): Option[String] = Some( html.body.trim )
 
+	implicit def htmlToAttributesHtmlTuple(html: Html): (Attributes, Html) = ( Attributes.empty, html )
+
 	implicit def htmlToTxt(html: Html): Txt = Txt( html.body.trim )
 
 	implicit def mapToAttributes(map: Map[String, String]): Attributes = new Attributes( map )

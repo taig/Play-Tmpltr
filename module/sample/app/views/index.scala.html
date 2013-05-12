@@ -1,34 +1,31 @@
 @( name: String, repository: String, library: String, sample: String, documentation: String )
 
 @import com.taig.tmpltr._
-@import com.taig.tmpltr.markup.{body, head, html, link, meta, p, script, title}
+@import com.taig.tmpltr.markup._
 @import com.taig.tmpltr.bootstrap.{container}
 
 <!DOCTYPE html>
-@html {
-	@head {
-		@title( name )
+@boilerplate{
+	@title( name )
 
-		@meta( charset = "utf-8" )
+	@meta( charset = "utf-8" )
 
-		@link.style( routes.Assets.at( "stylesheet/bootstrap.min.css" ) )
-		@link.style( routes.Assets.at( "stylesheet/prettify.css" ) )
-		@link.style( routes.Assets.at( "stylesheet/main.css" ) )
+	@link.style( routes.Assets.at( "stylesheet/bootstrap.min.css" ) )
+	@link.style( routes.Assets.at( "stylesheet/prettify.css" ) )
+	@link.style( routes.Assets.at( "stylesheet/main.css" ) )
 
-		<!--[if lt IE 9]-->
-		@script.reference( "http://html5shiv.googlecode.com/svn/trunk/html5.js" )
-    	<!--[endif]-->
+	<!--[if lt IE 9]-->
+	@script.reference( "http://html5shiv.googlecode.com/svn/trunk/html5.js" )
+	<!--[endif]-->
 
-		@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
-		@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
-		@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
+	@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
+	@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
+	@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
+}{
+	@container {
+		@p { Here we go (-: }
 	}
-	@body {
-		@container {
-			@p { Here we go (-: }
-		}
 
-		@script.reference( routes.Assets.at( "javascript/main.js" ) )
-		@analytics()
-	}
+	@script.reference( routes.Assets.at( "javascript/main.js" ) )
+	@analytics()
 }
