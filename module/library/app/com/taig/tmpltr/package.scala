@@ -1,10 +1,15 @@
 package com.taig
 
-import play.api.templates.Html
+import play.api.templates.{Txt, Html}
+import play.api.mvc.Call
 
 package object tmpltr
 {
+	implicit def callToOptionString(call: Call): Option[String] = call.toString
+
 	implicit def htmlToOptionString(html: Html): Option[String] = Some( html.body.trim )
+
+	implicit def htmlToTxt(html: Html): Txt = Txt( html.body.trim )
 
 	implicit def mapToAttributes(map: Map[String, String]): Attributes = new Attributes( map )
 
@@ -23,6 +28,8 @@ package object tmpltr
 	implicit def stringToHtml(string: String): Html = Html( string )
 
 	implicit def stringToOption(string: String): Option[String] = Some( string )
+
+	implicit def stringToTxt(string: String): Txt = Txt( string )
 
 	implicit def stringTupleToAttributes(tuple: (String, String)): Attributes = Attributes( tuple._1 -> Some( tuple._2 ) )
 
