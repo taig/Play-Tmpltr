@@ -6,7 +6,7 @@ object Example2 extends Code
 {
 	val code: String =
 		"""
-		  |val main = play.Project( "name", "1.0" )
+		  |val main = play.Project( "project-name", "1.0 BETA" )
 		  |               .settings( templatesImport ++= Seq(
 		  |                   "com.taig.tmpltr._",
 		  |                   "com.taig.tmpltr.markup._",
