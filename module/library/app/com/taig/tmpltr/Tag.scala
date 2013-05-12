@@ -171,6 +171,8 @@ object Tag
 
 			abstract class Inserted[I <: Inserted[I]](attributes: Attributes)(content: HTML) extends Tag[I]( "ins", attributes, content )
 
+			abstract class Italic[I <: Italic[I]](attributes: Attributes)(content: HTML) extends Tag[I]( "i", attributes, content )
+
 			abstract class Keyboard[K <: Keyboard[K]](attributes: Attributes)(content: HTML) extends Tag[K]( "kbd", attributes, content )
 
 			abstract class Map[M <: Map[M]](attributes: Attributes)(content: HTML) extends Tag[M]( "map", attributes, content )
