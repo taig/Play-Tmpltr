@@ -1,15 +1,17 @@
 package com.taig.tmpltr.bootstrap
 
-import com.taig.tmpltr.{HtmlNode, Attributes}
+import com.taig.tmpltr.Tag.Html.Body.Italic
+import com.taig.tmpltr._
+import play.api.templates.Html
 
-class Icon(image: String, color: Icon.Color, attributes: Attributes) extends HtmlNode[Icon](
-	<i class={"icon-" + image + " " + color}></i>,
-	attributes
-){
-	def %(attributes: Attributes) = new Icon( image, color, this.attributes ++ attributes )
+class icon(image: String, color: String, attributes: Attributes) extends Italic[icon](
+	attributes ++ ( "class" -> ( "icon" + image ) )
+)( Html.empty )
+{
+	protected def copy = new icon( image, color, _: Attributes )
 }
 
-object Icon
+object icon
 {
-	class Color(identifier: Option[String]) extends Property( "icon", identifier )
+	class Color(color: String) extends Property( "icon" -> "-", color )
 }

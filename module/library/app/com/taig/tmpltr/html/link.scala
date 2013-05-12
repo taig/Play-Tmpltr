@@ -1,6 +1,6 @@
 package com.taig.tmpltr.html
 
-import com.taig.tmpltr.{Property, Attributes, Tag}
+import com.taig.tmpltr._
 
 class link(attributes: Attributes) extends Tag.Html.Head.Link[link]( attributes )
 {
