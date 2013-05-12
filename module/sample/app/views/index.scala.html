@@ -1,6 +1,7 @@
 @(name: String, repository: String, library: String, sample: String, documentation: String)
 
 @import com.taig.tmpltr._
+@import com.taig.tmpltr.bootstrap._
 @import com.taig.tmpltr.html._
 @import com.taig.tmpltr.html.a.Target
 @import com.taig.tmpltr.html.button.Type
@@ -18,3 +19,5 @@
 @button(Type.Reset){ Hello Button! }
 
 @input.text( "le_name", None, "le placeholder" )
+
+@icon( "heart" )
