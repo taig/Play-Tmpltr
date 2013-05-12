@@ -1,7 +1,8 @@
 @( name: String, repository: String, library: String, sample: String, documentation: String )
 
 @import com.taig.tmpltr._
-@import com.taig.tmpltr.markup.{body, head, meta, html, link, script, title}
+@import com.taig.tmpltr.markup.{body, head, html, link, meta, p, script, title}
+@import com.taig.tmpltr.bootstrap.{container}
 
 <!DOCTYPE html>
 @html {
@@ -23,8 +24,9 @@
 		@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
 	}
 	@body {
-		<div class="container">
-		</div>
+		@container {
+			@p { Here we go (-: }
+		}
 
 		@script.reference( routes.Assets.at( "javascript/main.js" ) )
 		@analytics()
