@@ -15,16 +15,16 @@
 @p {
 	If you're planning to use @cite{ @name's } @a( "http://twitter.github.io/bootstrap/index.html", Target.Blank ){
 	@cite{ Twitter Bootstrap } } utilities you have to take care of adding all necessary files to your application and
-	to reference them in your view's @code{ &lt;head /&gt; }  area.
+	to reference them in your view's @code{ &lt;head /&gt; } area.
 }
 
 @h3 { Integration }
 @p {
-	When the dependencies are working and you want to start building some beautiful views you'll have to deal with some
-	imports first. Import @code( "com.taig.tmpltr.makeup._" ) in the head of your view. That will include all the
-	@cite{ HTML } tools right into your view. But without importing @code( "com.taig.tmpltr._" ) using it won't
-	be fun, because all the implicit conversions are located there. Well, if you also want to use
-	@cite{ Twitter Bootstrap } elements make sure to also add @code( "com.taig.tmpltr.bootstrap._" ).
+	When the dependencies are set up properly and you want to start building some beautiful views you'll have to deal
+	with the imports first. Import @code( "com.taig.tmpltr.makeup._" ) in the head of your view to make @strong{ all }
+	the @cite{ HTML } tools available. But without importing @code( "com.taig.tmpltr._" ) using them won't be fun,
+	because all the implicit conversions are located there. Well, if you also want to use @cite{ Twitter Bootstrap }
+	elements make sure to also add @code( "com.taig.tmpltr.bootstrap._" ).
 }
 
 @p { If you're view now looks somehow like this, you're ready to go. }
