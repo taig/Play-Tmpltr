@@ -1,8 +1,8 @@
 #!/bin/bash
 
 readonly TEMP=/tmp/app
-readonly ROOT=~/Development/Scala/bootstrapper
-readonly LIBRARY=play-bootstrapper
+readonly ROOT=~/Development/Scala/tmpltr
+readonly LIBRARY=play-tmpltr
 readonly SAMPLE=sample
 readonly CLEAN=--clean
 readonly PORT=9999
@@ -20,7 +20,6 @@ else																							# Run deploy.
 		play clean > /dev/null
 	fi
 
-
 	(																							# Deploy sample pages.
 		if [[ -a ${ROOT}/RUNNING_PID ]]; then													# Check if play is already running.
     		echo "[pages] Play application already running. Cancelled deploy."
@@ -32,7 +31,7 @@ else																							# Run deploy.
 	) &
 
 	(
-		play "project play-bootstrapper" doc | grep --color=never error                        	# Generate scalaDoc.
+		play "project play-tmpltr" doc | grep --color=never error                        		# Generate scalaDoc.
 		cp -r ${ROOT}/module/library/target/scala-2.10/api ${TEMP}/${LIBRARY}                   # Copy scalaDoc to temp directory.
 	) &
 
