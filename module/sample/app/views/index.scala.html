@@ -2,7 +2,8 @@
 
 @import com.taig.tmpltr._
 @import com.taig.tmpltr.markup._
-@import com.taig.tmpltr.bootstrap.{container}
+@import com.taig.tmpltr.markup.a.Target
+@import com.taig.tmpltr.bootstrap._
 
 @boilerplate {
 	@title( name )
@@ -22,7 +23,23 @@
 	@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
 } {
 	@container {
-		@p { Here we go (-: }
+		@h1 { @icon( "fire", "style" -> "margin-top: 18px;" ) @name }
+
+		@lead {
+			A module for the @a( "http://www.playframework.com/", Target.Blank ){ Play Framework 2 } (Scala) that
+			helps keeping your views clean and free from boilerplate code with code generated HTML and
+			@a( "http://twitter.github.io/bootstrap/", Target.Blank ){ Twitter Bootstrap } elements.
+		}
+
+		@section( "id" -> "getting-started" ) {
+			@installation.index()
+		}
+
+		@section( "id" -> "usage" ) {
+		}
+
+		@section( "id" -> "license" ) {
+		}
 	}
 
 	@script.reference( routes.Assets.at( "javascript/main.js" ) )
