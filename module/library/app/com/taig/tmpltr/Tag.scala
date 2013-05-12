@@ -66,6 +66,8 @@ object Tag
 
 			abstract class Blockquote[B <: Blockquote[B]](attributes: Attributes)(content: HTML) extends Tag[B]( "blockquote", attributes, content )
 
+			abstract class Bold[B <: Bold[B]](attributes: Attributes)(content: HTML) extends Tag[B]( "b", attributes, content )
+
 			abstract class Definitions[D <: Definitions[D]](attributes: Attributes)(content: HTML) extends Tag[D]( "dl", attributes, content )
 			object Definitions
 			{
