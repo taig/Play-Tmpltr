@@ -10,6 +10,10 @@ section {
     margin-top: 60px;
 }
 
+p {
+    text-align: justify;
+}
+
 .code-preview {
     margin-bottom: 24px;
 }
