@@ -2,6 +2,14 @@ body {
     padding: 20px;
 }
 
+cite {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+section {
+    margin-top: 60px;
+}
+
 .code-preview {
     margin-bottom: 24px;
 }
@@ -11,8 +19,4 @@ pre.prettyprint {
     overflow: auto;
     white-space: pre;
     word-wrap: normal;
-}
-
-section {
-    margin-top: 60px;
 }
