@@ -1,13 +1,13 @@
 package com.taig.tmpltr
 
+import play.api.templates.Html
+
 package object html
 {
+	implicit def htmlToOptionString(html: Html): Option[String] = Some( html.body.trim )
+
 	implicit def mapToAttributes(map: Map[String, String]): Attributes = new Attributes( map )
 
-//	implicit def nodeToOption[A <: NodeSeq](node: A): Option[A] = Option( node )
-//
-//	implicit def optionStringToOptionText(option: Option[String]): Option[Text] = option.map( Text( _ ) )
-//
 	implicit def optionPropertyToOptionString(property: Option[Property]): Option[String] = property.map( _.identifier )
 
 	implicit def optionTupleToAttribute[T](attribute: (String, Option[Property])): Attributes = attribute match
@@ -16,13 +16,11 @@ package object html
 		case _ => Attributes.empty
 	}
 
+	implicit def propertyToOption[P <: Property]( property: P ): Option[P] = Some( property )
+
 	implicit def stringsToAttributes(attributes: Seq[(String, String)]): Attributes = mapToAttributes( attributes.toMap )
 
-//	implicit def stringToHtml(string: String): Html = Html( string )
-//
+	implicit def stringToHtml(string: String): Html = Html( string )
+
 	implicit def stringToOption(string: String): Option[String] = Some( string )
-//
-//	implicit def stringToTupleToAttribute(attribute: (String, String)): Attributes = new Attributes( Map( attribute ) )
-//
-//	implicit def xmlToHtml(element: NodeSeq): Html = Html( element.toString )
 }
