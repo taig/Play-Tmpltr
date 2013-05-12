@@ -1,11 +1,11 @@
 @( name: String, repository: String, library: String, sample: String, documentation: String )
 
 @import com.taig.tmpltr._
-@import com.taig.tmpltr.markup.{body, meta, html, link, script, title}
+@import com.taig.tmpltr.markup.{body, head, meta, html, link, script, title}
 
 <!DOCTYPE html>
 @html {
-	<head>
+	@head {
 		@title( name )
 
 		@meta( charset = "utf-8" )
@@ -21,7 +21,7 @@
 		@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
 		@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
 		@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
-	</head>
+	}
 	@body {
 		<div class="container">
 		</div>
