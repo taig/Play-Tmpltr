@@ -1,23 +1,32 @@
-@(name: String, repository: String, library: String, sample: String, documentation: String)
+@( name: String, repository: String, library: String, sample: String, documentation: String )
 
 @import com.taig.tmpltr._
-@import com.taig.tmpltr.bootstrap._
-@import com.taig.tmpltr.html._
-@import com.taig.tmpltr.html.a.Target
-@import com.taig.tmpltr.html.button.Type
+@import com.taig.tmpltr.markup.{body, meta, html, link, script, title}
 
-@a( "#", "class" -> "my classes go here" ){ Hello World! }
-@a( "#", Target.Self, "class" -> "my classes go here" ){ Hello Beautiful! }
+<!DOCTYPE html>
+@html {
+	<head>
+		@title( name )
 
-@p{ This is a paragraph. Let's see how it's going to turn out! }
+		@meta( charset = "utf-8" )
 
-@p( "class" -> "crazy stuff" ) {
-	Of yourse paragraphs can also have classes and shit. And @span{ span } elements are all around the place, too. You
-	can @a( "#" ){ nest that shit } as @br() you want to.
+		@link.style( routes.Assets.at( "stylesheet/bootstrap.min.css" ) )
+		@link.style( routes.Assets.at( "stylesheet/prettify.css" ) )
+		@link.style( routes.Assets.at( "stylesheet/main.css" ) )
+
+		<!--[if lt IE 9]-->
+		@script.reference( "http://html5shiv.googlecode.com/svn/trunk/html5.js" )
+    	<!--[endif]-->
+
+		@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
+		@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
+		@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
+	</head>
+	@body {
+		<div class="container">
+		</div>
+
+		@script.reference( routes.Assets.at( "javascript/main.js" ) )
+		@analytics()
+	}
 }
-
-@button(Type.Reset){ Hello Button! }
-
-@input.text( "le_name", None, "le placeholder" )
-
-@icon( "heart" )
