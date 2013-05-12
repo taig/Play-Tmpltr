@@ -1,13 +1,18 @@
 import sbt._
-import play.Project
+import play.Project._
 
 object ApplicationBuild extends Build
 {
 	val version = "0.1 ALPHA"
 
-	val library = Project( "play-tmpltr", version, path = file( "module" ) / "library" )
+	val library = play.Project( "play-tmpltr", version, path = file( "module" ) / "library" )
 
-	val sample = Project( "sample", version, path = file( "module" ) / "sample" ).dependsOn( library )
+	val sample = play.Project( "sample", version, path = file( "module" ) / "sample" )
+			.settings( templatesImport ++= Seq(
+				"com.taig.tmpltr._", "com.taig.tmpltr.markup._", "com.taig.tmpltr.bootstrap._" )
+			).dependsOn( library )
 
-	val main = Project( "tmpltr", version ).dependsOn( library, sample ).aggregate( library, sample )
+	val main = play.Project( "tmpltr", version )
+			.dependsOn( library, sample )
+			.aggregate( library, sample )
 }

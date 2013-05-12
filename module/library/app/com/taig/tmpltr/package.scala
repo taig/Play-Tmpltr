@@ -7,6 +7,8 @@ package object tmpltr
 {
 	implicit def callToOptionString(call: Call): Option[String] = call.toString
 
+	implicit def htmlNodeToHtml(node: HtmlNode[_]): Html = Html( node.toString )
+
 	implicit def htmlToOptionString(html: Html): Option[String] = Some( html.body.trim )
 
 	implicit def htmlToAttributesHtmlTuple(html: Html): (Attributes, Html) = ( Attributes.empty, html )
