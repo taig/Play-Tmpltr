@@ -13,7 +13,7 @@ object Tag
 {
 	implicit def contentToOption( content: Content ): Option[Content] = Some( content )
 
-	abstract class Doctype( `type`: String ) extends Tag[Doctype]( "!DOCTYPE " + `type` )
+	abstract class Doctype[D <: Doctype[D]]( `type`: String ) extends Tag[D]( "!DOCTYPE " + `type` )
 	{
 		override def toString = "<" + label + ">"
 	}
