@@ -7,11 +7,13 @@ import play.api.templates.Html
 
 class boilerplate(head: (Attributes, Html), body: (Attributes, Html), attributes: Attributes) extends NodeSeq
 {
-	val theSeq = Seq(
-		new html( attributes )(
-			Html( new markup.head( head._1 )( head._2 ) + "\n" + new markup.body( body._1 )( body._2 ) )
-		)
-	)
+	val theSeq = null
+
+	override def toString =
+		doctype() + "\n" +
+		new html( attributes )( Html(
+			new markup.head( head._1 )( head._2 ) + "\n" +
+			new markup.body( body._1 )( body._2 ) ) )
 }
 
 object boilerplate

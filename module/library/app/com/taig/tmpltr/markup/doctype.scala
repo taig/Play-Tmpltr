@@ -12,5 +12,5 @@ class doctype extends Tag.Doctype[doctype]( "html" )
 
 object doctype
 {
-	def apply = new doctype
+	def apply(): doctype = new doctype
 }

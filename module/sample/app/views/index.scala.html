@@ -4,8 +4,7 @@
 @import com.taig.tmpltr.markup._
 @import com.taig.tmpltr.bootstrap.{container}
 
-<!DOCTYPE html>
-@boilerplate{
+@boilerplate {
 	@title( name )
 
 	@meta( charset = "utf-8" )
@@ -21,7 +20,7 @@
 	@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
 	@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
 	@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
-}{
+} {
 	@container {
 		@p { Here we go (-: }
 	}
