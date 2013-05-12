@@ -10,15 +10,23 @@ class script(attributes: Attributes)(content: Txt) extends Tag.Html.Script[scrip
 
 object script
 {
-	def apply(src: Option[String], attributes: (String, String)*): script =
+	object reference
 	{
-		new script( attributes ++ Attributes( "src" -> src ) )( Txt.empty )
+		def apply(src: Option[String], attributes: (String, String)*): script =
+		{
+			new script( attributes ++ Attributes( "src" -> src ) )( Txt.empty )
+		}
+
+		def apply(attributes: (String, String)*): script = apply( None, attributes: _* )
 	}
 
-	def apply(attributes: (String, String)*)(content: Txt): script =
+	object definition
 	{
-		new script( attributes )( content )
-	}
+		def apply(attributes: (String, String)*)(content: Txt): script =
+		{
+			new script( attributes )( content )
+		}
 
-	def apply(content: Txt): script = apply( )( content )
+		def apply(content: Txt): script = apply( )( content )
+	}
 }
