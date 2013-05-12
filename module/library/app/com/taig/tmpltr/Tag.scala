@@ -13,6 +13,11 @@ object Tag
 {
 	implicit def contentToOption( content: Content ): Option[Content] = Some( content )
 
+	abstract class Doctype( `type`: String ) extends Tag[Doctype]( "!DOCTYPE " + `type` )
+	{
+		override def toString = "<" + label + ">"
+	}
+
 	abstract class Html[H <: Html[H]](attributes: Attributes)(content: HTML) extends Tag[H]( "html", attributes, content )
 	object Html
 	{
