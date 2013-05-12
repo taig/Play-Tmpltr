@@ -119,11 +119,13 @@ object Tag
 			abstract class Form[T <: Form[T]](attributes: Attributes)(content: HTML) extends Tag[T]( "form", attributes, content )
 			object Form
 			{
+				trait Labelable
+
 				abstract class Button[B <: Button[B]](attributes: Attributes)(content: HTML) extends Tag[B]( "button", attributes, content )
 
 				abstract class Fieldset[F <: Fieldset[F]](attributes: Attributes)(content: HTML) extends Tag[F]( "fieldset", attributes, content )
 
-				abstract class Input[I <: Input[I]](attributes: Attributes) extends Tag[I]( "input", attributes )
+				abstract class Input[I <: Input[I]](attributes: Attributes) extends Tag[I]( "input", attributes ) with Labelable
 
 				abstract class KeyGenerator[K <: KeyGenerator[K]](attributes: Attributes)(content: HTML) extends Tag[K]( "keygen", attributes, content )
 
@@ -133,7 +135,7 @@ object Tag
 
 				abstract class Output[O <: Output[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "output", attributes, content )
 
-				abstract class Select[S <: Select[S]](attributes: Attributes)(content: HTML) extends Tag[S]( "select", attributes, content )
+				abstract class Select[S <: Select[S]](attributes: Attributes)(content: HTML) extends Tag[S]( "select", attributes, content ) with Labelable
 				object Select
 				{
 					abstract class Options[O <: Options[O]](attributes: Attributes)(content: HTML) extends Tag[O]( "optgroup", attributes, content )
@@ -143,7 +145,7 @@ object Tag
 					}
 				}
 
-				abstract class TextArea[T <: TextArea[T]](attributes: Attributes)(content: Text) extends Tag[T]( "textarea", attributes, content )
+				abstract class TextArea[T <: TextArea[T]](attributes: Attributes)(content: Text) extends Tag[T]( "textarea", attributes, content ) with Labelable
 			}
 
 			abstract class Header[H <: Header[H]](attributes: Attributes)(content: HTML) extends Tag[H]( "header", attributes, content )
