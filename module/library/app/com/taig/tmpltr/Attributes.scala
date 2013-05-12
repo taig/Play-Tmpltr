@@ -35,9 +35,9 @@ class Attributes private[tmpltr](map: Map[String, String]) extends Map[String, S
 
 object Attributes
 {
-	def apply(attributes: (String, Option[String])*): Attributes =
+	def apply(attributes: (String, Option[_])*): Attributes =
 	{
-		new Attributes( attributes.collect { case (key, Some( value )) => (key, value) }.toMap )
+		new Attributes( attributes.collect { case (key, Some( value )) => (key, value.toString) }.toMap )
 	}
 
 	def empty = new Attributes( Map.empty )
