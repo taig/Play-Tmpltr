@@ -10,6 +10,4 @@ class br(attributes: Attributes) extends Tag.Html.Body.Break[br]( attributes )
 object br
 {
 	def apply(attributes: (String, String)*): br = new br( attributes )
-
-	def apply: br = apply( )
 }
