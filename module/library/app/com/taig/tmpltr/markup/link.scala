@@ -48,7 +48,7 @@ object link
 	{
 		def apply(href: Option[String], attributes: (String, String)*): link =
 		{
-			link( Related.Stylesheet, href, "text/css", attributes: _* )
+			link( Related.Stylesheet, href, attributes: _* )
 		}
 	}
 }
