@@ -8,7 +8,7 @@ object Application extends Controller
 	{
 		Ok(
 			views.html.index(
-				"Play Bootstrapper",
+				"Play Tmpltr",
 				"https://github.com/Taig/Play-Bootstrapper",
 				"https://github.com/Taig/Play-Bootstrapper/blob/master/module/library",
 				"https://github.com/Taig/Play-Bootstrapper/blob/master/module/sample",

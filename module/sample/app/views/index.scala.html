@@ -1,61 +1,52 @@
 @( name: String, repository: String, library: String, sample: String, documentation: String )
 
-@import com.taig.bootstrapper.Template._
+@import com.taig.tmpltr.markup.a.Target
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>@name</title>
+@boilerplate {
+	@title( name )
 
-		<link rel="stylesheet" href="@routes.Assets.at( "stylesheet/bootstrap.min.css" )">
-		<link rel="stylesheet" href="@routes.Assets.at( "stylesheet/prettify.css" )">
-		<link rel="stylesheet" href="@routes.Assets.at( "stylesheet/main.css" )">
+	@meta( charset = "utf-8" )
 
-		<!--[if lt IE 9]>
-    	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    	<![endif]-->
+	@link.style( routes.Assets.at( "stylesheet/bootstrap.min.css" ) )
+	@link.style( routes.Assets.at( "stylesheet/prettify.css" ) )
+	@link.style( routes.Assets.at( "stylesheet/main.css" ) )
 
-		<script src="@routes.Assets.at( "javascript/jquery-1.9.1.min.js" )" type="text/javascript"></script>
-		<script src="@routes.Assets.at( "javascript/bootstrap.min.js" )" type="text/javascript"></script>
-		<script src="@routes.Assets.at( "javascript/prettify.js" )" type="text/javascript"></script>
-	</head>
-	<body>
-		<div class="container">
-			<h1>@Icon( "fire", Icon.Color.Black, "style" -> "margin-top: 18px;" ) @name</h1>
+	<!--[if lt IE 9]-->
+	@script.reference( "http://html5shiv.googlecode.com/svn/trunk/html5.js" )
+	<!--[endif]-->
 
-			<p class="lead">
-				A module for the <a href="http://www.playframework.com/" target="_blank">Play Framework 2</a>
-				(Scala) that helps you at keeping your <a href="http://twitter.github.io/bootstrap/" target="_blank">
-				Twitter Bootstrap</a>-views clean and free from boilerplate code.
-			</p>
+	@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
+	@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
+	@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
+} {
+	@container {
+		@h1 { @icon( "fire", "style" -> "margin-top: 18px;" ) @name }
 
-			@Button( "GitHub", repository, icon = "globe", attributes = "target" -> "_blank" )
-            @Button( "API", documentation + "/#com.taig.bootstrapper.Template$", icon = "book", attributes = "target" -> "_blank" )
-			@Button( "Contact", "mailto:my.taig@gmail.com", icon = "envelope" )
+		@lead {
+			A module for the @a( "http://www.playframework.com/", Target.Blank ){ Play Framework 2 } (Scala) that
+			helps keeping your views clean and free from boilerplate code with code generated HTML and
+			@a( "http://twitter.github.io/bootstrap/", Target.Blank ){ Twitter Bootstrap } elements.
+		}
 
-			<section id="getting-started">
-				<div class="page-header"><h2>Getting Started</h2></div>
-				@getting_started.index( library, sample, documentation )
-			</section>
+		@section( "id" -> "intro" ) {
+			@page_header( 2 ) { Introduction }
+			@p { TODO }
+		}
 
-			<section id="usage">
-				<div class="page-header"><h2>Usage</h2></div>
-				@usage.index( library, sample, documentation )
-			</section>
+		@section( "id" -> "getting-started" ) {
+			@page_header( 2 ) { Getting Started }
+			@installation.index( name, repository, library, sample, documentation )
+		}
 
-			<section id="features">
-				<div class="page-header"><h2>Features</h2></div>
-				@features.index( library, sample, documentation )
-			</section>
+		@section( "id" -> "usage" ) {
+			@page_header( 2 ) { Usage }
+			@usage.index( name, repository, library, sample, documentation )
+		}
 
-			<section id="license">
-				<div class="page-header"><h2>License</h2></div>
-				@license.index()
-			</section>
-		</div>
+		@section( "id" -> "license" ) {
+		}
+	}
 
-		<script src="@routes.Assets.at( "javascript/main.js" )" type="text/javascript"></script>
-		@analytics()
-	</body>
-</html>
+	@script.reference( routes.Assets.at( "javascript/main.js" ) )
+	@analytics()
+}
