@@ -9,10 +9,10 @@ object Application extends Controller
 		Ok(
 			views.html.index(
 				"Play Tmpltr",
-				"https://github.com/Taig/Play-Bootstrapper",
-				"https://github.com/Taig/Play-Bootstrapper/blob/master/module/library",
-				"https://github.com/Taig/Play-Bootstrapper/blob/master/module/sample",
-				"http://taig.github.io/Play-Bootstrapper/doc"
+				"https://github.com/Taig/Play-Tmpltr",
+				"https://github.com/Taig/Play-Tmpltr/blob/master/module/library",
+				"https://github.com/Taig/Play-Tmpltr/blob/master/module/sample",
+				"http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package"
 			)
 		)
 	}
