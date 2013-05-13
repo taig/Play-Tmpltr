@@ -1,16 +1,18 @@
 package com.taig.tmpltr.bootstrap
 
 import com.taig.tmpltr._
-import com.taig.tmpltr.markup.a
 import com.taig.tmpltr.markup.a.Target
 import com.taig.tmpltr.bootstrap.element.Button
 import play.api.templates.Html
 
 object a
 {
-	class button(href: Option[String], target: Option[Target], style: Option[button.Style], size: Option[button.Size], attributes: Attributes)(content: Html) extends a(
-		href, target, attributes ++ ( "class" -> ( "btn " + style.getOrElse("") + " " + size.getOrElse("") ) )
+	class button(href: Option[String], target: Option[Target], style: Option[button.Style], size: Option[button.Size], attributes: Attributes)(content: Html) extends Tag.Html.Body.HyperLink[button](
+		attributes ++ Attributes( "href" -> href, "target" -> target, "class" -> ( "btn " + style.getOrElse("") + " " + size.getOrElse("") ) )
 	)( content )
+	{
+		protected def copy = new button( href, target, style, size, _: Attributes )( content )
+	}
 
 	object button extends Button
 	{
