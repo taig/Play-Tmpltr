@@ -2,53 +2,60 @@
 
 @import com.taig.tmpltr.markup.a.Target
 
-@boilerplate {
-	@title( name )
+@html.boilerplate {
+	@html.title( name )
 
-	@meta( charset = "utf-8" )
+	@html.meta( charset = "utf-8" )
 
-	@link.style( routes.Assets.at( "stylesheet/bootstrap.min.css" ) )
-	@link.style( routes.Assets.at( "stylesheet/prettify.css" ) )
-	@link.style( routes.Assets.at( "stylesheet/main.css" ) )
+	@html.link.style( routes.Assets.at( "stylesheet/bootstrap.min.css" ) )
+	@html.link.style( routes.Assets.at( "stylesheet/prettify.css" ) )
+	@html.link.style( routes.Assets.at( "stylesheet/main.css" ) )
 
 	<!--[if lt IE 9]-->
-	@script.reference( "http://html5shiv.googlecode.com/svn/trunk/html5.js" )
+	@html.script.reference( "http://html5shiv.googlecode.com/svn/trunk/html5.js" )
 	<!--[endif]-->
 
-	@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
-	@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
-	@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
+	@html.script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
+	@html.script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
+	@html.script.reference( routes.Assets.at( "javascript/prettify.js" ) )
 } {
-	@container {
-		@h1 { @icon( "fire", "style" -> "margin-top: 18px;" ) @name }
+	@bs.container {
+		@html.div( "id" -> "title" ) {
+			@html.h1{ @bs.icon( "fire", "style" -> "margin-top: 18px;" ) @name }
+			@html.div( "id" -> "links" ) {
+				@bs.a.button( repository, Target.Blank ){ @bs.icon( "globe" ) GitHub }
+				@bs.a.button( documentation, Target.Blank ){ @bs.icon( "book" ) ScalaDoc }
+				@bs.a.button( "mailto:my.taig@gmail.com" ){ @bs.icon( "envelope" ) Contact }
+			}
+		}
 
-		@lead {
-			A module for the @a( "http://www.playframework.com/", Target.Blank ){ Play Framework 2 } (Scala) that
+		@bs.lead {
+			A module for the @html.a( "http://www.playframework.com/", Target.Blank ){ Play Framework 2 } (Scala) that
 			helps keeping your views clean and free from boilerplate code with code generated HTML and
-			@a( "http://twitter.github.io/bootstrap/", Target.Blank ){ Twitter Bootstrap } elements.
+			@html.a( "http://twitter.github.io/bootstrap/", Target.Blank ){ Twitter Bootstrap } elements.
 		}
 
-		@section( "id" -> "intro" ) {
-			@page_header( 2 ){ Introduction }
-			@p { TODO }
+		@html.section( "id" -> "intro" ) {
+			@bs.page_header( 2 ){ Introduction }
+			@html.p{ TODO }
 		}
 
-		@section( "id" -> "getting-started" ) {
-			@page_header( 2 ){ Getting Started }
+		@html.section( "id" -> "getting-started" ) {
+			@bs.page_header( 2 ){ Getting Started }
 			@installation.index( name, repository, library, sample, documentation )
 		}
 
-		@section( "id" -> "usage" ) {
-			@page_header( 2 ){ Usage }
+		@html.section( "id" -> "usage" ) {
+			@bs.page_header( 2 ){ Usage }
 			@usage.index( name, repository, library, sample, documentation )
 		}
 
-		@section( "id" -> "license" ) {
-			@page_header( 2 ){ License }
+		@html.section( "id" -> "license" ) {
+			@bs.page_header( 2 ){ License }
 			@license.index()
 		}
 	}
 
-	@script.reference( routes.Assets.at( "javascript/main.js" ) )
+	@html.script.reference( routes.Assets.at( "javascript/main.js" ) )
 	@analytics()
 }
