@@ -29,21 +29,23 @@
 		}
 
 		@section( "id" -> "intro" ) {
-			@page_header( 2 ) { Introduction }
+			@page_header( 2 ){ Introduction }
 			@p { TODO }
 		}
 
 		@section( "id" -> "getting-started" ) {
-			@page_header( 2 ) { Getting Started }
+			@page_header( 2 ){ Getting Started }
 			@installation.index( name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "usage" ) {
-			@page_header( 2 ) { Usage }
+			@page_header( 2 ){ Usage }
 			@usage.index( name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "license" ) {
+			@page_header( 2 ){ License }
+			@license.index()
 		}
 	}
 
