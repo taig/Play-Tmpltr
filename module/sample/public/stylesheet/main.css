@@ -24,3 +24,18 @@ pre.prettyprint {
     white-space: pre;
     word-wrap: normal;
 }
+
+#title {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+#title h1 {
+    display: inline;
+}
+
+#links {
+    position: absolute;
+    right: 0;
+    top: 14px;
+}
