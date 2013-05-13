@@ -8,50 +8,50 @@ import play.api.templates.Html
 
 object a
 {
-	class button(href: Option[String], target: Option[Target], `type`: Option[button.Type], size: Option[button.Size], attributes: Attributes)(content: Html) extends a(
-		href, target, attributes ++ ( "class" -> ( "btn " + `type`.getOrElse("") + " " + size.getOrElse("") ) )
+	class button(href: Option[String], target: Option[Target], style: Option[button.Style], size: Option[button.Size], attributes: Attributes)(content: Html) extends a(
+		href, target, attributes ++ ( "class" -> ( "btn " + style.getOrElse("") + " " + size.getOrElse("") ) )
 	)( content )
 
 	object button extends Button
 	{
-		def apply(href: Option[String], target: Option[Target], `type`: Type, size: Size, attributes: (String, String)*)(content: Html): button =
+		def apply(href: Option[String], target: Option[Target], style: Style, size: Size, attributes: (String, String)*)(content: Html): button =
 		{
-			new button( href, target, `type`, size, attributes )( content )
+			new button( href, target, style, size, attributes )( content )
 		}
 
-		def apply(href: Option[String], target: Option[Target], `type`: Type, attributes: (String, String)*)(content: Html): button =
+		def apply(href: Option[String], target: Option[Target], style: Style, attributes: (String, String)*)(content: Html): button =
 		{
-			apply( href, target, `type`, Size.Default, attributes: _* )( content )
+			apply( href, target, style, Size.Default, attributes: _* )( content )
 		}
 
 		def apply(href: Option[String], target: Option[Target], size: Size, attributes: (String, String)*)(content: Html): button =
 		{
-			apply( href, target, Type.Default, size, attributes: _* )( content )
+			apply( href, target, Style.Default, size, attributes: _* )( content )
 		}
 
 		def apply(href: Option[String], target: Option[Target], attributes: (String, String)*)(content: Html): button =
 		{
-			apply( href, target, Type.Default, Size.Default, attributes: _* )( content )
+			apply( href, target, Style.Default, Size.Default, attributes: _* )( content )
 		}
 
-		def apply(href: Option[String], `type`: Type, size: Size, attributes: (String, String)*)(content: Html): button =
+		def apply(href: Option[String], style: Style, size: Size, attributes: (String, String)*)(content: Html): button =
 		{
-			apply( href, None, `type`, size, attributes: _* )( content )
+			apply( href, None, style, size, attributes: _* )( content )
 		}
 
-		def apply(href: Option[String], `type`: Type, attributes: (String, String)*)(content: Html): button =
+		def apply(href: Option[String], style: Style, attributes: (String, String)*)(content: Html): button =
 		{
-			apply( href, None, `type`, Size.Default, attributes: _* )( content )
+			apply( href, None, style, Size.Default, attributes: _* )( content )
 		}
 
 		def apply(href: Option[String], size: Size, attributes: (String, String)*)(content: Html): button =
 		{
-			apply( href, None, Type.Default, size, attributes: _* )( content )
+			apply( href, None, Style.Default, size, attributes: _* )( content )
 		}
 
 		def apply(href: Option[String], attributes: (String, String)*)(content: Html): button =
 		{
-			apply( href, None, Type.Default, Size.Default, attributes: _* )( content )
+			apply( href, None, Style.Default, Size.Default, attributes: _* )( content )
 		}
 	}
 }

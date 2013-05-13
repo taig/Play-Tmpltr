@@ -16,16 +16,16 @@ trait Button
 		object Small extends Size( "small" )
 	}
 
-	class Type( `type`: Option[String] ) extends Property( `type` )
-	object Type
+	class Style( style: Option[String] ) extends Property( style )
+	object Style
 	{
-		object Danger extends Type( "danger" )
-		object Default extends Type( None )
-		object Info extends Type( "info" )
-		object Inverse extends Type( "inverse" )
-		object Link extends Type( "link" )
-		object Primary extends Type( "primary" )
-		object Success extends Type( "success" )
-		object Warning extends Type( "warning" )
+		object Danger extends Style( "danger" )
+		object Default extends Style( None )
+		object Info extends Style( "info" )
+		object Inverse extends Style( "inverse" )
+		object Link extends Style( "link" )
+		object Primary extends Style( "primary" )
+		object Success extends Style( "success" )
+		object Warning extends Style( "warning" )
 	}
 }
