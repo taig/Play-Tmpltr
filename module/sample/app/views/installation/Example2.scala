@@ -4,15 +4,15 @@ import views.Code
 
 object Example2 extends Code
 {
+	override val lang = "html"
+
 	val code: String =
 		"""
-		  |val main = play.Project( "project-name", "1.0 BETA" )
-		  |               .settings( templatesImport ++= Seq(
-		  |                   "com.taig.tmpltr._",
-		  |                   "com.taig.tmpltr.markup._",
-		  |                   "com.taig.tmpltr.bootstrap._"
-		  |                   )
-		  |               )
+		  |@( args: Any* )
+		  |
+		  |@import com.taig.tmpltr.{markup => html, bootstrap => bs, _}
+		  |
+		  |@bs.lead{ Your prefixed @html.cite{ HTML } goes here. }
 		""".stripMargin
 
 	val preview = None

@@ -18,7 +18,6 @@ object Example1 extends Code
 		  |***********************@
 		  |@import com.taig.tmpltr._
 		  |@import com.taig.tmpltr.markup._
-		  |@import com.taig.tmpltr.bootstrap._
 		  |
 		  |@p{ Your @cite{ HTML } goes here. }
 		""".stripMargin

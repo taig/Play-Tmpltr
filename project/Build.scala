@@ -8,9 +8,8 @@ object ApplicationBuild extends Build
 	val library = play.Project( "play-tmpltr", version, path = file( "module" ) / "library" )
 
 	val sample = play.Project( "sample", version, path = file( "module" ) / "sample" )
-			.settings( templatesImport ++= Seq(
-				"com.taig.tmpltr._", "com.taig.tmpltr.{ markup => html }", "com.taig.tmpltr.{ bootstrap => bs }" )
-			).dependsOn( library )
+					.settings( templatesImport ++= Seq( "com.taig.tmpltr.{ markup => html, bootstrap => bs, _ }" ) )
+					.dependsOn( library )
 
 	val main = play.Project( "tmpltr", version ).dependsOn( library, sample ).aggregate( library, sample )
 }

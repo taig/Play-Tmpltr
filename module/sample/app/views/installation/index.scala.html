@@ -23,16 +23,22 @@
 	When the dependencies are set up properly and you want to start building some beautiful views you'll have to deal
 	with the imports first. Import @html.code( "com.taig.tmpltr.makeup._" ) in the head of your view to make @html.strong{
 	all } the @html.cite{ HTML } tools available. But without importing @html.code( "com.taig.tmpltr._" ) using them
-	won't be fun, because all the implicit conversions are located there. Well, if you also want to use @html.cite{
-	Twitter Bootstrap } elements make sure to also add @html.code( "com.taig.tmpltr.bootstrap._" ).
+	won't be fun, because all the implicit conversions are located there.
 }
 
 @html.p { If you're view now looks somehow like this, you're ready to go. }
 @Example1
 
 @html.p {
+	To enable the module's @html.cite{ Twitter Bootstrap } support you also have to import @html.code( "com.taig.tmpltr.bootstrap._" ).
+	Unfortunately this will cause namespace issues that you have to overcome by prefixing the teplamte utilities.
+}
+@Example2
+
+@html.p {
 	Alternatively you can add frequently used imports to your @html.code{ Build.scala } file. That's a useful thing if
 	you have multiple views that rely on @html.cite( name ). Open your @html.code{ project/Build.scala } file and add
 	the import directives to your project settings.
 }
-@Example2
+@Example3
+@Example4
