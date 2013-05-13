@@ -1,13 +1,6 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{Attributes, Tag}
+import com.taig.tmpltr.{ Attributes, Tag }
 
-class col(attributes: Attributes) extends Tag.Html.Body.Table.Columns.Column[col]( attributes )
-{
-	protected def copy = new col( _: Attributes )
-}
-
-object col
-{
-	def apply(attributes: (String, String)*): col = new col( attributes )
-}
+abstract class	col[A <: col[A]]( attributes: Attributes )
+extends			Tag[A]( "col", attributes )

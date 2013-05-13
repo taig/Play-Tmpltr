@@ -1,43 +1,44 @@
 @( name: String, repository: String, library: String, sample: String, documentation: String )
 
-@import com.taig.tmpltr.markup.a.Target
 @import views.installation._
 
-@html.h3 { Installation }
-@html.p {
-	When your @html.cite{ Scala } @html.cite{ Play Framework } is @html.a( "http://www.playframework.com/documentation/2.1.1/Installing",
-	Target.Blank ){ up } and @html.a( "http://www.playframework.com/documentation/2.1.1/NewApplication", Target.Blank ){
-	running } you need to add @html.cite( name ) to your project dependencies. A binary version for easy integration is
-	currently not available but will be published very soon. By then you have to compile the @html.a( repository, Target.Blank ){
-	sources } by yourself, add a @html.code{ Build.scala } file and include it as a local repository. Or add it as sub
+@h3 { Installation }
+@p {
+	When your @cite{ Scala } @cite{ Play Framework } is @a( "http://www.playframework.com/documentation/2.1.1/Installing",
+	a.target.blank ){ up } and @a( "http://www.playframework.com/documentation/2.1.1/NewApplication", a.target.blank ){
+	running } you need to add @cite( name ) to your project dependencies. A binary version for easy integration is
+	currently not available but will be published very soon. By then you have to compile the @a( repository, a.target.blank ){
+	sources } by yourself, add a @code{ Build.scala } file and include it as a local repository. Or add it as sub
 	project. Or just wait a few more days for me to publish the binaries and provide a better installation guide.
 }
-@html.p {
-	If you're planning to use @html.cite{ @name's } @html.a( "http://twitter.github.io/bootstrap/index.html", Target.Blank ){
-	@html.cite{ Twitter Bootstrap } } utilities you have to take care of adding all necessary files to your application and
-	to reference them in your view's @html.code{ &lt;head /&gt; } area.
+@p {
+	If you're planning to use @cite{ @name's } @a( "http://twitter.github.io/bootstrap/index.html", a.target.blank ){
+	@cite{ Twitter Bootstrap } } utilities you have to take care of adding all necessary files to your application and
+	to reference them in your view's @code{ &lt;head /&gt; } area.
 }
 
-@html.h3 { Integration }
-@html.p {
+@h3 { Integration }
+@p {
 	When the dependencies are set up properly and you want to start building some beautiful views you'll have to deal
-	with the imports first. Import @html.code( "com.taig.tmpltr.makeup._" ) in the head of your view to make @html.strong{
-	all } the @html.cite{ HTML } tools available. But without importing @html.code( "com.taig.tmpltr._" ) using them
-	won't be fun, because all the implicit conversions are located there.
+	with the imports first. Import @code( "com.taig.tmpltr.makeup._" ) in the head of your view to make @strong{ all }
+	the @cite{ HTML } tools available. But without importing @code( "com.taig.tmpltr._" ) using them won't be fun,
+	because all the implicit conversions are located there.
 }
 
-@html.p { If your view now looks somehow like this, you're ready to go. }
+@p {
+	If your view now looks somehow like this, you're ready to go.
+}
 @Example1
 
-@html.p {
-	To enable the module's @html.cite{ Twitter Bootstrap } support you also have to import @html.code( "com.taig.tmpltr.bootstrap._" ).
+@p {
+	To enable the module's @cite{ Twitter Bootstrap } support you also have to import @code( "com.taig.tmpltr.bootstrap._" ).
 	Unfortunately this will cause namespace issues that you have to overcome by prefixing the teplamte utilities.
 }
 @Example2
 
-@html.p {
-	Alternatively you can add frequently used imports to your @html.code{ Build.scala } file. That's a useful thing if
-	you have multiple views that rely on @html.cite( name ). Open your @html.code{ project/Build.scala } file and add
+@p {
+	Alternatively you can add frequently used imports to your @code{ Build.scala } file. That's a useful thing if
+	you have multiple views that rely on @cite( name ). Open your @code{ project/Build.scala } file and add
 	the import directives to your project settings.
 }
 @Example3

@@ -1,16 +1,8 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{Attributes, Tag}
+import com.taig.tmpltr.{ Attributes, Tag }
+
 import play.api.templates.Html
 
-class sub(attributes: Attributes)(content: Html) extends Tag.Html.Body.Subscript[sub]( attributes )( content )
-{
-	protected def copy = new sub( _: Attributes )( content )
-}
-
-object sub
-{
-	def apply(attributes: (String, String)*)(content: Html): sub = new sub( attributes )( content )
-
-	def apply(content: Html): sub = apply( )( content )
-}
+abstract class	sub[A <: sub[A]]( attributes: Attributes )( content: Html )
+extends			Tag[A]( "sub", attributes, content )
