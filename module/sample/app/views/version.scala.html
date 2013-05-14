@@ -1,0 +1,24 @@
+@()
+
+@import scala.io.Source
+
+@bs_version() = @{
+	val iterator = Source.fromFile( "module/sample/public/stylesheet/bootstrap.min.css" )
+			.getLines()
+			.map( "\\d(\\.\\d)*".r.findFirstIn _ )
+			.flatten
+
+	if( iterator.hasNext )
+	{
+		iterator.next();
+	}
+	else
+	{
+		"[unknown]"
+	}
+}
+
+@p { @small {
+	Currently working with @cite{ Play Framework } @play.core.PlayVersion.current and @cite{ Twitter Bootstrap }
+	@bs_version().
+} }
