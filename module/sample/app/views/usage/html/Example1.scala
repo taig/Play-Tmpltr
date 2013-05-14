@@ -17,7 +17,7 @@ extends	Code
 		"""
 		  |<div>
 		  |    <h1>No big surprises here.</h1>
-		  |    <p>If you know the common <i>HTML</i> tags this will be easy for you.</p>
+		  |    <p>If you know the common <em>HTML</em> tags this will be easy for you.</p>
 		  |</div>
 		""".stripMargin
 
