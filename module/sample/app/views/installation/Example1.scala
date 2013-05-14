@@ -22,5 +22,7 @@ object Example1 extends Code
 		  |@p{ Your @cite{ HTML } goes here. }
 		""".stripMargin
 
+	val result = None
+
 	val preview = None
 }

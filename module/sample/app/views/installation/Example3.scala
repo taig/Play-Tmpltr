@@ -15,5 +15,7 @@ object Example3 extends Code
 		  |               )
 		""".stripMargin
 
+	val result = None
+
 	val preview = None
 }

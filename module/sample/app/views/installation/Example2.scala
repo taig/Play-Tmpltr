@@ -17,5 +17,7 @@ object Example2 extends Code
 		  |@bs.lead{ Your prefixed @cite{ Twitter Bootstrap } goes here. }
 		""".stripMargin
 
+	val result = None
+
 	val preview = None
 }

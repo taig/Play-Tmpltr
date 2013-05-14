@@ -7,9 +7,9 @@ import com.taig.tmpltr.Attributes
 class	input( attributes: Attributes )
 extends	markup.input[input]( attributes )
 {
-	def this( `type`: Option[input.`type`], name: Option[String], value: Option[String], attributes: Attributes ) =
+	def this( `type`: Option[input.`type`], name: Option[String], value: Option[String], placeholder: Option[String], attributes: Attributes ) =
 	{
-		this( attributes ++ Attributes( "type" -> `type`, "name" -> name, "value" -> value ) )
+		this( attributes ++ Attributes( "type" -> `type`, "name" -> name, "value" -> value, "placeholder" -> placeholder ) )
 	}
 
 	protected def copy = new input( _: Attributes )
@@ -17,9 +17,14 @@ extends	markup.input[input]( attributes )
 
 object input extends property.input
 {
+	def apply( `type`: Option[`type`], name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* ): input =
+	{
+		new input( `type`, name, value, placeholder, attributes )
+	}
+
 	def apply( `type`: Option[`type`], name: Option[String], value: Option[String], attributes: (String, String)* ): input =
 	{
-		new input( `type`, name, value, attributes )
+		apply( `type`, name, value, None, attributes: _* )
 	}
 
 	def apply( `type`: Option[`type`], name: Option[String], attributes: (String, String)* ): input =

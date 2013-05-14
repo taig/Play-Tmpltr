@@ -1,0 +1,58 @@
+@( name: String, repository: String, library: String, sample: String, documentation: String )
+
+@import views.usage.html._
+
+@h4 { Tags }
+@p {
+	When you've imported all @code( "com.taig.tmpltr.engine.html._" ) utilities right into your namespace as adviced
+	above you will have easy access to all @cite{ HTML } features. In fact all you need is @cite{ Play's } magic @code( "@" )
+	character followed by the name of the @cite{ HTML } tag.
+}
+@Example1
+
+@p {
+	There are two exceptions though: calling @code( "@object" ) or @code( "@var" ) won't get your far. These are
+	keywords of the @cite{ Scala } language. Use @code( "@obj" ) and @code( "@variable" ) instead.
+}
+
+@h4 { Tag Arguments }
+@p {
+	Most of the tags are capable to receive plenty of input parameters. In the examples above we only passed one
+	argument to the tags: the actual @cite{ HTML } content. This, of course, is possible with all tags that may have
+	a body by the @cite{ HTML5 } specification. So @cite( name ) won't allow you to pass a body to a @code{ &lt;meta /&gt; }
+	tag for instance.
+}
+@p {
+	If some tags aren't working the way you expected them to or you find yourself hacking around the module chances are
+	you missed a constructor that already covers your use-case. So, when in doubt better have a look into the
+	@a( documentation, a.target.blank ){ @cite{ ScalaDoc } } first. Let me show you the @code{ &lt;input /&gt; } tag to
+	give you a better understanding of what I'm talking about.
+}
+@Example2
+
+@p {
+	As you can see there are parameter fields that allow you to quickly pass commom attribute values to the input tag.
+	You may also ignore the @code{ Option } types if you have @code( "com.taig.tmpltr._" ) imported. Just pass over the
+	type in the brackets.
+}
+@Example3
+
+@p {
+	But wait! There is more …
+}
+@Example4
+
+@h4 { Attributes }
+@p {
+	You sure have noticed the @code( "attributes: (String, String)*" ) parameter in the above examples. It comes
+	in pretty handy if @cite{ @name's } constructors aren't able to fullfill your needs. Just add some tuples to get
+	your tag's attributes right.
+}
+@Example5
+
+@h4 { Boilerplate }
+@p {
+	We're done. You now know how to use @code{ @name } to build your views. Just let me give you the @code( "@boilerplate" )
+	tag to take along your way down the page.
+}
+@Example6

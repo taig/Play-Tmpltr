@@ -20,8 +20,13 @@ extends NodeSeq
 
 object boilerplate
 {
-	def apply( head: (Attributes, Html) )( body: (Attributes, Html), attributes: (String, String)* ): boilerplate =
+	def apply( attributesHtml: (String, String)* )( head: Html, attributesHead: (String, String)* )( body: Html, attributesBody: (String, String)* ): boilerplate =
 	{
-		new boilerplate( head, body, attributes )
+		new boilerplate( (attributesHead, head), (attributesBody, body), attributesHtml )
+	}
+
+	def apply( head: Html )( body: Html ): boilerplate =
+	{
+		apply()( head )( body )
 	}
 }
