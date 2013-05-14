@@ -39,9 +39,9 @@ else																							# Run deploy.
 
 	git checkout gh-pages 2> /dev/null															# Prepare deploy branch.
 
-	rm -rf ${ROOT}/index.html ${ROOT}/assets													# Remove old page files.
+	rm -rf ${ROOT}/index.html ${ROOT}/assets ${ROOT}/webjars									# Remove old page files.
 	mv ${TEMP}/${SAMPLE}/* ${ROOT}																# Move new page to project.
-	git add ${ROOT}/index.html ${ROOT}/assets 2> /dev/null										# Stage page files.
+	git add ${ROOT}/index.html ${ROOT}/assets ${ROOT}/webjars 2> /dev/null						# Stage page files.
 
 	rm -rf ${ROOT}/doc																			# Remove old scalaDoc files.
 	mv ${TEMP}/${LIBRARY} ${ROOT}/doc															# Move new scalaDoc to project.
