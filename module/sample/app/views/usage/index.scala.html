@@ -1,4 +1,4 @@
-@( name: String, repository: String, library: String, sample: String, documentation: String )
+@( level: Int, name: String, repository: String, library: String, sample: String, documentation: String )
 
 @p{
 	@cite{ @name's } most important features with useful examples are listed below. If you are missing something take a
@@ -8,8 +8,8 @@
 	complete. So if you find yourself adding some utilities for your project make sure to send me a pull request!
 }
 
-@h3{ HTML }
-@html.index( name, repository, library, sample, documentation )
+@h( level ){ HTML }
+@html.index( level + 1, name, repository, library, sample, documentation )
 
-@h3{ Twitter Bootstrap }
-@bootstrap.index( name, repository, library, sample, documentation )
+@h( level ){ Twitter Bootstrap }
+@bootstrap.index( level + 1, name, repository, library, sample, documentation )

@@ -1,8 +1,8 @@
-@( name: String, repository: String, library: String, sample: String, documentation: String )
+@( level: Int, name: String, repository: String, library: String, sample: String, documentation: String )
 
 @import views.usage.html._
 
-@h4 { Tags }
+@h( level ){ Tags }
 @p {
 	When you've imported all @code( "com.taig.tmpltr.engine.html._" ) utilities right into your namespace as adviced
 	above you will have easy access to all @cite{ HTML } features. In fact all you need is @cite{ Play's } magic @code( "@" )
@@ -15,7 +15,7 @@
 	keywords of the @cite{ Scala } language. Use @code( "@obj" ) and @code( "@variable" ) instead.
 }
 
-@h4 { Tag Arguments }
+@h( level ){ Tag Arguments }
 @p {
 	Most of the tags are capable to receive plenty of input parameters. In the examples above we only passed one
 	argument to the tags: the actual @cite{ HTML } content. This, of course, is possible with all tags that may have
@@ -42,7 +42,7 @@
 }
 @Example4
 
-@h4 { Attributes }
+@h( level ){ Attributes }
 @p {
 	You sure have noticed the @code( "attributes: (String, String)*" ) parameter in the above examples. It comes
 	in pretty handy if @cite{ @name's } constructors aren't able to fullfill your needs. Just add some tuples to get
@@ -50,7 +50,7 @@
 }
 @Example5
 
-@h4 { Boilerplate }
+@h( level ){ Boilerplate }
 @p {
 	We're done. You now know how to use @cite{ @name } to build your views. Just let me give you the @code( "@boilerplate" )
 	tag to take along your way down the page.

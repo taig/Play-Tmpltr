@@ -1,8 +1,8 @@
-@( name: String, repository: String, library: String, sample: String, documentation: String )
+@( level: Int, name: String, repository: String, library: String, sample: String, documentation: String )
 
 @import views.installation._
 
-@h3 { Installation }
+@h( level ){ Installation }
 @p {
 	When your @cite{ Play Framework } (Scala) is @a( "http://www.playframework.com/documentation/2.1.1/Installing",
 	a.target.blank ){ up } and @a( "http://www.playframework.com/documentation/2.1.1/NewApplication", a.target.blank ){
