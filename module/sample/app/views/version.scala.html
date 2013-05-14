@@ -18,7 +18,7 @@
 	}
 }
 
-@p { @small {
-	Tested with @cite{ Play Framework } @play.core.PlayVersion.current and @cite{ Twitter Bootstrap }
-	@bs_version().
+@p( "class" -> "text-center" ) { @small {
+	Tested with @cite{ Play Framework } @span( "class" -> "version" )( play.core.PlayVersion.current ) and @cite{
+	Twitter Bootstrap } @span( "class" -> "version" )( bs_version ).
 } }
