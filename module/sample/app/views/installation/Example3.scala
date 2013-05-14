@@ -10,7 +10,8 @@ object Example3 extends Code
 		  |               .settings( templatesImport ++= Seq(
 		  |                   "com.taig.tmpltr._",
 		  |                   "com.taig.tmpltr.engine.html._",
-		  |                   "com.taig.tmpltr.engine.{ bootstrap => bs }" )
+		  |                   "com.taig.tmpltr.engine.{ bootstrap => bs }"
+		  |                   )
 		  |               )
 		""".stripMargin
 
