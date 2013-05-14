@@ -3,14 +3,14 @@
 @import scala.io.Source
 
 @bs_version() = @{
-	val iterator = Source.fromFile( "module/sample/public/stylesheet/bootstrap.min.css" )
+	val iterator = Source.fromFile( "project/Build.scala" )
 			.getLines()
-			.map( "\\d(\\.\\d)*".r.findFirstIn _ )
+			.map( "bootstrap.+\"(\\d(?:\\.\\d)*(?:-\\d)?)\"".r.findFirstMatchIn _ )
 			.flatten
 
 	if( iterator.hasNext )
 	{
-		iterator.next();
+		iterator.next.group( 1 )
 	}
 	else
 	{

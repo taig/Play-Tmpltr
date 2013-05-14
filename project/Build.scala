@@ -1,4 +1,5 @@
 import sbt._
+import play.Project
 import play.Project._
 
 object	ApplicationBuild
@@ -6,9 +7,14 @@ extends	Build
 {
 	val version = "0.1 ALPHA"
 
-	val library = play.Project( "play-tmpltr", version, path = file( "module" ) / "library" )
+	val dependencies = Seq(
+		"org.webjars" % "webjars-play" % "2.1.0-1",
+		"org.webjars" % "bootstrap" % "2.3.1-1"
+	)
 
-	val sample = play.Project( "sample", version, path = file( "module" ) / "sample" )
+	val library = Project( "play-tmpltr", version, path = file( "module" ) / "library" )
+
+	val sample = Project( "sample", version, dependencies, file( "module" ) / "sample" )
 					.settings( templatesImport ++= Seq(
 						"com.taig.tmpltr._",
 						"com.taig.tmpltr.engine.html._",
@@ -17,5 +23,5 @@ extends	Build
 					)
 					.dependsOn( library )
 
-	val main = play.Project( "tmpltr", version ).dependsOn( library, sample ).aggregate( library, sample )
+	val main = Project( "tmpltr", version ).dependsOn( library, sample ).aggregate( library, sample )
 }

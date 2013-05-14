@@ -1,5 +1,7 @@
 @( name: String, repository: String, library: String, sample: String, documentation: String )
 
+@import WebJarAssets.locate
+
 @boilerplate {
 	@meta( charset = "utf-8" )
 
@@ -7,7 +9,7 @@
 
 	@link( link.rel.icon, routes.Assets.at( "image/favicon.png" ), "image/png" )
 
-	@link.style( routes.Assets.at( "stylesheet/bootstrap.min.css" ) )
+	@link.style( routes.WebJarAssets.at( locate( "bootstrap.min.css" ) ) )
 	@link.style( routes.Assets.at( "stylesheet/prettify.css" ) )
 	@link.style( routes.Assets.at( "stylesheet/main.css" ) )
 
@@ -15,9 +17,10 @@
 	@script.reference( "http://html5shiv.googlecode.com/svn/trunk/html5.js" )
 	<!--[endif]-->
 
-	@script.reference( routes.Assets.at( "javascript/jquery-1.9.1.min.js" ) )
-	@script.reference( routes.Assets.at( "javascript/bootstrap.min.js" ) )
+	@script.reference( routes.WebJarAssets.at( locate( "jquery.min.js" ) ) )
+	@script.reference( routes.WebJarAssets.at( locate( "bootstrap.min.js" ) ) )
 	@script.reference( routes.Assets.at( "javascript/prettify.js" ) )
+	@script.reference( routes.Assets.at( "javascript/main.js" ) )
 } {
 	@bs.container {
 		@div( "id" -> "title" ) {
@@ -59,6 +62,5 @@
 		}
 	}
 
-	@script.reference( routes.Assets.at( "javascript/main.js" ) )
 	@analytics()
 }
