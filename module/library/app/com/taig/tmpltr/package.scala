@@ -36,6 +36,4 @@ package object tmpltr
 	implicit def stringToTxt(string: String): Txt = Txt( string )
 
 	implicit def stringTupleToAttributes(tuple: (String, String)): Attributes = Attributes( tuple._1 -> Some( tuple._2 ) )
-
-	implicit def stringTupleToOption(tuple: (String, String)): Option[(String, String)] = Some( tuple )
 }
