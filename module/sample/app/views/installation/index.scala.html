@@ -19,27 +19,32 @@
 
 @h3 { Integration }
 @p {
-	When the dependencies are set up properly and you want to start building some beautiful views you'll have to deal
-	with the imports first. Import @code( "com.taig.tmpltr.makeup._" ) in the head of your view to make @strong{ all }
-	the @cite{ HTML } tools available. But without importing @code( "com.taig.tmpltr._" ) using them won't be fun,
-	because all the implicit conversions are located there.
+	The dependencies are set up properly and you want to start building some beautiful views? Well, then it's time to
+	deal with the imports now. Add @code( "com.taig.tmpltr.engine.html._" ) to the import directives in the head of
+	your view and @strong{ all } the @cite{ HTML } tools will be ready to use. But without importing @code( "com.taig.tmpltr._" )
+	using them won't be fun, because all the implicit conversions are located there. So make sure to add both statements
+	before you go on.
 }
 
 @p {
-	If your view now looks somehow like this, you're ready to go.
+	If your view now looks somehow like this, your basic configuration is ready.
 }
 @Example1
 
 @p {
-	To enable the module's @cite{ Twitter Bootstrap } support you also have to import @code( "com.taig.tmpltr.bootstrap._" ).
-	Unfortunately this will cause namespace issues that you have to overcome by prefixing the teplamte utilities.
+	You may have already noticed the @code{ engine } part in the previous import statements. You won't be surprised if
+	I tell you that there are even more packages in there, will you? To enable the module's @cite{ Twitter Bootstrap }
+	support you simply have to import @code( "com.taig.tmpltr.engine.bootstrap._" ). Unfortunately this will cause
+	namespace issues if you're planning to use the @cite{ HTML } and the @cite{ Twitter Bootstrap } engine simultaneously.
+	Therefore you need to overcome this by prefixing the @code{ bootstrap } utilities (use @code( "com.taig.tmpltr.engine.bootstrap" )
+	or @code( "com.taig.tmpltr.engine.{ bootstrap => bs }" ) instead).
 }
 @Example2
 
 @p {
 	Alternatively you can add frequently used imports to your @code{ Build.scala } file. That's a useful thing if
-	you have multiple views that rely on @cite( name ). Open your @code{ project/Build.scala } file and add
-	the import directives to your project settings.
+	you have multiple views that rely on @cite( name ). Open your @code{ project/Build.scala } file and add the import
+	directives to your project settings. @cite{ Play } will then take care of importing these files into your views.
+	Less pain for you.
 }
 @Example3
-@Example4

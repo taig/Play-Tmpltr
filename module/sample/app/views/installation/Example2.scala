@@ -10,9 +10,11 @@ object Example2 extends Code
 		"""
 		  |@( args: Any* )
 		  |
-		  |@import com.taig.tmpltr.{markup => html, bootstrap => bs, _}
+		  |@import com.taig.tmpltr._
+		  |@import com.taig.tmpltr.engine.html._
+		  |@import com.taig.tmpltr.engine.{ bootstrap => bs }
 		  |
-		  |@bs.lead{ Your prefixed @html.cite{ HTML } goes here. }
+		  |@bs.lead{ Your prefixed @cite{ Twitter Bootstrap } goes here. }
 		""".stripMargin
 
 	val preview = None

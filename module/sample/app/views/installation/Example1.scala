@@ -17,7 +17,7 @@ object Example1 extends Code
 		  |* Play Tmpltr imports. *
 		  |***********************@
 		  |@import com.taig.tmpltr._
-		  |@import com.taig.tmpltr.markup._
+		  |@import com.taig.tmpltr.engine.html._
 		  |
 		  |@p{ Your @cite{ HTML } goes here. }
 		""".stripMargin
