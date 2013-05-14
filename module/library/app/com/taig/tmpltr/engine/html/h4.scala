@@ -6,7 +6,7 @@ import com.taig.tmpltr.Attributes
 import play.api.templates.Html
 
 class	h4( attributes: Attributes )( content: Html )
-extends	markup.h[h4]( 1, attributes )( content )
+extends	markup.h[h4]( 4, attributes )( content )
 {
 	protected def copy = new h4( _: Attributes )( content )
 }
