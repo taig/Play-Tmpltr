@@ -1,8 +1,8 @@
 package com.taig.tmpltr
 
-abstract class Property(val prefix: Option[(String, String)], val identifier: Option[String])
+abstract class Property( val prefix: Option[(String, String)], val identifier: Option[String] )
 {
-	def this(identifier: String) = this( None, identifier )
+	def this( identifier: String ) = this( None, identifier )
 
 	override def toString =
 	{
