@@ -19,7 +19,7 @@ object Example1 extends Code
 		  |@import com.taig.tmpltr._
 		  |@import com.taig.tmpltr.engine.html._
 		  |
-		  |@p{ Your @cite{ HTML } goes here. }
+		  |@p{ Your @cite{ HTML5 } goes here. }
 		""".stripMargin
 
 	val result = None
