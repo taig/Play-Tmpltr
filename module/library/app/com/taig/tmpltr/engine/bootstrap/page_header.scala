@@ -6,7 +6,7 @@ import com.taig.tmpltr.engine.html
 import play.api.templates.Html
 
 class	page_header( level: Int, attributes: Attributes )( content: Html )
-extends	markup.div[page_header]( attributes )( Html( new html.h( level, attributes )( content ).toString ) )
+extends	markup.div[page_header]( attributes )( Html( new html.h( level, Attributes.empty )( content ).toString ) )
 {
 	protected def copy = new page_header( level, _: Attributes )( content )
 }
