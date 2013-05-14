@@ -7,7 +7,7 @@ extends	Code
 {
 	val code: String =
 		"""
-		  |@canvas( "id" -> "whiteboard", "class" -> "grey large" ){
+		  |@canvas( "id" -> "whiteboard", "class" -> "grey large" ) {
 		  |    @p{ No canvas, no fun. }
 		  |}
 		""".stripMargin
