@@ -3,15 +3,22 @@ body {
 }
 
 cite {
-    font-family: Consolas, "Courier New", monospace;
+    letter-spacing: 1px;
+    border-bottom: 1px dotted grey;
 }
+a:hover cite { border: none; }
 
 section {
     margin-top: 60px;
 }
 
 p {
+    line-height: 26px;
     text-align: justify;
+}
+
+div.container {
+    width: 740px;
 }
 
 .code-preview {
