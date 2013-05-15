@@ -32,8 +32,18 @@ div.container {
 pre.prettyprint {
     display: block;
     overflow: auto;
+    padding: 2px 0 2px 8px;
     white-space: pre;
     word-wrap: normal;
+}
+
+pre.prettyprint li {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #E0E0E0;
+    padding-right: 8px;
+}
+pre.prettyprint li:last-child {
+    border-bottom: 1px solid transparent;
 }
 
 #title {
