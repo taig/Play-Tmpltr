@@ -14,3 +14,4 @@ bin/
 RUNNING_PID/
 .settings/
 RUNNING_PID
+webjars/
