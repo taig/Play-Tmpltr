@@ -64,5 +64,59 @@ extends	property.button
 		}
 	}
 
-	object input
+	class	input( attributes: Attributes )
+	extends	markup.input[input]( attributes )
+	{
+		def this( value: Option[String], name: Option[String], style: Option[input.style], size: Option[input.size], attributes: Attributes )( content: Html ) =
+		{
+			this( attributes ++ Attributes( "value" -> value, "name" -> name, "class" -> "btn" ) )( content )
+		}
+
+		protected def copy = new input( _: Attributes )
+	}
+
+	object	input
+	extends	html.property.input
+	with	property.button
+	{
+		def apply( value: Option[String], name: Option[String], style: style, size: size, attributes: (String, String)* ): input =
+		{
+			new input( value, name, style, size, attributes )
+		}
+
+		def apply( value: Option[String], name: Option[String], style: style, attributes: (String, String)* ): input =
+		{
+			apply( value, name, style, size.default, attributes: _* )
+		}
+
+		def apply( value: Option[String], name: Option[String], size: size, attributes: (String, String)* ): input =
+		{
+			apply( value, name, style.default, size, attributes: _* )
+		}
+
+		def apply( value: Option[String], name: Option[String], attributes: (String, String)* ): input =
+		{
+			apply( value, name, style.default, size.default, attributes: _* )
+		}
+
+		def apply( value: Option[String], style: style, size: size, attributes: (String, String)* ): input =
+		{
+			apply( value, None, style, size, attributes: _* )
+		}
+
+		def apply( value: Option[String], style: style, attributes: (String, String)* ): input =
+		{
+			apply( value, None, style, size.default, attributes: _* )
+		}
+
+		def apply( value: Option[String], size: size, attributes: (String, String)* ): input =
+		{
+			apply( value, None, style.default, size, attributes: _* )
+		}
+
+		def apply( value: Option[String], attributes: (String, String)* ): input =
+		{
+			apply( value, None, style.default, size.default, attributes: _* )
+		}
+	}
 }
