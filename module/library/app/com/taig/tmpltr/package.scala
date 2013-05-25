@@ -17,6 +17,8 @@ package object tmpltr
 
 	implicit def mapToAttributes( map: Map[String, String] ): Attributes = new Attributes( map )
 
+	implicit def optionSequenceToOptionString( sequence: Seq[Option[Any]] ): Option[String] = Some( sequence.flatten.mkString( " " ) )
+
 	implicit def optionPropertyToOptionString( property: Option[Property] ): Option[String] = property.map( _.toString )
 
 	implicit def propertyOptionTupleToAttribute( attribute: (String, Option[Property]) ): Attributes = attribute match

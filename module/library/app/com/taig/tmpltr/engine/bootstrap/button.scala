@@ -13,7 +13,7 @@ extends	property.button
 	{
 		def this( href: Option[String], target: Option[a.target], style: Option[a.style], size: Option[a.size], attributes: Attributes )( content: Html ) =
 		{
-			this( attributes ++ Attributes( "href" -> href, "target" -> target, "class" -> "btn" ) )( content )
+			this( attributes ++ Attributes( "href" -> href, "target" -> target, "class" -> Seq[Option[_]]( "btn", style, size ) ) )( content )
 		}
 
 		protected def copy = new a( _: Attributes )( content )
@@ -49,7 +49,7 @@ extends	property.button
 	{
 		def this( `type`: Option[input.`type`], value: Option[String], name: Option[String], style: Option[input.style], size: Option[input.size], attributes: Attributes ) =
 		{
-			this( attributes ++ Attributes( "type" -> `type`, "value" -> value, "name" -> name, "class" -> "btn" ) )
+			this( attributes ++ Attributes( "type" -> `type`, "value" -> value, "name" -> name, "class" -> Seq[Option[_]]( "btn", style, size ) ) )
 		}
 
 		protected def copy = new input( _: Attributes )

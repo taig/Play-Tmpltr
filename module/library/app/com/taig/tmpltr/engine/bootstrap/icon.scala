@@ -9,7 +9,7 @@ extends	markup.i[icon]( attributes )( Html.empty )
 {
 	def this( image: icon.image, color: icon.color, attributes: Attributes ) =
 	{
-		this( attributes ++ Attributes( "class" -> image ) )
+		this( attributes ++ Attributes( "class" -> Seq[Option[_]]( image, color ) ) )
 	}
 
 	protected def copy = new icon( _: Attributes )
