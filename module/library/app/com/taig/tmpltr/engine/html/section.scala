@@ -13,7 +13,7 @@ extends	markup.section[section]( attributes )( content )
 
 object section
 {
-	def apply( attributes: (String, String)* )( content: Html ): section = new section( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): section = new section( attributes )( content )
 
-	def apply( content: Html ): section = apply()( content )
+	def apply( content: Html ): section = apply( Attributes.empty )( content )
 }

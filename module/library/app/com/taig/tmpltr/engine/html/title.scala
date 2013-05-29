@@ -13,7 +13,7 @@ extends	markup.title[title]( attributes )( content )
 
 object title
 {
-	def apply( attributes: (String, String)* )( content: Txt ): title = new title( attributes )( content )
+	def apply( attributes: Attributes )( content: Txt ): title = new title( attributes )( content )
 
-	def apply( content: Txt ): title = apply()( content )
+	def apply( content: Txt ): title = apply( Attributes.empty )( content )
 }

@@ -11,5 +11,5 @@ extends	markup.col[col]( attributes )
 
 object col
 {
-	def apply( attributes: (String, String)* ): col = new col( attributes )
+	def apply( attributes: Attributes = Attributes.empty ): col = new col( attributes )
 }

@@ -20,21 +20,21 @@ object script
 {
 	object reference
 	{
-		def apply( src: Option[String], attributes: (String, String)* ): script =
+		def apply( src: Option[String] = None, attributes: Attributes = Attributes.empty ): script =
 		{
 			new script( src, attributes )
 		}
 
-		def apply( attributes: (String, String)* ): script = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): script = apply( None, attributes )
 	}
 
 	object definition
 	{
-		def apply( attributes: (String, String)* )( content: Txt ): script =
+		def apply( attributes: Attributes )( content: Txt ): script =
 		{
 			new script( attributes )( content )
 		}
 
-		def apply( content: Txt ): script = apply()( content )
+		def apply( content: Txt ): script = apply( Attributes.empty )( content )
 	}
 }

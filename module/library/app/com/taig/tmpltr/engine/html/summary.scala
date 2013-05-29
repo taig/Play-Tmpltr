@@ -13,7 +13,7 @@ extends	markup.summary[summary]( attributes )( content )
 
 object summary
 {
-	def apply( attributes: (String, String)* )( content: Html ): summary = new summary( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): summary = new summary( attributes )( content )
 
-	def apply( content: Html ): summary = apply()( content )
+	def apply( content: Html ): summary = apply( Attributes.empty )( content )
 }

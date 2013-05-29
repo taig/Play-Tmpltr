@@ -13,7 +13,7 @@ extends	markup.span[span]( attributes )( content )
 
 object span
 {
-	def apply( attributes: (String, String)* )( content: Html ): span = new span( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): span = new span( attributes )( content )
 
-	def apply( content: Html ): span = apply()( content )
+	def apply( content: Html ): span = apply( Attributes.empty )( content )
 }

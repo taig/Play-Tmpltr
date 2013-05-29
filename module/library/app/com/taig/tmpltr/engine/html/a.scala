@@ -18,13 +18,10 @@ extends	markup.a[a]( attributes )( content )
 
 object a extends property.a
 {
-	def apply( href: Option[String], target: Option[target], attributes: (String, String)* )( content: Html ): a =
+	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty )( content: Html ): a =
 	{
 		new a( href, target, attributes )( content )
 	}
 
-	def apply( href: Option[String], attributes: (String, String)* )( content: Html ): a =
-	{
-		apply( href, None, attributes: _* )( content )
-	}
+	def apply( attributes: Attributes ): a = apply( attributes = attributes )
 }

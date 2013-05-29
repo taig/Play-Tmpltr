@@ -13,7 +13,7 @@ extends	markup.tr[tr]( attributes )( content )
 
 object tr
 {
-	def apply( attributes: (String, String)* )( content: Html ): tr = new tr( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): tr = new tr( attributes )( content )
 
-	def apply( content: Html ): tr = apply()( content )
+	def apply( content: Html ): tr = apply( Attributes.empty )( content )
 }

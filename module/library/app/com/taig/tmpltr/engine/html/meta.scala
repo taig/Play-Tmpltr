@@ -21,15 +21,20 @@ extends	markup.meta[meta]( attributes )
 
 object meta
 {
-	def apply( name: Option[String], content: Option[String], attributes: (String, String)* ): meta =
+	def apply( name: Option[String] = None, content: Option[String] = None, attributes: Attributes = Attributes.empty ): meta =
 	{
 		new meta( name, content, attributes )
 	}
 
-	def apply( charset: Option[String], attributes: (String, String)* ): meta =
+	def apply( charset: Option[String], attributes: Attributes ): meta =
 	{
 		new meta( charset, attributes )
 	}
 
-	def apply( attributes: (String, String)* ): meta = new meta( attributes )
+	def apply( charset: Option[String] ): meta =
+	{
+		apply( charset, Attributes.empty )
+	}
+
+	def apply( attributes: Attributes ): meta = new meta( attributes )
 }

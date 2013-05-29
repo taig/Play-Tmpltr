@@ -13,7 +13,7 @@ extends	markup.figcaption[figcaption]( attributes )( content )
 
 object figcaption
 {
-	def apply( attributes: (String, String)* )( content: Html ): figcaption = new figcaption( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): figcaption = new figcaption( attributes )( content )
 
-	def apply( content: Html ): figcaption = apply()( content )
+	def apply( content: Html ): figcaption = apply( Attributes.empty )( content )
 }

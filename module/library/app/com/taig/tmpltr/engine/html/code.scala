@@ -13,7 +13,7 @@ extends	markup.code[code]( attributes )( content )
 
 object code
 {
-	def apply( attributes: (String, String)* )( content: Html ): code = new code( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): code = new code( attributes )( content )
 
-	def apply( content: Html ): code = apply()( content )
+	def apply( content: Html ): code = apply( Attributes.empty )( content )
 }

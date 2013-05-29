@@ -18,12 +18,12 @@ extends	markup.obj[obj]( attributes )( content )
 
 object obj
 {
-	def apply( data: Option[String], attributes: (String, String)* )( content: Html ): obj =
+	def apply( data: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): obj =
 	{
 		new obj( data, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): obj = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): obj = apply( None, attributes )( content )
 
-	def apply( content: Html ): obj = apply()( content )
+	def apply( content: Html ): obj = apply( Attributes.empty )( content )
 }

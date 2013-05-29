@@ -13,7 +13,7 @@ extends	markup.del[del]( attributes )( content )
 
 object del
 {
-	def apply( attributes: (String, String)* )( content: Html ): del = new del( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): del = new del( attributes )( content )
 
-	def apply( content: Html ): del = apply()( content )
+	def apply( content: Html ): del = apply( Attributes.empty )( content )
 }

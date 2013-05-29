@@ -18,12 +18,12 @@ extends	markup.label[label]( attributes )( content )
 
 object label
 {
-	def apply( `for`: Option[String], attributes: (String, String)* )( content: Html ): label =
+	def apply( `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): label =
 	{
 		new label( `for`, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): label = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): label = apply( None, attributes )( content )
 
-	def apply( content: Html ): label = apply()( content )
+	def apply( content: Html ): label = apply( Attributes.empty )( content )
 }

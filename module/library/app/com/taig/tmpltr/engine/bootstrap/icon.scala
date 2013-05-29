@@ -18,10 +18,8 @@ extends	markup.i[icon]( attributes )( Html.empty )
 object	icon
 extends property.icon
 {
-	def apply( image: String, color: color, attributes: (String, String)* ): icon =
+	def apply( image: String, color: color = icon.color.black, attributes: Attributes = Attributes.empty ): icon =
 	{
 		new icon( new image( image ), color, attributes )
 	}
-
-	def apply( image: String, attributes: (String, String)* ): icon = apply( image, color.black, attributes: _* )
 }

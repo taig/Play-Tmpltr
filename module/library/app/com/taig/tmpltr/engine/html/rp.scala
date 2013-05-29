@@ -13,7 +13,7 @@ extends	markup.rp[rp]( attributes )( content )
 
 object rp
 {
-	def apply( attributes: (String, String)* )( content: Html ): rp = new rp( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): rp = new rp( attributes )( content )
 
-	def apply( content: Html ): rp = apply()( content )
+	def apply( content: Html ): rp = apply( Attributes.empty )( content )
 }

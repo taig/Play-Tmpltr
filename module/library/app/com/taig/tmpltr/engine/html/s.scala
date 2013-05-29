@@ -13,7 +13,7 @@ extends	markup.s[s]( attributes )( content )
 
 object s
 {
-	def apply( attributes: (String, String)* )( content: Html ): s = new s( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): s = new s( attributes )( content )
 
-	def apply( content: Html ): s = apply()( content )
+	def apply( content: Html ): s = apply( Attributes.empty )( content )
 }

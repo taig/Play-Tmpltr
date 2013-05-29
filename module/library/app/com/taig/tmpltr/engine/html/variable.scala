@@ -13,7 +13,7 @@ extends	markup.variable[variable]( attributes )( content )
 
 object variable
 {
-	def apply( attributes: (String, String)* )( content: Html ): variable = new variable( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): variable = new variable( attributes )( content )
 
-	def apply( content: Html ): variable = apply()( content )
+	def apply( content: Html ): variable = apply( Attributes.empty )( content )
 }

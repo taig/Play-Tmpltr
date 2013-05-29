@@ -13,7 +13,7 @@ extends markup.caption[caption]( attributes )( content )
 
 object caption
 {
-	def apply( attributes: (String, String)* )( content: Html ): caption = new caption( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): caption = new caption( attributes )( content )
 
-	def apply( content: Html ): caption = apply()( content )
+	def apply( content: Html ): caption = apply( Attributes.empty )( content )
 }

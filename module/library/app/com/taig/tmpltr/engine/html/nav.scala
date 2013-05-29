@@ -13,7 +13,7 @@ extends	markup.nav[nav]( attributes )( content )
 
 object nav
 {
-	def apply( attributes: (String, String)* )( content: Html ): nav = new nav( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): nav = new nav( attributes )( content )
 
-	def apply( content: Html ): nav = apply()( content )
+	def apply( content: Html ): nav = apply( Attributes.empty )( content )
 }

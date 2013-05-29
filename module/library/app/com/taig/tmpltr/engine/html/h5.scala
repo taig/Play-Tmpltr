@@ -13,7 +13,7 @@ extends	markup.h[h5]( 5, attributes )( content )
 
 object h5
 {
-	def apply( attributes: (String, String)* )( content: Html ): h5 = new h5( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): h5 = new h5( attributes )( content )
 
-	def apply( content: Html ): h5 = apply()( content )
+	def apply( content: Html ): h5 = apply( Attributes.empty )( content )
 }

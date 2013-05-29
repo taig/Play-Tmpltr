@@ -17,23 +17,18 @@ extends	markup.link[link]( attributes )
 
 object link extends property.link
 {
-	def apply( rel: Option[rel], href: Option[String], `type`: Option[String], attributes: (String, String)* ): link =
+	def apply( rel: Option[rel] = None, href: Option[String] = None, `type`: Option[String] = None, attributes: Attributes = Attributes.empty ): link =
 	{
 		new link( rel, href, `type`, attributes )
 	}
 
-	def apply( rel: Option[rel], href: Option[String], attributes: (String, String)* ): link =
-	{
-		apply( rel, href, None, attributes: _* )
-	}
-
-	def apply( attributes: (String, String)* ): link = apply( None, None, attributes: _* )
+	def apply( attributes: Attributes ): link = apply( None, None, None, attributes )
 
 	object style
 	{
-		def apply( href: Option[String], attributes: (String, String)* ): link =
+		def apply( href: Option[String] = None, attributes: Attributes = Attributes.empty ): link =
 		{
-			link( rel.stylesheet, href, attributes: _* )
+			link( rel.stylesheet, href, attributes = attributes )
 		}
 	}
 }

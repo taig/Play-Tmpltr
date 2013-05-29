@@ -13,7 +13,7 @@ extends	markup.datalist[datalist]( attributes )( content )
 
 object datalist
 {
-	def apply( attributes: (String, String)* )( content: Html ): datalist = new datalist( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): datalist = new datalist( attributes )( content )
 
-	def apply( content: Html ): datalist = apply()( content )
+	def apply( content: Html ): datalist = apply( Attributes.empty )( content )
 }

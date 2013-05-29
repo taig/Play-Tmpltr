@@ -18,12 +18,12 @@ extends	markup.option[option]( attributes )( content )
 
 object option
 {
-	def apply( value: Option[String], attributes: (String, String)* )( content: Html ): option =
+	def apply( value: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): option =
 	{
 		new option( value, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): option = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): option = apply( None, attributes )( content )
 
-	def apply( content: Html ): option = apply()( content )
+	def apply( content: Html ): option = apply( Attributes.empty )( content )
 }

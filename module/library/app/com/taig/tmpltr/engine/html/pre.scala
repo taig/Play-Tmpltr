@@ -13,7 +13,7 @@ extends	markup.pre[pre]( attributes )( content )
 
 object pre
 {
-	def apply( attributes: (String, String)* )( content: Html ): pre = new pre( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): pre = new pre( attributes )( content )
 
-	def apply( content: Html ): pre = apply()( content )
+	def apply( content: Html ): pre = apply( Attributes.empty )( content )
 }

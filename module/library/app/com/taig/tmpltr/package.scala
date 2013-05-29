@@ -37,5 +37,15 @@ package object tmpltr
 
 	implicit def stringToTxt(string: String): Txt = Txt( string )
 
-	implicit def stringTupleToAttributes( tuple: (String, String) ): Attributes = Attributes( tuple._1 -> Some( tuple._2 ) )
+	implicit def tuple1ToAttributes( t: (String, String) ): Attributes = Attributes( t._1 -> Some( t._2 ) )
+
+	implicit def tuple2ToAttributes( t: ((String, String), (String, String)) ): Attributes = new Attributes( Map( t._1, t._2 ) )
+
+	implicit def tuple3ToAttributes( t: ((String, String), (String, String), (String, String)) ): Attributes = new Attributes( Map( t._1, t._2, t._3 ) )
+
+	implicit def tuple4ToAttributes( t: ((String, String), (String, String), (String, String), (String, String)) ): Attributes = new Attributes( Map( t._1, t._2, t._3, t._4 ) )
+
+	implicit def tuple5ToAttributes( t: ((String, String), (String, String), (String, String), (String, String), (String, String)) ): Attributes = new Attributes( Map( t._1, t._2, t._3, t._4, t._5 ) )
+
+	implicit def tuple5ToAttributes( t: ((String, String), (String, String), (String, String), (String, String), (String, String), (String, String)) ): Attributes = new Attributes( Map( t._1, t._2, t._3, t._4, t._5, t._6 ) )
 }

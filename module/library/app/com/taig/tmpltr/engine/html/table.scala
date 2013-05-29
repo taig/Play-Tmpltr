@@ -13,7 +13,7 @@ extends	markup.table[table]( attributes )( content )
 
 object table
 {
-	def apply( attributes: (String, String)* )( content: Html ): table = new table( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): table = new table( attributes )( content )
 
-	def apply( content: Html ): table = apply()( content )
+	def apply( content: Html ): table = apply( Attributes.empty )( content )
 }

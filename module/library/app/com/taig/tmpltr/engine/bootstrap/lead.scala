@@ -12,10 +12,10 @@ extends	markup.p[lead]( attributes )( content )
 
 object lead
 {
-	def apply( attributes: (String, String)* )( content: Html ): lead =
+	def apply( attributes: Attributes )( content: Html ): lead =
 	{
 		new lead( attributes ++ ( "class" -> "lead" ) )( content )
 	}
 
-	def apply( content: Html ): lead = apply()( content )
+	def apply( content: Html ): lead = apply( Attributes.empty )( content )
 }

@@ -13,7 +13,7 @@ extends	markup.hgroup[hgroup]( attributes )( content )
 
 object hgroup
 {
-	def apply( attributes: (String, String)* )( content: Html ): hgroup = new hgroup( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): hgroup = new hgroup( attributes )( content )
 
-	def apply( content: Html ): hgroup = apply()( content )
+	def apply( content: Html ): hgroup = apply( Attributes.empty )( content )
 }

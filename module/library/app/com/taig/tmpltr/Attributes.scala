@@ -2,7 +2,7 @@ package com.taig.tmpltr
 
 import scala.collection.immutable.MapLike
 
-class	Attributes private[tmpltr]( map: Map[String, String] )
+class	Attributes( map: Map[String, String] )
 extends	Map[String, String]
 with	MapLike[String, String, Attributes]
 {

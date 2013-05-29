@@ -23,24 +23,9 @@ extends	property.button
 	extends	html.property.a
 	with	property.button
 	{
-		def apply( href: Option[String], target: Option[target], style: style, size: size, attributes: (String, String)* )( content: Html ): a =
+		def apply( href: Option[String] = None, target: Option[target] = None, style: style = a.style.default, size: size = a.size.default, attributes: Attributes = Attributes.empty )( content: Html ): a =
 		{
 			new a( href, target, style, size, attributes )( content )
-		}
-
-		def apply( href: Option[String], target: Option[target], attributes: (String, String)* )( content: Html ): a =
-		{
-			apply( href, target, style.default, size.default, attributes: _* )( content )
-		}
-
-		def apply( href: Option[String], style: style, size: size, attributes: (String, String)* )( content: Html ): a =
-		{
-			apply( href, None, style, size, attributes: _* )( content )
-		}
-
-		def apply( href: Option[String], attributes: (String, String)* )( content: Html ): a =
-		{
-			apply( href, None, style.default, size.default, attributes: _* )( content )
 		}
 	}
 
@@ -66,132 +51,32 @@ extends	property.button
 			object submit extends `type`( "submit" )
 		}
 
-		def apply( `type`: Option[`type`], value: Option[String], name: Option[String], style: style, size: size, attributes: (String, String)* ): input =
+		def apply( `type`: Option[`type`] = None, value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, attributes: Attributes = Attributes.empty ): input =
 		{
 			new input( `type`, value, name, style, size, attributes )
 		}
 
-		def apply( `type`: Option[`type`], value: Option[String], name: Option[String], attributes: (String, String)* ): input =
-		{
-			apply( `type`, value, name, style.default, size.default, attributes: _* )
-		}
-
-		def apply( `type`: Option[`type`], value: Option[String], style: style, size: size, attributes: (String, String)* ): input =
-		{
-			apply( `type`, value, None, style, size, attributes: _* )
-		}
-
-		def apply( `type`: Option[`type`], value: Option[String], attributes: (String, String)* ): input =
-		{
-			apply( `type`, value, None, style.default, size.default, attributes: _* )
-		}
-
-		def apply( `type`: Option[`type`], style: style, size: size, attributes: (String, String)* ): input =
-		{
-			apply( `type`, None, None, style, size, attributes: _* )
-		}
-
-		def apply( `type`: Option[`type`], attributes: (String, String)* ): input =
-		{
-			apply( `type`, None, None, style.default, size.default, attributes: _* )
-		}
-
 		object button
 		{
-			def apply( value: Option[String], name: Option[String], style: style, size: size, attributes: (String, String)* ): input =
+			def apply( value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, attributes: Attributes = Attributes.empty ): input =
 			{
-				input( `type`.button, value, name, style, size, attributes: _* )
-			}
-
-			def apply( value: Option[String], name: Option[String], attributes: (String, String)* ): input =
-			{
-				apply( value, name, style.default, size.default, attributes: _* )
-			}
-
-			def apply( value: Option[String], style: style, size: size, attributes: (String, String)* ): input =
-			{
-				apply( value, None, style, size, attributes: _* )
-			}
-
-			def apply( value: Option[String], attributes: (String, String)* ): input =
-			{
-				apply( value, style.default, size.default, attributes: _* )
-			}
-
-			def apply( style: style, size: size, attributes: (String, String)* ): input =
-			{
-				apply( None, style, size, attributes: _* )
-			}
-
-			def apply( attributes: (String, String)* ): input =
-			{
-				apply( style.default, size.default, attributes: _* )
+				input( `type`.button, value, name, style, size, attributes )
 			}
 		}
 
 		object reset
 		{
-			def apply( value: Option[String], name: Option[String], style: style, size: size, attributes: (String, String)* ): input =
+			def apply( value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, attributes: Attributes = Attributes.empty ): input =
 			{
-				input( `type`.reset, value, name, style, size, attributes: _* )
-			}
-
-			def apply( value: Option[String], name: Option[String], attributes: (String, String)* ): input =
-			{
-				apply( value, name, style.default, size.default, attributes: _* )
-			}
-
-			def apply( value: Option[String], style: style, size: size, attributes: (String, String)* ): input =
-			{
-				apply( value, None, style, size, attributes: _* )
-			}
-
-			def apply( value: Option[String], attributes: (String, String)* ): input =
-			{
-				apply( value, style.default, size.default, attributes: _* )
-			}
-
-			def apply( style: style, size: size, attributes: (String, String)* ): input =
-			{
-				apply( None, style, size, attributes: _* )
-			}
-
-			def apply( attributes: (String, String)* ): input =
-			{
-				apply( style.default, size.default, attributes: _* )
+				input( `type`.reset, value, name, style, size, attributes )
 			}
 		}
 
 		object submit
 		{
-			def apply( value: Option[String], name: Option[String], style: style, size: size, attributes: (String, String)* ): input =
+			def apply( value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, attributes: Attributes = Attributes.empty ): input =
 			{
-				input( `type`.submit, value, name, style, size, attributes: _* )
-			}
-
-			def apply( value: Option[String], name: Option[String], attributes: (String, String)* ): input =
-			{
-				apply( value, name, style.default, size.default, attributes: _* )
-			}
-
-			def apply( value: Option[String], style: style, size: size, attributes: (String, String)* ): input =
-			{
-				apply( value, None, style, size, attributes: _* )
-			}
-
-			def apply( value: Option[String], attributes: (String, String)* ): input =
-			{
-				apply( value, style.default, size.default, attributes: _* )
-			}
-
-			def apply( style: style, size: size, attributes: (String, String)* ): input =
-			{
-				apply( None, style, size, attributes: _* )
-			}
-
-			def apply( attributes: (String, String)* ): input =
-			{
-				apply( style.default, size.default, attributes: _* )
+				input( `type`.submit, value, name, style, size, attributes )
 			}
 		}
 	}

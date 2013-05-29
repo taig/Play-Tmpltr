@@ -13,7 +13,7 @@ extends	markup.mark[mark]( attributes )( content )
 
 object mark
 {
-	def apply( attributes: (String, String)* )( content: Html ): mark = new mark( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): mark = new mark( attributes )( content )
 
-	def apply( content: Html ): mark = apply()( content )
+	def apply( content: Html ): mark = apply( Attributes.empty )( content )
 }

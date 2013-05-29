@@ -13,7 +13,7 @@ extends	markup.abbr[abbr]( attributes )( content )
 
 object abbr
 {
-	def apply( attributes: (String, String)* )( content: Html ): abbr = new abbr( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): abbr = new abbr( attributes )( content )
 
-	def apply( content: Html ): abbr = apply( )( content )
+	def apply( content: Html ): abbr = apply( Attributes.empty )( content )
 }

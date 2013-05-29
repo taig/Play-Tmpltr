@@ -13,7 +13,7 @@ extends	markup.small[small]( attributes )( content )
 
 object small
 {
-	def apply( attributes: (String, String)* )( content: Html ): small = new small( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): small = new small( attributes )( content )
 
-	def apply( content: Html ): small = apply()( content )
+	def apply( content: Html ): small = apply( Attributes.empty )( content )
 }

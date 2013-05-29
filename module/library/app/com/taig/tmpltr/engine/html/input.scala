@@ -18,99 +18,71 @@ extends	markup.input[input]( attributes )
 
 object input extends property.input
 {
-	def apply( `type`: Option[`type`], name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* ): input =
+	def apply( `type`: Option[`type`] = None, name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
 	{
 		new input( `type`, name, value, placeholder, attributes )
 	}
 
-	def apply( `type`: Option[`type`], name: Option[String], value: Option[String], attributes: (String, String)* ): input =
-	{
-		apply( `type`, name, value, None, attributes: _* )
-	}
-
-	def apply( `type`: Option[`type`], name: Option[String], attributes: (String, String)* ): input =
-	{
-		apply( `type`, name, None, attributes: _* )
-	}
-
-	def apply( attributes: (String, String)* ): input = apply( None, None, attributes: _* )
+	def apply( attributes: Attributes ): input = apply( None, None, None, None, attributes )
 
 	object checkbox
 	{
-		def apply( name: Option[String], value: Option[String], checked: Boolean, attributes: (String, String)* ): input =
+		def apply( name: Option[String] = None, value: Option[String] = None, checked: Boolean = false, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.checkbox, name, value, ( attributes ++ Attributes( "checked" -> ( if( checked ) "checked" else None ) ) ): _* )
+			input( `type`.checkbox, name, value, None, attributes ++ Attributes( "checked" -> ( if( checked ) "checked" else None ) ) )
 		}
 
-		def apply( name: Option[String], value: Option[String], attributes: (String, String)* ): input =
-		{
-			apply( name, value, false, attributes: _* )
-		}
-
-		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, attributes: _* )
-
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, None, false, attributes )
 	}
 
 	object file
 	{
-		def apply( name: Option[String], attributes: (String, String)* ): input =
+		def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.file, name, None, attributes: _* )
+			input( `type`.file, name, None, None, attributes )
 		}
 
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, attributes )
 	}
 
 	object hidden
 	{
-		def apply( name: Option[String], value: Option[String], attributes: (String, String)* ): input =
+		def apply( name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.hidden, name, value, attributes: _* )
+			input( `type`.hidden, name, value, None, attributes )
 		}
 
-		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, attributes: _* )
-
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, None, attributes )
 	}
 
 	object password
 	{
-		def apply( name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* ): input =
+		def apply( name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.password, name, value, ( attributes ++ Attributes( "placeholder" -> placeholder ) ): _* )
+			input( `type`.password, name, value, placeholder, attributes ++ Attributes( "placeholder" -> placeholder ) )
 		}
 
-		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, None, attributes: _* )
-
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, None, None, attributes )
 	}
 
 	object radio
 	{
-		def apply( name: Option[String], value: Option[String], checked: Boolean, attributes: (String, String)* ): input =
+		def apply( name: Option[String] = None, value: Option[String] = None, checked: Boolean = false, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.radio, name, value, (attributes ++ Attributes( "checked" -> ( if( checked ) "checked" else None ) ) ): _* )
+			input( `type`.radio, name, value, None, attributes ++ Attributes( "checked" -> ( if( checked ) "checked" else None ) ) )
 		}
 
-		def apply( name: Option[String], value: Option[String], attributes: (String, String)* ): input =
-		{
-			apply( name, value, false, attributes: _* )
-		}
-
-		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, attributes: _* )
-
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, None, false, attributes )
 	}
 
 	object reset extends
 	{
-		def apply( value: Option[String], attributes: (String, String)* ): input =
+		def apply( value: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.reset, None, value, attributes: _* )
+			input( `type`.reset, None, value, None, attributes )
 		}
 
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, attributes )
 	}
 
 	class	select( attributes: Attributes )( content: Html )
@@ -126,38 +98,34 @@ object input extends property.input
 
 	object select
 	{
-		def apply( name: Option[String], attributes: (String, String)* )( content: Html ): select =
+		def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): select =
 		{
 			new select( name, attributes )( content )
 		}
 
-		def apply( attributes: (String, String)* )( content: Html ): select = apply( None, attributes: _* )( content )
+		def apply( attributes: Attributes )( content: Html ): select = apply( None, attributes )( content )
 
-		def apply( content: Html ): select = apply()( content )
+		def apply( content: Html ): select = apply( Attributes.empty )( content )
 	}
 
 	object submit
 	{
-		def apply( value: Option[String], name: Option[String], attributes: (String, String)* ): input =
+		def apply( value: Option[String] = None, name: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.submit, name, value, attributes: _* )
+			input( `type`.submit, name, value, None, attributes )
 		}
 
-		def apply( value: Option[String], attributes: (String, String)* ): input = apply( value, None, attributes: _* )
-
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, None, attributes )
 	}
 
 	object text
 	{
-		def apply( name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* ): input =
+		def apply( name: Option[String] = None, value: Option[String] = None, placeholder: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
 		{
-			input( `type`.text, name, value, ( attributes ++ Attributes( "placeholder" -> placeholder ) ): _* )
+			input( `type`.text, name, value, placeholder, attributes ++ Attributes( "placeholder" -> placeholder ) )
 		}
 
-		def apply( name: Option[String], attributes: (String, String)* ): input = apply( name, None, None, attributes: _* )
-
-		def apply( attributes: (String, String)* ): input = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): input = apply( None, None, None, attributes )
 	}
 
 	class	textarea( attributes: Attributes )( content: Txt )
@@ -173,13 +141,11 @@ object input extends property.input
 
 	object textarea
 	{
-		def apply( name: Option[String], value: Option[String], attributes: (String, String)* ): textarea =
+		def apply( name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty ): textarea =
 		{
 			new textarea( name, attributes )( value.fold( Txt.empty )( Txt( _ ) ) )
 		}
 
-		def apply( name: Option[String], attributes: (String, String)* ): textarea = apply( name, None, attributes: _* )
-
-		def apply( attributes: (String, String)* ): textarea = apply( None, attributes: _* )
+		def apply( attributes: Attributes ): textarea = apply( None, None, attributes )
 	}
 }

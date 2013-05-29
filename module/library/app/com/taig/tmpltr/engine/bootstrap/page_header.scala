@@ -13,12 +13,12 @@ extends	markup.div[page_header]( attributes )( Html( new html.h( level, Attribut
 
 object page_header
 {
-	def apply( level: Int, attributes: (String, String)* )( content: Html ): page_header =
+	def apply( level: Int = 1, attributes: Attributes = Attributes.empty )( content: Html ): page_header =
 	{
 		new page_header( level, attributes ++ ( "class" -> "page-header" ) )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): page_header = apply( 1, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): page_header = apply( 1, attributes )( content )
 
-	def apply( content: Html ): page_header = apply()( content )
+	def apply( content: Html ): page_header = apply( Attributes.empty )( content )
 }

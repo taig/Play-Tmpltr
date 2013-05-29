@@ -13,7 +13,7 @@ extends	markup.tbody[tbody]( attributes )( content )
 
 object tbody
 {
-	def apply( attributes: (String, String)* )( content: Html ): tbody = new tbody( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): tbody = new tbody( attributes )( content )
 
-	def apply( content: Html ): tbody = apply()( content )
+	def apply( content: Html ): tbody = apply( Attributes.empty )( content )
 }

@@ -13,7 +13,7 @@ extends	markup.legend[legend]( attributes )( content )
 
 object legend
 {
-	def apply( attributes: (String, String)* )( content: Html ): legend = new legend( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): legend = new legend( attributes )( content )
 
-	def apply( content: Html ): legend = apply()( content )
+	def apply( content: Html ): legend = apply( Attributes.empty )( content )
 }

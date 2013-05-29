@@ -13,7 +13,7 @@ extends	markup.tfoot[tfoot]( attributes )( content )
 
 object tfoot
 {
-	def apply( attributes: (String, String)* )( content: Html ): tfoot = new tfoot( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): tfoot = new tfoot( attributes )( content )
 
-	def apply( content: Html ): tfoot = apply()( content )
+	def apply( content: Html ): tfoot = apply( Attributes.empty )( content )
 }

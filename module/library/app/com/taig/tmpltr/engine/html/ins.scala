@@ -13,7 +13,7 @@ extends	markup.ins[ins]( attributes )( content )
 
 object ins
 {
-	def apply( attributes: (String, String)* )( content: Html ): ins = new ins( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): ins = new ins( attributes )( content )
 
-	def apply( content: Html ): ins = apply()( content )
+	def apply( content: Html ): ins = apply( Attributes.empty )( content )
 }

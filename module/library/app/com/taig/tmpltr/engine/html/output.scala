@@ -18,17 +18,17 @@ extends	markup.output[output]( attributes )( content )
 
 object output
 {
-	def apply( name: Option[String], `for`: Option[String], attributes: (String, String)* )( content: Html ): output =
+	def apply( name: Option[String] = None, `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): output =
 	{
 		new output( name, `for`, attributes )( content )
 	}
 
-	def apply( name: Option[String], attributes: (String, String)* )( content: Html ): output =
+	def apply( name: Option[String], attributes: Attributes )( content: Html ): output =
 	{
-		apply( name, None, attributes: _* )( content )
+		apply( name, None, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): output = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): output = apply( None, attributes )( content )
 
-	def apply( content: Html ): output = apply()( content )
+	def apply( content: Html ): output = apply( Attributes.empty )( content )
 }

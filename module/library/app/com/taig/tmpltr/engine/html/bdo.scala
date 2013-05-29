@@ -13,5 +13,7 @@ extends markup.bdo[bdo]( attributes )( content )
 
 object bdo
 {
-	def apply( attributes: (String, String)* )( content: Html ): bdo = new bdo( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): bdo = new bdo( attributes )( content )
+
+	def apply( content: Html ): bdo = apply( Attributes.empty )( content )
 }

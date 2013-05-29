@@ -13,7 +13,7 @@ extends	markup.h[h3]( 3, attributes )( content )
 
 object h3
 {
-	def apply( attributes: (String, String)* )( content: Html ): h3 = new h3( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): h3 = new h3( attributes )( content )
 
-	def apply( content: Html ): h3 = apply()( content )
+	def apply( content: Html ): h3 = apply( Attributes.empty )( content )
 }

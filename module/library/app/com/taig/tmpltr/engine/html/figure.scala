@@ -13,7 +13,7 @@ extends	markup.figure[figure]( attributes )( content )
 
 object figure
 {
-	def apply( attributes: (String, String)* )( content: Html ): figure = new figure( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): figure = new figure( attributes )( content )
 
-	def apply( content: Html ): figure = apply( )( content )
+	def apply( content: Html ): figure = apply( Attributes.empty )( content )
 }

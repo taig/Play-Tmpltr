@@ -13,7 +13,7 @@ extends	markup.footer[footer]( attributes )( content )
 
 object footer
 {
-	def apply( attributes: (String, String)* )( content: Html ): footer = new footer( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): footer = new footer( attributes )( content )
 
-	def apply( content: Html ): footer = apply()( content )
+	def apply( content: Html ): footer = apply( Attributes.empty )( content )
 }

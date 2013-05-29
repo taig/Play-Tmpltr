@@ -13,7 +13,7 @@ extends	markup.sup[sup]( attributes )( content )
 
 object sup
 {
-	def apply( attributes: (String, String)* )( content: Html ): sup = new sup( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): sup = new sup( attributes )( content )
 
-	def apply( content: Html ): sup = apply()( content )
+	def apply( content: Html ): sup = apply( Attributes.empty )( content )
 }

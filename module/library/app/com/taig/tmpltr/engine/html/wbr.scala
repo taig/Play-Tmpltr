@@ -13,7 +13,7 @@ extends	markup.wbr[wbr]( attributes )( content )
 
 object wbr
 {
-	def apply( attributes: (String, String)* )( content: Html ): wbr = new wbr( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): wbr = new wbr( attributes )( content )
 
-	def apply( content: Html ): wbr = apply()( content )
+	def apply( content: Html ): wbr = apply( Attributes.empty )( content )
 }

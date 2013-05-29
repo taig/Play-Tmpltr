@@ -13,7 +13,7 @@ extends	markup.dialog[dialog]( attributes )( content )
 
 object dialog
 {
-	def apply( attributes: (String, String)* )( content: Html ): dialog = new dialog( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): dialog = new dialog( attributes )( content )
 
-	def apply( content: Html ): dialog = apply()( content )
+	def apply( content: Html ): dialog = apply( Attributes.empty )( content )
 }

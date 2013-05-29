@@ -16,10 +16,10 @@ extends	markup.img[img]( attributes )
 
 object img
 {
-	def apply( src: Option[String], alt: Option[String], attributes: (String, String)* ): img =
+	def apply( src: Option[String] = None, alt: Option[String] = None, attributes: Attributes ): img =
 	{
 		new img( src, alt, attributes )
 	}
 
-	def apply( attributes: (String, String)* ): img = apply( None, None, attributes: _* )
+	def apply( attributes: Attributes ): img = apply( None, None, attributes )
 }

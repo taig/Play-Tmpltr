@@ -13,7 +13,7 @@ extends	markup.dt[dt]( attributes )( content )
 
 object dt
 {
-	def apply( attributes: (String, String)* )( content: Html ): dt = new dt( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): dt = new dt( attributes )( content )
 
-	def apply( content: Html ): dt = apply()( content )
+	def apply( content: Html ): dt = apply( Attributes.empty )( content )
 }

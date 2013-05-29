@@ -13,7 +13,7 @@ extends	markup.kbd[kbd]( attributes )( content )
 
 object kbd
 {
-	def apply( attributes: (String, String)* )( content: Html ): kbd = new kbd( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): kbd = new kbd( attributes )( content )
 
-	def apply( content: Html ): kbd = apply()( content )
+	def apply( content: Html ): kbd = apply( Attributes.empty )( content )
 }

@@ -13,7 +13,7 @@ extends	markup.header[header]( attributes )( content )
 
 object header
 {
-	def apply( attributes: (String, String)* )( content: Html ): header = new header( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): header = new header( attributes )( content )
 
-	def apply( content: Html ): header = apply( )( content )
+	def apply( content: Html ): header = apply( Attributes.empty )( content )
 }

@@ -13,7 +13,7 @@ extends	markup.aside[aside]( attributes )( content )
 
 object aside
 {
-	def apply( attributes: (String, String)* )( content: Html ): aside = new aside( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): aside = new aside( attributes )( content )
 
-	def apply( content: Html ): aside = apply( )( content )
+	def apply( content: Html ): aside = apply( Attributes.empty )( content )
 }

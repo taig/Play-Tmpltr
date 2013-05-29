@@ -13,7 +13,7 @@ extends	markup.colgroup[colgroup]( attributes )( content )
 
 object colgroup
 {
-	def apply( attributes: (String, String)* )( content: Html ): colgroup = new colgroup( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): colgroup = new colgroup( attributes )( content )
 
-	def apply( content: Html ): colgroup = apply()( content )
+	def apply( content: Html ): colgroup = apply( Attributes.empty )( content )
 }

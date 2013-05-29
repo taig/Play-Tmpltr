@@ -13,7 +13,7 @@ extends	markup.address[address]( attributes )( content )
 
 object address
 {
-	def apply( attributes: (String, String)* )( content: Html ): address = new address( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): address = new address( attributes )( content )
 
-	def apply( content: Html ): address = apply()( content )
+	def apply( content: Html ): address = apply( Attributes.empty )( content )
 }

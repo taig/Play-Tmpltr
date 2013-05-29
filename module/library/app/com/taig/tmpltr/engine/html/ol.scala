@@ -13,7 +13,7 @@ extends	markup.ol[ol]( attributes )( content )
 
 object ol
 {
-	def apply( attributes: (String, String)* )( content: Html ): ol = new ol( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): ol = new ol( attributes )( content )
 
-	def apply( content: Html ): ol = apply()( content )
+	def apply( content: Html ): ol = apply( Attributes.empty )( content )
 }

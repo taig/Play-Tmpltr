@@ -13,7 +13,7 @@ extends	markup.embed[embed]( attributes )( content )
 
 object embed
 {
-	def apply( attributes: (String, String)* )( content: Html ): embed = new embed( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): embed = new embed( attributes )( content )
 
-	def apply( content: Html ): embed = apply()( content )
+	def apply( content: Html ): embed = apply( Attributes.empty )( content )
 }

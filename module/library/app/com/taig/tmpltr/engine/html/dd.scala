@@ -13,7 +13,7 @@ extends	markup.dd[dd]( attributes )( content )
 
 object dd
 {
-	def apply( attributes: (String, String)* )( content: Html ): dd = new dd( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): dd = new dd( attributes )( content )
 
-	def apply( content: Html ): dd = apply()( content )
+	def apply( content: Html ): dd = apply( Attributes.empty )( content )
 }

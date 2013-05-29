@@ -13,7 +13,7 @@ extends	markup.audio[audio]( attributes )( content )
 
 object audio
 {
-	def apply( attributes: (String, String)* )( content: Html ): audio = new audio( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): audio = new audio( attributes )( content )
 
-	def apply( content: Html ): audio = apply()( content )
+	def apply( content: Html ): audio = apply( Attributes.empty )( content )
 }

@@ -6,7 +6,7 @@ import com.taig.tmpltr.Attributes
 class	doctype
 extends	markup.doctype[doctype]( "html" )
 {
-	protected def copy = ( attributes: Attributes ) => new doctype
+	protected def copy = ( _: Attributes ) => new doctype
 }
 
 object doctype

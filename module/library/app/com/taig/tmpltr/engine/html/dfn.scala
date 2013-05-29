@@ -13,7 +13,7 @@ extends	markup.dfn[dfn]( attributes )( content )
 
 object dfn
 {
-	def apply( attributes: (String, String)* )( content: Html ): dfn = new dfn( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): dfn = new dfn( attributes )( content )
 
-	def apply( content: Html ): dfn = apply()( content )
+	def apply( content: Html ): dfn = apply( Attributes.empty )( content )
 }

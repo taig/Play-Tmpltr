@@ -13,7 +13,7 @@ extends	markup.head[head]( attributes )( content )
 
 object head
 {
-	def apply( attributes: (String, String)* )( content: Html ): head = new head( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): head = new head( attributes )( content )
 
-	def apply( content: Html ): head = apply()( content )
+	def apply( content: Html ): head = apply( Attributes.empty )( content )
 }

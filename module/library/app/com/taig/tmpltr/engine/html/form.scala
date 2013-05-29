@@ -18,12 +18,12 @@ extends	markup.form[form]( attributes )( content )
 
 object form extends property.form
 {
-	def apply( action: Option[String], method: Option[method], attributes: (String, String)* )( content: Html ): form =
+	def apply( action: Option[String] = None, method: Option[method] = None, attributes: Attributes = Attributes.empty )( content: Html ): form =
 	{
 		new form( action, method, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): form = apply( None, None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): form = apply( None, None, attributes )( content )
 
-	def apply( content: Html ): form = apply()( content )
+	def apply( content: Html ): form = apply( Attributes.empty )( content )
 }

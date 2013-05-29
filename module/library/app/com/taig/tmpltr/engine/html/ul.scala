@@ -13,7 +13,7 @@ extends	markup.ul[ul]( attributes )( content )
 
 object ul
 {
-	def apply( attributes: (String, String)* )( content: Html ): ul = new ul( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): ul = new ul( attributes )( content )
 
-	def apply( content: Html ): ul = apply()( content )
+	def apply( content: Html ): ul = apply( Attributes.empty )( content )
 }

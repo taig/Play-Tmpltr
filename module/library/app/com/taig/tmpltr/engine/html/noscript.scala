@@ -13,7 +13,7 @@ extends	markup.noscript[noscript]( attributes )( content )
 
 object noscript
 {
-	def apply( attributes: (String, String)* )( content: Html ): noscript = new noscript( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): noscript = new noscript( attributes )( content )
 
-	def apply( content: Html ): noscript = apply()( content )
+	def apply( content: Html ): noscript = apply( Attributes.empty )( content )
 }

@@ -13,7 +13,7 @@ extends	markup.article[article]( attributes )( content )
 
 object article
 {
-	def apply( attributes: (String, String)* )( content: Html ): article = new article( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): article = new article( attributes )( content )
 
-	def apply( content: Html ): article = apply()( content )
+	def apply( content: Html ): article = apply( Attributes.empty )( content )
 }

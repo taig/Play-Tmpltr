@@ -13,7 +13,7 @@ extends	markup.samp[samp]( attributes )( content )
 
 object samp
 {
-	def apply( attributes: (String, String)* )( content: Html ): samp = new samp( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): samp = new samp( attributes )( content )
 
-	def apply( content: Html ): samp = apply()( content )
+	def apply( content: Html ): samp = apply( Attributes.empty )( content )
 }

@@ -18,17 +18,17 @@ extends	markup.progress[progress]( attributes )( content )
 
 object progress
 {
-	def apply( value: Option[Float], maxvalue: Option[Float], attributes: (String, String)* )( content: Html ): progress =
+	def apply( value: Option[Float] = None, maxvalue: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Html ): progress =
 	{
 		new progress( value, maxvalue, attributes )( content )
 	}
 
-	def apply( maxvalue: Option[Float], attributes: (String, String)* )( content: Html ): progress =
+	def apply( maxvalue: Option[Float], attributes: Attributes )( content: Html ): progress =
 	{
-		apply( None, maxvalue, attributes: _* )( content )
+		apply( None, maxvalue, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): progress = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): progress = apply( None, attributes )( content )
 
-	def apply( content: Html ): progress = apply()( content )
+	def apply( content: Html ): progress = apply( Attributes.empty )( content )
 }

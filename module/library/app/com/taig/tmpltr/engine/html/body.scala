@@ -13,7 +13,7 @@ extends	markup.body[body]( attributes )( content )
 
 object body
 {
-	def apply( attributes: (String, String)* )( content: Html ): body = new body( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): body = new body( attributes )( content )
 
-	def apply( content: Html ): body = apply( )( content )
+	def apply( content: Html ): body = apply( Attributes.empty )( content )
 }

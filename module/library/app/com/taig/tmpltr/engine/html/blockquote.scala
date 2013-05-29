@@ -13,7 +13,7 @@ extends	markup.blockquote[blockquote]( attributes )( content )
 
 object blockquote
 {
-	def apply( attributes: (String, String)* )( content: Html ): blockquote = new blockquote( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): blockquote = new blockquote( attributes )( content )
 
-	def apply( content: Html ): blockquote = apply()( content )
+	def apply( content: Html ): blockquote = apply( Attributes.empty )( content )
 }

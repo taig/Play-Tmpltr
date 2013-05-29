@@ -13,7 +13,7 @@ extends	markup.thead[thead]( attributes )( content )
 
 object thead
 {
-	def apply( attributes: (String, String)* )( content: Html ): thead = new thead( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): thead = new thead( attributes )( content )
 
-	def apply( content: Html ): thead = apply()( content )
+	def apply( content: Html ): thead = apply( Attributes.empty )( content )
 }

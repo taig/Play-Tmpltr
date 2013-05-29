@@ -13,7 +13,7 @@ extends	markup.strong[strong]( attributes )( content )
 
 object strong
 {
-	def apply( attributes: (String, String)* )( content: Html ): strong = new strong( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): strong = new strong( attributes )( content )
 
-	def apply( content: Html ): strong = apply()( content )
+	def apply( content: Html ): strong = apply( Attributes.empty )( content )
 }

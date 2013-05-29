@@ -13,7 +13,7 @@ extends	markup.time[time]( attributes )( content )
 
 object time
 {
-	def apply( attributes: (String, String)* )( content: Html ): time = new time( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): time = new time( attributes )( content )
 
-	def apply( content: Html ): time = apply()( content )
+	def apply( content: Html ): time = apply( Attributes.empty )( content )
 }

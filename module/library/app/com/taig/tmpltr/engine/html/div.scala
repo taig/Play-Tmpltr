@@ -13,7 +13,7 @@ extends	markup.div[div]( attributes )( content )
 
 object div
 {
-	def apply( attributes: (String, String)* )( content: Html ): div = new div( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): div = new div( attributes )( content )
 
-	def apply( content: Html ): div = apply( )( content )
+	def apply( content: Html ): div = apply( Attributes.empty )( content )
 }

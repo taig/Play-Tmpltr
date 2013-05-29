@@ -13,12 +13,12 @@ extends	markup.iframe[iframe]( attributes ++ Attributes( "src" -> src ) )( conte
 
 object iframe
 {
-	def apply( src: Option[String], attributes: (String, String)* )( content: Html ): iframe =
+	def apply( src: Option[String], attributes: Attributes )( content: Html ): iframe =
 	{
 		new iframe( src, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): iframe = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): iframe = apply( None, attributes )( content )
 
-	def apply( content: Html ): iframe = apply()( content )
+	def apply( content: Html ): iframe = apply( Attributes.empty )( content )
 }

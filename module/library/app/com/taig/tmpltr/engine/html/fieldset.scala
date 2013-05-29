@@ -13,7 +13,7 @@ extends	markup.fieldset[fieldset]( attributes )( content )
 
 object fieldset
 {
-	def apply( attributes: (String, String)* )( content: Html ): fieldset = new fieldset( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): fieldset = new fieldset( attributes )( content )
 
-	def apply( content: Html ): fieldset = apply()( content )
+	def apply( content: Html ): fieldset = apply( Attributes.empty )( content )
 }

@@ -18,17 +18,12 @@ extends markup.button[button]( attributes )( content )
 
 object button extends property.button
 {
-	def apply( `type`: Option[`type`], name: Option[String], attributes: (String, String)* )( content: Html ): button =
+	def apply( `type`: Option[`type`] = None, name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): button =
 	{
 		new button( `type`, name, attributes  )( content )
 	}
 
-	def apply( `type`: Option[`type`], attributes: (String, String)* )( content: Html ): button =
-	{
-		apply( `type`, None, attributes: _* )( content )
-	}
+	def apply( attributes: Attributes )( content: Html ): button = apply( None, None, attributes )( content )
 
-	def apply( attributes: (String, String)* )( content: Html ): button = apply( None, attributes: _* )( content )
-
-	def apply( content: Html ): button = apply( )( content )
+	def apply( content: Html ): button = apply( Attributes.empty )( content )
 }

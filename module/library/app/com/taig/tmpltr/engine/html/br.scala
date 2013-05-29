@@ -11,5 +11,5 @@ extends markup.br[br]( attributes )
 
 object br
 {
-	def apply( attributes: (String, String)* ): br = new br( attributes )
+	def apply( attributes: Attributes = Attributes.empty ): br = new br( attributes )
 }

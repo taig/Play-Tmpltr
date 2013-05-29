@@ -13,12 +13,12 @@ extends	markup.optgroup[optgroup]( attributes ++ Attributes( "label" -> label ) 
 
 object optgroup
 {
-	def apply( label: Option[String], attributes: (String, String)* )( content: Html ): optgroup =
+	def apply( label: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): optgroup =
 	{
 		new optgroup( label, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): optgroup = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): optgroup = apply( None, attributes )( content )
 
-	def apply( content: Html ): optgroup = apply()( content )
+	def apply( content: Html ): optgroup = apply( Attributes.empty )( content )
 }

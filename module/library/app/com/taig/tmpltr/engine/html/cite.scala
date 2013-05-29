@@ -13,7 +13,7 @@ extends	markup.cite[cite]( attributes )( content )
 
 object cite
 {
-	def apply( attributes: (String, String)* )( content: Html ): cite = new cite( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): cite = new cite( attributes )( content )
 
-	def apply( content: Html ): cite = apply()( content )
+	def apply( content: Html ): cite = apply( Attributes.empty )( content )
 }

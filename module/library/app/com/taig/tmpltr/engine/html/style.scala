@@ -18,12 +18,12 @@ extends	markup.style[style]( attributes )( content )
 
 object style
 {
-	def apply( `type`: Option[String], attributes: (String, String)* )( content: Txt ): style =
+	def apply( `type`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ): style =
 	{
 		new style( `type`, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Txt ): style = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Txt ): style = apply( None, attributes )( content )
 
-	def apply( content: Txt ): style = apply()( content )
+	def apply( content: Txt ): style = apply( Attributes.empty )( content )
 }

@@ -12,7 +12,7 @@ extends	markup.div[container]( attributes ++ ( "class" -> "container" ) )( conte
 
 object container
 {
-	def apply( attributes: (String, String)* )( content: Html ): container = new container( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): container = new container( attributes )( content )
 
-	def apply( content: Html ): container = apply()( content )
+	def apply( content: Html ): container = apply( Attributes.empty )( content )
 }

@@ -11,5 +11,5 @@ extends	markup.hr[hr]( attributes )
 
 object hr
 {
-	def apply( attributes: (String, String)* ): hr = new hr( attributes )
+	def apply( attributes: Attributes = Attributes.empty ): hr = new hr( attributes )
 }

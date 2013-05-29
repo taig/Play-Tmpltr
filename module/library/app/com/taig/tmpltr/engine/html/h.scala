@@ -13,5 +13,7 @@ extends markup.h[h]( level, attributes )( content )
 
 object h
 {
-	def apply( level: Int, attributes: (String, String)* )( content: Html ): h = new h( level, attributes )( content )
+	def apply( level: Int = 1, attributes: Attributes = Attributes.empty )( content: Html ): h = new h( level, attributes )( content )
+
+	def apply( content: Html ): h = apply()( content )
 }

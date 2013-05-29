@@ -13,7 +13,7 @@ extends	markup.canvas[canvas]( attributes )( content )
 
 object canvas
 {
-	def apply( attributes: (String, String)* )( content: Html ): canvas = new canvas( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): canvas = new canvas( attributes )( content )
 
-	def apply( content: Html ): canvas = apply()( content )
+	def apply( content: Html ): canvas = apply( Attributes.empty )( content )
 }

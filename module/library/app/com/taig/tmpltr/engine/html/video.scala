@@ -13,7 +13,7 @@ extends	markup.video[video]( attributes )( content )
 
 object video
 {
-	def apply( attributes: (String, String)* )( content: Html ): video = new video( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): video = new video( attributes )( content )
 
-	def apply( content: Html ): video = apply()( content )
+	def apply( content: Html ): video = apply( Attributes.empty )( content )
 }

@@ -13,7 +13,7 @@ extends	markup.details[details]( attributes )( content )
 
 object details
 {
-	def apply( attributes: (String, String)* )( content: Html ): details = new details( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): details = new details( attributes )( content )
 
-	def apply( content: Html ): details = apply()( content )
+	def apply( content: Html ): details = apply( Attributes.empty )( content )
 }

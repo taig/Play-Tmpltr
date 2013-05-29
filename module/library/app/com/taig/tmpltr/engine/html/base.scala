@@ -16,12 +16,10 @@ extends	markup.base[base]( attributes )
 
 object base extends property.a
 {
-	def apply( href: Option[String], target: Option[target], attributes: (String, String)* ): base =
+	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty ): base =
 	{
 		new base( href, target, attributes )
 	}
 
-	def apply( href: Option[String], attributes: (String, String)* ): base = apply( href, None, attributes: _* )
-
-	def apply( attributes: (String, String)* ): base = apply( None, attributes: _* )
+	def apply( attributes: Attributes ): base = apply( None, None, attributes )
 }

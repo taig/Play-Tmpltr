@@ -11,5 +11,5 @@ extends	markup.area[area]( attributes )
 
 object area
 {
-	def apply( attributes: (String, String)* ): area = new area( attributes )
+	def apply( attributes: Attributes ): area = new area( attributes )
 }

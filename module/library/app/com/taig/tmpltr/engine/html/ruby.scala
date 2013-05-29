@@ -13,7 +13,7 @@ extends	markup.ruby[ruby]( attributes )( content )
 
 object ruby
 {
-	def apply( attributes: (String, String)* )( content: Html ): ruby = new ruby( attributes )( content )
+	def apply( attributes: Attributes )( content: Html ): ruby = new ruby( attributes )( content )
 
-	def apply( content: Html ): ruby = apply()( content )
+	def apply( content: Html ): ruby = apply( Attributes.empty )( content )
 }

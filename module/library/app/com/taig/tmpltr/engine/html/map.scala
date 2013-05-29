@@ -18,12 +18,12 @@ extends	markup.map[map]( attributes )( content )
 
 object map
 {
-	def apply( name: Option[String], attributes: (String, String)* )( content: Html ): map =
+	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): map =
 	{
 		new map( name, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): map = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): map = apply( None, attributes )( content )
 
-	def apply( content: Html ): map = apply()( content )
+	def apply( content: Html ): map = apply( Attributes.empty )( content )
 }

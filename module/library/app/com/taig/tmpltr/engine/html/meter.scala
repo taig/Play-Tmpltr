@@ -13,17 +13,17 @@ extends	markup.meter[meter]( attributes ++ Attributes( "value" -> value, "min" -
 
 object meter
 {
-	def apply( value: Option[Float], min: Option[Float], max: Option[Float], attributes: (String, String)* )( content: Html ): meter =
+	def apply( value: Option[Float] = None, min: Option[Float] = None, max: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Html ): meter =
 	{
 		new meter( value, min, max, attributes )( content )
 	}
 
-	def apply( value: Option[Float], attributes: (String, String)* )( content: Html ): meter =
+	def apply( value: Option[Float], attributes: Attributes )( content: Html ): meter =
 	{
-		apply( value, None, None, attributes: _* )( content )
+		apply( value, None, None, attributes )( content )
 	}
 
-	def apply( attributes: (String, String)* )( content: Html ): meter = apply( None, attributes: _* )( content )
+	def apply( attributes: Attributes )( content: Html ): meter = apply( None, attributes )( content )
 
-	def apply( content: Html ): meter = apply()( content )
+	def apply( content: Html ): meter = apply( Attributes.empty )( content )
 }
