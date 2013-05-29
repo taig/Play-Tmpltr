@@ -5,7 +5,7 @@ import play.Project._
 object	ApplicationBuild
 extends	Build
 {
-	val version = "0.1 ALPHA"
+	val version = "0.1-ALPHA"
 
 	val dependencies = Seq(
 		"org.webjars" % "webjars-play" % "2.1.0-1",
