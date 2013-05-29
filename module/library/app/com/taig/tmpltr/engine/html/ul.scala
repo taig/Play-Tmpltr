@@ -16,4 +16,9 @@ object ul
 	def apply( attributes: Attributes )( content: Html ): ul = new ul( attributes )( content )
 
 	def apply( content: Html ): ul = apply( Attributes.empty )( content )
+
+	def apply( list: Traversable[Any], attributes: Attributes = Attributes.empty ): ul =
+	{
+		apply( attributes )( Html( list.map( element => li( Html( element.toString ) ) ).mkString ) )
+	}
 }
