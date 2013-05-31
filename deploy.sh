@@ -1,10 +1,12 @@
 #!/bin/bash
 
 readonly TEMP=/tmp/app
+readonly PLAY=~/Development/Scala/PlayFramework
 readonly ROOT=~/Development/Scala/tmpltr
 readonly LIBRARY=play-tmpltr
-readonly SAMPLE=sample
 readonly CLEAN=--clean
+readonly SAMPLE=sample
+readonly REPO=repository
 readonly PORT=9999
 
 cd ${ROOT}
@@ -35,6 +37,10 @@ else																							# Run deploy.
 		cp -r ${ROOT}/module/library/target/scala-2.10/api ${TEMP}/${LIBRARY}                   # Copy scalaDoc to temp directory.
 	) &
 
+	(
+		play "project play-tmpltr" publish-local | grep --color=never error						# Prepare dependency repository.
+	) &
+
 	wait																						# Wait for tasks to finish.
 
 	git checkout gh-pages 2> /dev/null															# Prepare deploy branch.
@@ -46,6 +52,11 @@ else																							# Run deploy.
 	rm -rf ${ROOT}/doc																			# Remove old scalaDoc files.
 	mv ${TEMP}/${LIBRARY} ${ROOT}/doc															# Move new scalaDoc to project.
 	git add ${ROOT}/doc 2> /dev/null															# Stage scalaDoc files.
+
+	rm -rf ${ROOT}/release																		# Remove old repositories.
+	mkdir -p ${ROOT}/release
+	cp -r ${PLAY}/repository/local/play-tmpltr ${ROOT}/release									# Copy repositories to project.
+	git add ${ROOT}/release 2> /dev/null														# Stage repository files.
 
 	git commit -m "Deployed updates." > /dev/null
 	git push origin gh-pages
