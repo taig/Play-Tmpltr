@@ -1,4 +1,6 @@
 import sbt._
+import Keys._
+
 import play.Project
 import play.Project._
 
@@ -13,6 +15,9 @@ extends	Build
 	)
 
 	val library = Project( "play-tmpltr", version, path = file( "module" ) / "library" )
+					.settings(
+						organization := "com.taig"
+					)
 
 	val sample = Project( "sample", version, dependencies, file( "module" ) / "sample" )
 					.settings( templatesImport ++= Seq(
