@@ -19,7 +19,7 @@ else																							# Run deploy.
 	rm -rf ${TEMP} && mkdir -p ${TEMP}															# Clean temporary storage.
 
 	if [[ $# -eq 1 && $1 == ${CLEAN} ]]; then													# Clean play application.
-		play clean > /dev/null
+		play clean clean-files > /dev/null
 	fi
 
 	(																							# Deploy sample pages.
