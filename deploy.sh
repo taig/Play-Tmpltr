@@ -55,7 +55,7 @@ else																							# Run deploy.
 
 	rm -rf ${ROOT}/release																		# Remove old repositories.
 	mkdir -p ${ROOT}/release
-	cp -r ${PLAY}/repository/local/play-tmpltr ${ROOT}/release									# Copy repositories to project.
+	cp -r ${PLAY}/repository/local/com.taig ${ROOT}/release										# Copy repositories to project.
 	git add ${ROOT}/release 2> /dev/null														# Stage repository files.
 
 	git commit -m "Deployed updates." > /dev/null
