@@ -16,7 +16,8 @@ extends	Build
 
 	val library = Project( "play-tmpltr", version, path = file( "module" ) / "library" )
 					.settings(
-						organization := "com.taig"
+						organization := "com.taig",
+						scalacOptions ++= Seq( "-feature", "-language:implicitConversions" )
 					)
 
 	val sample = Project( "sample", version, dependencies, file( "module" ) / "sample" )
@@ -28,5 +29,7 @@ extends	Build
 					)
 					.dependsOn( library )
 
-	val main = Project( "tmpltr", version ).dependsOn( library, sample ).aggregate( library, sample )
+	val main = Project( "tmpltr", version )
+					.dependsOn( library, sample )
+					.aggregate( library, sample )
 }
