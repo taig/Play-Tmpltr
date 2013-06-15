@@ -2,7 +2,7 @@
 
 readonly TEMP=/tmp/app
 readonly PLAY=~/Development/Scala/PlayFramework
-readonly ROOT=~/Development/Scala/tmpltr
+readonly ROOT=~/Development/Scala/Play-Tmpltr
 readonly LIBRARY=play-tmpltr
 readonly CLEAN=--clean
 readonly SAMPLE=sample
@@ -33,12 +33,12 @@ else																							# Run deploy.
 	) &
 
 	(
-		play "project play-tmpltr" doc | grep --color=never error                        		# Generate scalaDoc.
+		play "project tmpltr" doc | grep --color=never error                              		# Generate scalaDoc.
 		cp -r ${ROOT}/module/library/target/scala-2.10/api ${TEMP}/${LIBRARY}                   # Copy scalaDoc to temp directory.
 	) &
 
 	(
-		play "project play-tmpltr" publish-local | grep --color=never error						# Prepare dependency repository.
+		play "project tmpltr" publish-local | grep --color=never error					    	# Prepare dependency repository.
 	) &
 
 	wait																						# Wait for tasks to finish.
@@ -55,7 +55,7 @@ else																							# Run deploy.
 
 	rm -rf ${ROOT}/release																		# Remove old repositories.
 	mkdir -p ${ROOT}/release
-	cp -r ${PLAY}/repository/local/com.taig ${ROOT}/release										# Copy repositories to project.
+	cp -r ${PLAY}/repository/local/com.taig.play ${ROOT}/release								# Copy repositories to project.
 	git add ${ROOT}/release 2> /dev/null														# Stage repository files.
 
 	git commit -m "Deployed updates." > /dev/null
