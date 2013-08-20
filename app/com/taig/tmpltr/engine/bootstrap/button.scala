@@ -20,7 +20,7 @@ extends	property.button
 						"btn",
 						style,
 						size,
-						if( disabled ) { Some( "disabled" ) } else { None } ) )
+						if( disabled ) { "disabled" } else { None } ) )
 			)( content )
 		}
 
