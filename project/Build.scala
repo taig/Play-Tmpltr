@@ -2,31 +2,12 @@ import sbt._
 import Keys._
 
 import play.Project
-import play.Project._
 
-object	ApplicationBuild
-extends	Build
+object Build extends sbt.Build
 {
-	val version = "0.1-ALPHA"
+	val version = "0.1"
 
-	val dependencies = Seq(
-		"org.webjars" % "webjars-play" % "2.1.0-1",
-		"org.webjars" % "bootstrap" % "2.3.1-1"
-	)
-
-	val library = Project( "play-tmpltr", version, path = file( "module" ) / "library" )
-					.settings(
-						organization := "com.taig"
-					)
-
-	val sample = Project( "sample", version, dependencies, file( "module" ) / "sample" )
-					.settings( templatesImport ++= Seq(
-						"com.taig.tmpltr._",
-						"com.taig.tmpltr.engine.html._",
-						"com.taig.tmpltr.engine.{ bootstrap => bs }"
-						)
-					)
-					.dependsOn( library )
-
-	val main = Project( "tmpltr", version ).dependsOn( library, sample ).aggregate( library, sample )
+	val main = Project( "play-tmpltr", version ).settings(
+		organization := "com.taig",
+		scalacOptions ++= Seq( "-feature", "-language:implicitConversions" ) )
 }
