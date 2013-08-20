@@ -5,11 +5,11 @@ import com.taig.tmpltr._
 import play.api.templates.Html
 
 class	icon private( attributes: Attributes )
-extends	markup.i[icon]( attributes )( Html.empty )
+extends	markup.span[icon]( attributes )( Html.empty )
 {
-	def this( image: icon.image, color: icon.color, attributes: Attributes ) =
+	def this( image: icon.image, attributes: Attributes ) =
 	{
-		this( attributes ++ Attributes( "class" -> Seq[Option[_]]( image, color ) ) )
+		this( attributes ++ Attributes( "class" -> Seq[Option[_]]( "glyphicon", image ) ) )
 	}
 
 	protected def copy = new icon( _: Attributes )
@@ -18,8 +18,8 @@ extends	markup.i[icon]( attributes )( Html.empty )
 object	icon
 extends property.icon
 {
-	def apply( image: String, color: color = icon.color.black, attributes: Attributes = Attributes.empty ): icon =
+	def apply( image: String, attributes: Attributes = Attributes.empty ): icon =
 	{
-		new icon( new image( image ), color, attributes )
+		new icon( new image( image ), attributes )
 	}
 }
