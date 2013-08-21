@@ -48,7 +48,7 @@ extends	property.button
 					"type" -> `type`,
 					"class" -> Seq[Option[_]]( "btn", style, size ) ) ++
 				( if( disabled ) Attributes( "disabled" -> "disabled" ) else Attributes.empty )
-			)
+			)( content )
 		}
 
 		protected def copy = new button( _: Attributes )( content )
@@ -57,14 +57,14 @@ extends	property.button
 	object	button
 	extends	property.button
 	{
-		def apply( `type`: Option[`type`] = None, style: style = style.default, size: size = size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Html ): button =
+		def apply( `type`: Option[`type`] = None, style: style = button.style.default, size: size = button.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Html ): button =
 		{
 			new button( `type`, style, size, disabled, attributes )( content )
 		}
 
 		object reset
 		{
-			def apply( style: style = style.default, size: size = size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Html ): button =
+			def apply( style: style = button.style.default, size: size = button.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Html ): button =
 			{
 				button( `type`.reset, style, size, disabled, attributes )( content )
 			}
@@ -72,7 +72,7 @@ extends	property.button
 
 		object submit
 		{
-			def apply( style: style = style.default, size: size = size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Html ): button =
+			def apply( style: style = button.style.default, size: size = button.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Html ): button =
 			{
 				button( `type`.submit, style, size, disabled, attributes )( content )
 			}
@@ -99,14 +99,14 @@ extends	property.button
 	object	input
 	extends	property.button
 	{
-		def apply( `type`: Option[`type`] = None, value: Option[String] = None, style: style = style.default, size: size = size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
+		def apply( `type`: Option[`type`] = None, value: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
 		{
 			new input( `type`, value, style, size, disabled, attributes )
 		}
 
 		object button
 		{
-			def apply( value: Option[String] = None, style: style = style.default, size: size = size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
+			def apply( value: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
 			{
 				input( `type`.button, value, style, size, disabled, attributes )
 			}
@@ -114,7 +114,7 @@ extends	property.button
 
 		object reset
 		{
-			def apply( value: Option[String] = None, style: style = style.default, size: size = size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
+			def apply( value: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
 			{
 				input( `type`.reset, value, style, size, disabled, attributes )
 			}
@@ -122,7 +122,7 @@ extends	property.button
 
 		object submit
 		{
-			def apply( value: Option[String] = None, style: style = style.default, size: size = size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
+			def apply( value: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
 			{
 				input( `type`.submit, value, style, size, disabled, attributes )
 			}
