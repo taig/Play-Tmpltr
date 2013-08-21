@@ -128,4 +128,18 @@ extends	property.button
 			}
 		}
 	}
+
+	class	close( attributes: Attributes )
+	extends	markup.button[close](
+	{
+		attributes ++ Attributes( "class" -> "close", "aria-hidden" -> "true" )
+	} )( Html( "&times;" ) )
+	{
+		protected def copy = new close( _: Attributes )
+	}
+	
+	object close
+	{
+		def apply( attributes: Attributes = Attributes.empty ) = new close( attributes )
+	}
 }
