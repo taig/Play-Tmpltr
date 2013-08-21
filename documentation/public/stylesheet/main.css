@@ -25,25 +25,15 @@ div.container {
     width: 740px;
 }
 
-.code-preview {
-    margin-bottom: 24px;
-}
-
-pre.prettyprint {
-    display: block;
-    overflow: auto;
-    padding: 2px 0 2px 8px;
-    white-space: pre;
-    word-wrap: normal;
-}
-
-pre.prettyprint li {
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid #E0E0E0;
-    padding-right: 8px;
-}
-pre.prettyprint li:last-child {
-    border-bottom: 1px solid transparent;
+pre.code {
+	color: #D1D9E1;
+	background-color: #474949;
+	line-height: 20px;
+	margin-bottom: 24px;
+	overflow: auto;
+	padding: 12px;
+	white-space: pre;
+	word-wrap: normal;
 }
 
 #title {

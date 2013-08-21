@@ -1,4 +1,7 @@
 $( document ).ready( function()
 {
-	prettyPrint();
+	$( 'pre.code' ).each( function( index, element )
+	{
+		hljs.highlightBlock( element )
+	} );
 } );
