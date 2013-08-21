@@ -7,10 +7,10 @@ trait button
 	class size( size: Option[String] ) extends Property( "btn" -> "-", size )
 	object size
 	{
-		object large extends size( "large" )
-		object mini extends size( "mini" )
 		object default extends size( None )
-		object small extends size( "small" )
+		object large extends size( "lg" )
+		object small extends size( "sm" )
+		object tiny extends size( "xs" )
 	}
 
 	class style( style: Option[String] ) extends Property( "btn" -> "-", style )

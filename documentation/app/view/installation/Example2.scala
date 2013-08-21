@@ -4,7 +4,7 @@ import views.Code
 
 object Example2 extends Code
 {
-	override val lang = "html"
+	override val language = "xml"
 
 	val code: String =
 		"""
