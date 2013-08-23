@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	canvas( attributes: Attributes )( content: Html )
+class	canvas( attributes: Attributes )( content: Content )
 extends	markup.canvas[canvas]( attributes )( content )
+with	Helper.Default[canvas]
 {
-	protected def copy = new canvas( _: Attributes )( content )
+	protected val helper = canvas
 }
 
-object canvas
+object	canvas
+extends	Helper.DefaultCompanion[canvas]
 {
-	def apply( attributes: Attributes )( content: Html ): canvas = new canvas( attributes )( content )
-
-	def apply( content: Html ): canvas = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): canvas = new canvas( attributes )( content )
 }

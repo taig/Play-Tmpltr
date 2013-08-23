@@ -2,11 +2,11 @@ package com.taig.tmpltr.engine.html
 
 import com.taig.tmpltr.Attributes
 
+import play.api.mvc.Content
 import play.api.templates.Html
-
 import scala.xml.NodeSeq
 
-class	boilerplate( head: (Attributes, Html), body: (Attributes, Html), attributes: Attributes )
+class	boilerplate( head: (Attributes, Content), body: (Attributes, Content), attributes: Attributes )
 extends NodeSeq
 {
 	val theSeq = null
@@ -20,17 +20,17 @@ extends NodeSeq
 
 object boilerplate
 {
-	def apply( attributesHtml: Attributes )( head: Html, attributesHead: Attributes = Attributes.empty )( body: Html, attributesBody: Attributes = Attributes.empty ): boilerplate =
+	def apply( attributesContent: Attributes )( head: Content, attributesHead: Attributes = Attributes.empty )( body: Content, attributesBody: Attributes = Attributes.empty ): boilerplate =
 	{
-		new boilerplate( (attributesHead, head), (attributesBody, body), attributesHtml )
+		new boilerplate( (attributesHead, head), (attributesBody, body), attributesContent )
 	}
 
-	def apply( head: Html, attributesHead: Attributes )( body: Html, attributesBody: Attributes ): boilerplate =
+	def apply( head: Content, attributesHead: Attributes )( body: Content, attributesBody: Attributes ): boilerplate =
 	{
 		apply( Attributes.empty )( head, attributesHead )( body, attributesBody )
 	}
 
-	def apply( head: Html )( body: Html ): boilerplate =
+	def apply( head: Content )( body: Content ): boilerplate =
 	{
 		apply( head, Attributes.empty )( body, Attributes.empty )
 	}

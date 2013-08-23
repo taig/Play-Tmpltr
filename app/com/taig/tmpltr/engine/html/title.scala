@@ -1,7 +1,6 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
 import play.api.templates.Txt
 

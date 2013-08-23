@@ -1,15 +1,16 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
 class	col( attributes: Attributes )
 extends	markup.col[col]( attributes )
+with	Helper.Empty[col]
 {
-	protected def copy = new col( _: Attributes )
+	protected val helper = col
 }
 
-object col
+object	col
+extends	Helper.EmptyCompanion[col]
 {
 	def apply( attributes: Attributes = Attributes.empty ): col = new col( attributes )
 }

@@ -2,7 +2,7 @@ package com.taig.tmpltr.markup
 
 import com.taig.tmpltr.{ Attributes, Tag }
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-abstract class	caption[A <: caption[A]]( attributes: Attributes )( content: Html )
-extends			Tag[A]( "caption", attributes, content )
+abstract class	caption[A <: caption[A]]( attributes: Attributes )( content: Content )
+extends			Tag[A]( "caption", content, attributes )

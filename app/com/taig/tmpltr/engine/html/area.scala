@@ -1,15 +1,16 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
 class	area( attributes: Attributes )
 extends	markup.area[area]( attributes )
+with	Helper.Empty[area]
 {
-	protected def copy = new area( _: Attributes )
+	protected val helper = area
 }
 
-object area
+object	area
+extends	Helper.EmptyCompanion[area]
 {
-	def apply( attributes: Attributes ): area = new area( attributes )
+	def apply( attributes: Attributes = Attributes.empty ): area = new area( attributes )
 }

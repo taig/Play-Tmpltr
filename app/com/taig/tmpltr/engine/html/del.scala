@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	del( attributes: Attributes )( content: Html )
+class	del( attributes: Attributes )( content: Content )
 extends	markup.del[del]( attributes )( content )
+with	Helper.Default[del]
 {
-	protected def copy = new del( _: Attributes )( content )
+	protected val helper = del
 }
 
-object del
+object	del
+extends	Helper.DefaultCompanion[del]
 {
-	def apply( attributes: Attributes )( content: Html ): del = new del( attributes )( content )
-
-	def apply( content: Html ): del = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): del = new del( attributes )( content )
 }

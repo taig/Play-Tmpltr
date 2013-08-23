@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	cite( attributes: Attributes )( content: Html )
+class	cite( attributes: Attributes )( content: Content )
 extends	markup.cite[cite]( attributes )( content )
+with	Helper.Default[cite]
 {
-	protected def copy = new cite( _: Attributes )( content )
+	protected val helper = cite
 }
 
-object cite
+object	cite
+extends	Helper.DefaultCompanion[cite]
 {
-	def apply( attributes: Attributes )( content: Html ): cite = new cite( attributes )( content )
-
-	def apply( content: Html ): cite = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): cite = new cite( attributes )( content )
 }

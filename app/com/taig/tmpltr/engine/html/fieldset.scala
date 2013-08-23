@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	fieldset( attributes: Attributes )( content: Html )
+class	fieldset( attributes: Attributes )( content: Content )
 extends	markup.fieldset[fieldset]( attributes )( content )
+with	Helper.Default[fieldset]
 {
-	protected def copy = new fieldset( _: Attributes )( content )
+	protected val helper = fieldset
 }
 
-object fieldset
+object	fieldset
+extends	Helper.DefaultCompanion[fieldset]
 {
-	def apply( attributes: Attributes )( content: Html ): fieldset = new fieldset( attributes )( content )
-
-	def apply( content: Html ): fieldset = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): fieldset = new fieldset( attributes )( content )
 }

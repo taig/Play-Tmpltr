@@ -5,4 +5,4 @@ import com.taig.tmpltr.{ Attributes, Tag }
 import play.api.templates.Txt
 
 abstract class	style[A <: style[A]]( attributes: Attributes )( content: Txt )
-extends			Tag[A]( "style", attributes, content )
+extends			Tag[A]( "style", content, attributes )

@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	address( attributes: Attributes )( content: Html )
+class	address( attributes: Attributes )( content: Content )
 extends	markup.address[address]( attributes )( content )
+with	Helper.Default[address]
 {
-	protected def copy = new address( _: Attributes )( content )
+	protected val helper = address
 }
 
-object address
+object	address
+extends	Helper.DefaultCompanion[address]
 {
-	def apply( attributes: Attributes )( content: Html ): address = new address( attributes )( content )
-
-	def apply( content: Html ): address = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): address = new address( attributes )( content )
 }

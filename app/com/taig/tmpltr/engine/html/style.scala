@@ -1,19 +1,13 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-class	style( attributes: Attributes )( content: Txt )
-extends	markup.style[style]( attributes )( content )
+class	style( `type`: Option[String], attributes: Attributes )( content: Txt )
+extends	markup.style[style]( attributes ~ ( "type" -> `type` ) )( content )
 {
-	def this( `type`: Option[String], attributes: Attributes )( content: Txt ) =
-	{
-		this( attributes ++ Attributes( "type" -> `type` ) )( content )
-	}
-
-	protected def copy = new style( _: Attributes )( content )
+	protected def copy = new style( `type`, _: Attributes )( content )
 }
 
 object style

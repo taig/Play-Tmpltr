@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	blockquote( attributes: Attributes )( content: Html )
+class	blockquote( attributes: Attributes )( content: Content )
 extends	markup.blockquote[blockquote]( attributes )( content )
+with	Helper.Default[blockquote]
 {
-	protected def copy = new blockquote( _: Attributes )( content )
+	protected val helper = blockquote
 }
 
-object blockquote
+object	blockquote
+extends	Helper.DefaultCompanion[blockquote]
 {
-	def apply( attributes: Attributes )( content: Html ): blockquote = new blockquote( attributes )( content )
-
-	def apply( content: Html ): blockquote = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): blockquote = new blockquote( attributes )( content )
 }

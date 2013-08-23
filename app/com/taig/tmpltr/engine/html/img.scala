@@ -1,17 +1,11 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-class	img( attributes: Attributes )
-extends	markup.img[img]( attributes )
+class	img( src: Option[String], alt: Option[String],  attributes: Attributes )
+extends	markup.img[img]( attributes ~~ ( ( "src" -> src, "alt" -> alt ) ) )
 {
-	def this( src: Option[String], alt: Option[String], attributes: Attributes ) =
-	{
-		this( attributes ++ Attributes( "src" -> src, "alt" -> alt ) )
-	}
-
-	protected def copy = new img( _: Attributes )
+	protected def copy = new img( src, alt, _: Attributes )
 }
 
 object img

@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	time( attributes: Attributes )( content: Html )
+class	time( attributes: Attributes )( content: Content )
 extends	markup.time[time]( attributes )( content )
+with	Helper.Default[time]
 {
-	protected def copy = new time( _: Attributes )( content )
+	protected val helper = time
 }
 
-object time
+object	time
+extends	Helper.DefaultCompanion[time]
 {
-	def apply( attributes: Attributes )( content: Html ): time = new time( attributes )( content )
-
-	def apply( content: Html ): time = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): time = new time( attributes )( content )
 }

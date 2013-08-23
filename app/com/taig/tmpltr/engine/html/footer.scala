@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	footer( attributes: Attributes )( content: Html )
+class	footer( attributes: Attributes )( content: Content )
 extends	markup.footer[footer]( attributes )( content )
+with	Helper.Default[footer]
 {
-	protected def copy = new footer( _: Attributes )( content )
+	protected val helper = footer
 }
 
-object footer
+object	footer
+extends	Helper.DefaultCompanion[footer]
 {
-	def apply( attributes: Attributes )( content: Html ): footer = new footer( attributes )( content )
-
-	def apply( content: Html ): footer = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): footer = new footer( attributes )( content )
 }

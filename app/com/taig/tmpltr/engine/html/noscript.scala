@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	noscript( attributes: Attributes )( content: Html )
+class	noscript( attributes: Attributes )( content: Content )
 extends	markup.noscript[noscript]( attributes )( content )
+with	Helper.Default[noscript]
 {
-	protected def copy = new noscript( _: Attributes )( content )
+	protected val helper = noscript
 }
 
-object noscript
+object	noscript
+extends	Helper.DefaultCompanion[noscript]
 {
-	def apply( attributes: Attributes )( content: Html ): noscript = new noscript( attributes )( content )
-
-	def apply( content: Html ): noscript = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): noscript = new noscript( attributes )( content )
 }

@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	video( attributes: Attributes )( content: Html )
+class	video( attributes: Attributes )( content: Content )
 extends	markup.video[video]( attributes )( content )
+with	Helper.Default[video]
 {
-	protected def copy = new video( _: Attributes )( content )
+	protected val helper = video
 }
 
-object video
+object	video
+extends	Helper.DefaultCompanion[video]
 {
-	def apply( attributes: Attributes )( content: Html ): video = new video( attributes )( content )
-
-	def apply( content: Html ): video = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): video = new video( attributes )( content )
 }

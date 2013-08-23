@@ -3,10 +3,10 @@
 @import WebJarAssets.locate
 
 @boilerplate {
-	@meta( charset = "utf-8" )
+	@meta.charset( "utf-8" )
 
 	@title( name )
-	
+
 	@link( link.rel.icon, routes.Assets.at( "image/favicon.png" ), "image/png" )
 
 	@link.style( routes.WebJarAssets.at( locate( "bootstrap.min.css" ) ) )
@@ -38,22 +38,22 @@
 		@version()
 
 		@section( "id" -> "intro" ) {
-			@bs.page_header( 2 ){ Introduction }
+			@bs.page_header{ @h2{ Introduction } }
 			@view.introduction.html.index( 3, name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "getting-started" ) {
-			@bs.page_header( 2 ){ Getting Started }
+			@bs.page_header{ @h2{ Getting Started } }
 			@view.installation.html.index( 3, name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "usage" ) {
-			@bs.page_header( 2 ){ Usage }
+			@bs.page_header{ @h2{ Usage } }
 			@view.usage.html.index( 3, name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "license" ) {
-			@bs.page_header( 2 ){ License }
+			@bs.page_header{ @h2{ License } }
 			@view.license.html.index()
 		}
 	}

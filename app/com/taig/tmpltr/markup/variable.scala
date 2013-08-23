@@ -2,7 +2,7 @@ package com.taig.tmpltr.markup
 
 import com.taig.tmpltr.{ Attributes, Tag }
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-abstract class	variable[A <: variable[A]]( attributes: Attributes )( content: Html )
-extends			Tag[A]( "var", attributes, content )
+abstract class	variable[A <: variable[A]]( attributes: Attributes )( content: Content )
+extends			Tag[A]( "var", content, attributes )

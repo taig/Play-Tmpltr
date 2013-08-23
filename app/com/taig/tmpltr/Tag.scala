@@ -1,19 +1,53 @@
 package com.taig.tmpltr
 
+import scala.xml._
 import play.api.mvc.Content
+import play.api.templates.Html
 
-import scala.xml.{ NodeSeq, Unparsed }
-
-abstract class	Tag[T <: Tag[T]] protected( tag: String, attributes: Attributes = Attributes.empty, content: Option[Content] = None, minimizeEmpty: Boolean = true )
-extends			HtmlNode[T]( tag, minimizeEmpty, content.fold( NodeSeq.Empty )( content => Unparsed( content.body.trim ) ), attributes )
+abstract class	Tag[T <: Tag[T]] protected( val tag: String, val content: Content, val attrs: Attributes, minimizeEmpty: Boolean = true )
+extends 		Elem( null, tag, Null, TopScope, minimizeEmpty, Unparsed( content.body.trim ) )
+with			Tag.Copy[T]
 {
-	protected def this( tag: String, attributes: Attributes, content: Content, minimizeEmpty: Boolean ) =
+	def this( tag: String, attributes: Attributes, minimizeEmpty: Boolean = true ) =
 	{
-		this( tag, attributes, Some( content ), minimizeEmpty )
+		this( tag, Html.empty, attributes, minimizeEmpty )
+	}
+	
+	def this( element: Elem, attributes: Attributes = Attributes.empty ) =
+	{
+		this(
+			element.label,
+			Html( element.child.mkString ),
+			attributes ~~ element.attributes.asAttrMap.mapValues( setFromAny ),
+			element.minimizeEmpty
+		)
 	}
 
-	protected def this( tag: String, attributes: Attributes, content: Content ) =
+	override def toString =
 	{
-		this( tag, attributes, Some( content ) )
+		"<" + label + ( if( attrs.nonEmpty ) " " + attrs.mkString( " " ) else "" ) + ( if( child.isEmpty && minimizeEmpty ) " />" else ">" +
+			child.mkString +
+		"</" + label + ">" )
+	}
+}
+
+object Tag
+{
+	val empty = new Empty
+
+	class Empty extends Tag[Empty]( null, Html.empty, Attributes.empty )
+	{
+		protected def copy = _ => empty
+
+		override def toString = ""
+	}
+	
+	trait Copy[T <: Tag[T]]
+	{
+		val attrs: Attributes
+
+		def %( attributes: Attributes ): T = copy( attrs ~~ attributes )
+
+		protected def copy: Attributes => T
 	}
 }

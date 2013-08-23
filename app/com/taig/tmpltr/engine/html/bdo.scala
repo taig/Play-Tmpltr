@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	bdo( attributes: Attributes )( content: Html )
+class	bdo( attributes: Attributes )( content: Content )
 extends markup.bdo[bdo]( attributes )( content )
+with	Helper.Default[bdo]
 {
-	protected def copy = new bdo( _: Attributes )( content )
+	protected val helper = bdo
 }
 
-object bdo
+object	bdo
+extends	Helper.DefaultCompanion[bdo]
 {
-	def apply( attributes: Attributes )( content: Html ): bdo = new bdo( attributes )( content )
-
-	def apply( content: Html ): bdo = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): bdo = new bdo( attributes )( content )
 }

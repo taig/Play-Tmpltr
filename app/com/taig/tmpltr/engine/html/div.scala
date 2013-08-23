@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	div( attributes: Attributes )( content: Html )
+class	div( attributes: Attributes )( content: Content )
 extends	markup.div[div]( attributes )( content )
+with	Helper.Default[div]
 {
-	protected def copy = new div( _: Attributes )( content )
+	protected val helper = div
 }
 
-object div
+object	div
+extends	Helper.DefaultCompanion[div]
 {
-	def apply( attributes: Attributes )( content: Html ): div = new div( attributes )( content )
-
-	def apply( content: Html ): div = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): div = new div( attributes )( content )
 }

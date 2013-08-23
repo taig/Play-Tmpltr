@@ -1,48 +1,38 @@
 package com.taig.tmpltr
 
-import scala.collection.immutable.MapLike
+import scala.collection.MapLike
 
-class	Attributes( map: Map[String, String] )
-extends	Map[String, String]
-with	MapLike[String, String, Attributes]
+class	Attributes( collection: Map[String, Set[String]] )
+extends	Map[String, Set[String]]
+with	MapLike[String, Set[String], Attributes]
 {
-	def get( key: String ) = map.get( key )
-
-	def iterator: Iterator[(String, String)] = map.iterator
-
-	def +[B1 >: String]( kv: (String, B1) ) = map.updated( kv._1, get( kv._1 ).fold( kv._2 )( _ + " " + kv._2 ) )
-
-	def -( key: String ) = new Attributes( map - key )
-
 	override def empty = Attributes.empty
 
-	override def mkString: String = super.mkString
+	def get( key: String ) = collection.get( key )
 
-	override def mkString(start: String, sep: String, end: String): String =
+	def iterator: Iterator[(String, Set[String])] = collection.iterator
+
+	def -(key: String): Attributes = new Attributes( collection - key )
+
+	def +[B1 >: Set[String]](kv: (String, B1)): Map[String, B1] = collection + kv
+
+	def ~( kv: (String, Set[String]) ) =
 	{
-		val builder = new StringBuilder
-
-		foldLeft( builder )( (builder, tuple) => builder
-			.append( sep )
-			.append( start )
-			.append( tuple._1 )
-			.append( "=\"" )
-			.append( tuple._2 )
-			.append( "\"" ).append( end )
-		)
-
-		builder.toString
+		new Attributes( get( kv._1 ).fold( this + kv )( set => collection.updated( kv._1, set ++ kv._2 ) ) )
 	}
 
-	override def toString: String = mkString( " " )
+	def ~~( attributes: Attributes ): Attributes = attributes.foldLeft[Attributes]( this )( _ ~ _ )
+
+	override def mkString( start: String, separator: String, end: String ) =
+	{
+		new StringBuilder( start )
+			.append( collect{ case (key, set) if set.nonEmpty => key + "=\""+ set.mkString( " " ) + "\"" }.mkString( separator ) )
+			.append( end )
+			.toString
+	}
 }
 
 object Attributes
 {
-	def apply( attributes: (String, Option[_])* ): Attributes =
-	{
-		new Attributes( attributes.collect { case (key, Some( value )) => (key, value.toString) }.toMap )
-	}
-
 	def empty = new Attributes( Map.empty )
 }

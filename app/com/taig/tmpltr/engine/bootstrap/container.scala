@@ -2,17 +2,17 @@ package com.taig.tmpltr.engine.bootstrap
 
 import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	container( attributes: Attributes )( content: Html )
-extends	markup.div[container]( attributes ++ ( "class" -> "container" ) )( content )
+class	container( attributes: Attributes )( content: Content )
+extends	markup.div[container]( attributes ~ ( "class" -> "container" ) )( content )
+with	Helper.Default[container]
 {
-	protected def copy = new container( _: Attributes )( content )
+	protected val helper = container
 }
 
-object container
+object	container
+extends	Helper.DefaultCompanion[container]
 {
-	def apply( attributes: Attributes )( content: Html ): container = new container( attributes )( content )
-
-	def apply( content: Html ): container = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ) = new container( attributes )( content )
 }

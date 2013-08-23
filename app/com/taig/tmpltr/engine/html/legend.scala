@@ -1,19 +1,18 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	legend( attributes: Attributes )( content: Html )
+class	legend( attributes: Attributes )( content: Content )
 extends	markup.legend[legend]( attributes )( content )
+with	Helper.Default[legend]
 {
-	protected def copy = new legend( _: Attributes )( content )
+	protected val helper = legend
 }
 
-object legend
+object	legend
+extends	Helper.DefaultCompanion[legend]
 {
-	def apply( attributes: Attributes )( content: Html ): legend = new legend( attributes )( content )
-
-	def apply( content: Html ): legend = apply( Attributes.empty )( content )
+	def apply( attributes: Attributes )( content: Content ): legend = new legend( attributes )( content )
 }

@@ -1,18 +1,11 @@
 package com.taig.tmpltr.engine.html
 
 import com.taig.tmpltr._
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
 
-class	link( attributes: Attributes )
-extends	markup.link[link]( attributes )
+class	link( rel: Option[link.rel], href: Option[String], `type`: Option[String], attributes: Attributes )
+extends	markup.link[link]( attributes ~~ ( ( "rel" -> rel, "href" -> href, "type" -> `type` ) ) )
 {
-	def this( rel: Option[link.rel], href: Option[String], `type`: Option[String], attributes: Attributes ) =
-	{
-		this( attributes ++ Attributes( "rel" -> rel, "href" -> href, "type" -> `type` ) )
-	}
-
-	protected def copy = new link( _: Attributes )
+	protected def copy = new link( rel, href, `type`, _: Attributes )
 }
 
 object link extends property.link
@@ -23,12 +16,15 @@ object link extends property.link
 	}
 
 	def apply( attributes: Attributes ): link = apply( None, None, None, attributes )
+	
+	class	style( href: Option[String], attributes: Attributes )
+	extends	link( rel.stylesheet, href, None, attributes )
 
 	object style
 	{
-		def apply( href: Option[String] = None, attributes: Attributes = Attributes.empty ): link =
+		def apply( href: Option[String] = None, attributes: Attributes = Attributes.empty ): style =
 		{
-			link( rel.stylesheet, href, attributes = attributes )
+			new style( href, attributes )
 		}
 	}
 }
