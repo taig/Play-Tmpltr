@@ -4,20 +4,22 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	form( action: Option[String], method: Option[form.method], attributes: Attributes )( content: Content )
-extends	markup.form[form]( attributes ~~ ( ( "action" -> action, "method" -> method ) ) )( content )
+class	form( val attributes: Attributes )( val content: Content )
+extends	markup.form
+with	Tag.Body[form, Content]
 {
-	protected def copy = new form( action, method, _: Attributes )( content )
+	def this( action: Option[String], method: Option[form.method], attributes: Attributes )( content: Content ) =
+	{
+		this( attributes ~~ ( ( "action" -> action, "method" -> method ) ) )( content )
+	}
 }
 
-object form extends property.form
+object	form
+extends	Tag.Body.Appliable[form, Content]
+with	property.form
 {
 	def apply( action: Option[String] = None, method: Option[method] = None, attributes: Attributes = Attributes.empty )( content: Content ): form =
 	{
 		new form( action, method, attributes )( content )
 	}
-
-	def apply( attributes: Attributes )( content: Content ): form = apply( None, None, attributes )( content )
-
-	def apply( content: Content ): form = apply( Attributes.empty )( content )
 }

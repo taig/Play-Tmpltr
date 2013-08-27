@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	head( attributes: Attributes )( content: Content )
-extends	markup.head[head]( attributes )( content )
-with	Helper.Default[head]
-{
-	protected val helper = com.taig.tmpltr.engine.html.head
-}
+class	head( val attributes: Attributes )( val content: Content )
+extends	markup.head
+with	Tag.Body[head, Content]
 
 object	head
-extends	Helper.DefaultCompanion[head]
-{
-	def apply( attributes: Attributes )( content: Content ): head = new head( attributes )( content )
-}
+extends	Tag.Body.Appliable[head, Content]

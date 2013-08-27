@@ -2,17 +2,13 @@ package com.taig.tmpltr.engine.bootstrap
 
 import com.taig.tmpltr._
 
+import com.taig.tmpltr.engine.html
+
 import play.api.mvc.Content
 
 class	container( attributes: Attributes )( content: Content )
-extends	markup.div[container]( attributes ~ ( "class" -> "container" ) )( content )
-with	Helper.Default[container]
-{
-	protected val helper = container
-}
+extends	html.div( attributes ~ ( "class" -> "container" ) )( content )
+with	Tag.Body[container, Content]
 
 object	container
-extends	Helper.DefaultCompanion[container]
-{
-	def apply( attributes: Attributes )( content: Content ) = new container( attributes )( content )
-}
+extends	Tag.Body.Appliable[container, Content]

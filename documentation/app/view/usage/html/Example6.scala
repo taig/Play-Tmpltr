@@ -8,7 +8,7 @@ extends	Code
 	val code: String =
 		"""
 		  |@boilerplate {
-		  |    @meta( charset = "utf-8" )
+		  |    @meta.charset( "utf-8" )
 		  |    …
 		  |} {
 		  |    @h1{ Hello there! }

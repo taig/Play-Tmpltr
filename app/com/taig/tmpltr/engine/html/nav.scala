@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	nav( attributes: Attributes )( content: Content )
-extends	markup.nav[nav]( attributes )( content )
-with	Helper.Default[nav]
-{
-	protected val helper = nav
-}
+class	nav( val attributes: Attributes )( val content: Content )
+extends	markup.nav
+with	Tag.Body[nav, Content]
 
 object	nav
-extends	Helper.DefaultCompanion[nav]
-{
-	def apply( attributes: Attributes )( content: Content ): nav = new nav( attributes )( content )
-}
+extends	Tag.Body.Appliable[nav, Content]

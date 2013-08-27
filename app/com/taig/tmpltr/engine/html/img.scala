@@ -2,18 +2,21 @@ package com.taig.tmpltr.engine.html
 
 import com.taig.tmpltr._
 
-class	img( src: Option[String], alt: Option[String],  attributes: Attributes )
-extends	markup.img[img]( attributes ~~ ( ( "src" -> src, "alt" -> alt ) ) )
+class	img( val attributes: Attributes )
+extends	markup.img
+with	Tag.Empty[img]
 {
-	protected def copy = new img( src, alt, _: Attributes )
+	def this( src: Option[String], alt: Option[String], attributes: Attributes ) =
+	{
+		this( attributes ~~ ( ( "src" -> src, "alt" -> alt ) ) )
+	}
 }
 
-object img
+object	img
+extends	Tag.Empty.Appliable[img]
 {
-	def apply( src: Option[String] = None, alt: Option[String] = None, attributes: Attributes ): img =
+	def apply( src: Option[String] = None, alt: Option[String] = None, attributes: Attributes = Attributes.empty ): img =
 	{
 		new img( src, alt, attributes )
 	}
-
-	def apply( attributes: Attributes ): img = apply( None, None, attributes )
 }

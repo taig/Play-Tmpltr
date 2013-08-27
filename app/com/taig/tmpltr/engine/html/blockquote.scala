@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	blockquote( attributes: Attributes )( content: Content )
-extends	markup.blockquote[blockquote]( attributes )( content )
-with	Helper.Default[blockquote]
-{
-	protected val helper = blockquote
-}
+class	blockquote( val attributes: Attributes )( val content: Content )
+extends	markup.blockquote
+with	Tag.Body[blockquote, Content]
 
 object	blockquote
-extends	Helper.DefaultCompanion[blockquote]
-{
-	def apply( attributes: Attributes )( content: Content ): blockquote = new blockquote( attributes )( content )
-}
+extends	Tag.Body.Appliable[blockquote, Content]

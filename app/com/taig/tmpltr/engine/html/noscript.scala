@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	noscript( attributes: Attributes )( content: Content )
-extends	markup.noscript[noscript]( attributes )( content )
-with	Helper.Default[noscript]
-{
-	protected val helper = noscript
-}
+class	noscript( val attributes: Attributes )( val content: Content )
+extends	markup.noscript
+with	Tag.Body[noscript, Content]
 
 object	noscript
-extends	Helper.DefaultCompanion[noscript]
-{
-	def apply( attributes: Attributes )( content: Content ): noscript = new noscript( attributes )( content )
-}
+extends	Tag.Body.Appliable[noscript, Content]

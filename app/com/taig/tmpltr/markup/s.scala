@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-abstract class	s[A <: s[A]]( attributes: Attributes )( content: Content )
-extends			Tag[A]( "s", content, attributes )
+trait	s
+extends	Tag.Body[s, Content]
+{
+	val tag = "s"
+}

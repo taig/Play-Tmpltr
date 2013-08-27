@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	figure( attributes: Attributes )( content: Content )
-extends	markup.figure[figure]( attributes )( content )
-with	Helper.Default[figure]
-{
-	protected val helper = figure
-}
+class	figure( val attributes: Attributes )( val content: Content )
+extends	markup.figure
+with	Tag.Body[figure, Content]
 
 object	figure
-extends	Helper.DefaultCompanion[figure]
-{
-	def apply( attributes: Attributes )( content: Content ): figure = new figure( attributes )( content )
-}
+extends	Tag.Body.Appliable[figure, Content]

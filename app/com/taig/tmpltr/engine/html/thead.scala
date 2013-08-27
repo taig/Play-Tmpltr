@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	thead( attributes: Attributes )( content: Content )
-extends	markup.thead[thead]( attributes )( content )
-with	Helper.Default[thead]
-{
-	protected val helper = thead
-}
+class	thead( val attributes: Attributes )( val content: Content )
+extends	markup.thead
+with	Tag.Body[thead, Content]
 
 object	thead
-extends	Helper.DefaultCompanion[thead]
-{
-	def apply( attributes: Attributes )( content: Content ): thead = new thead( attributes )( content )
-}
+extends	Tag.Body.Appliable[thead, Content]

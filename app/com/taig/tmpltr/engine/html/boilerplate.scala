@@ -1,37 +1,32 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
+import com.taig.tmpltr.engine.{ html => element }
 
 import play.api.mvc.Content
-import play.api.templates.Html
-import scala.xml.NodeSeq
 
-class	boilerplate( head: (Attributes, Content), body: (Attributes, Content), attributes: Attributes )
-extends NodeSeq
+class	boilerplate private( val attributes: Attributes )( val content: Content )
+extends	Tag.Body[boilerplate, Content]
 {
-	val theSeq = null
+	def this( attributes: Attributes, head: markup.head, body: markup.body ) =
+	{
+		this( attributes )( html( attributes )( head += body ) )
+	}
 
-	override def toString =
-		doctype() + "\n" +
-		new html( attributes )( Html(
-			new head( head._1 )( head._2 ) + "\n" +
-			new body( body._1 )( body._2 ) ) )
+	val tag = null
+
+	override def toString = doctype.toString + "\n" + content
 }
 
-object boilerplate
+object	boilerplate
 {
-	def apply( attributesContent: Attributes )( head: Content, attributesHead: Attributes = Attributes.empty )( body: Content, attributesBody: Attributes = Attributes.empty ): boilerplate =
+	def apply( attributes: Attributes )( head: markup.head )( body: markup.body ): boilerplate =
 	{
-		new boilerplate( (attributesHead, head), (attributesBody, body), attributesContent )
+		new boilerplate( attributes, head, body )
 	}
 
-	def apply( head: Content, attributesHead: Attributes )( body: Content, attributesBody: Attributes ): boilerplate =
+	def apply( head: markup.head )( body: markup.body ): boilerplate =
 	{
-		apply( Attributes.empty )( head, attributesHead )( body, attributesBody )
-	}
-
-	def apply( head: Content )( body: Content ): boilerplate =
-	{
-		apply( head, Attributes.empty )( body, Attributes.empty )
+		apply( Attributes.empty )( head )( body )
 	}
 }

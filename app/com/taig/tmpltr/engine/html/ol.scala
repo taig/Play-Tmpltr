@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	ol( attributes: Attributes )( content: Content )
-extends	markup.ol[ol]( attributes )( content )
-with	Helper.Default[ol]
-{
-	protected val helper = ol
-}
+class	ol( val attributes: Attributes )( val content: Content )
+extends	markup.ol
+with	Tag.Body[ol, Content]
 
 object	ol
-extends	Helper.DefaultCompanion[ol]
-{
-	def apply( attributes: Attributes )( content: Content ): ol = new ol( attributes )( content )
-}
+extends	Tag.Body.Appliable[ol, Content]

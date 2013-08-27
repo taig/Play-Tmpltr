@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	datalist( attributes: Attributes )( content: Content )
-extends	markup.datalist[datalist]( attributes )( content )
-with	Helper.Default[datalist]
-{
-	protected val helper = datalist
-}
+class	datalist( val attributes: Attributes )( val content: Content )
+extends	markup.datalist
+with	Tag.Body[datalist, Content]
 
 object	datalist
-extends	Helper.DefaultCompanion[datalist]
-{
-	def apply( attributes: Attributes )( content: Content ): datalist = new datalist( attributes )( content )
-}
+extends	Tag.Body.Appliable[datalist, Content]

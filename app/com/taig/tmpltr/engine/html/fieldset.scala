@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	fieldset( attributes: Attributes )( content: Content )
-extends	markup.fieldset[fieldset]( attributes )( content )
-with	Helper.Default[fieldset]
-{
-	protected val helper = fieldset
-}
+class	fieldset( val attributes: Attributes )( val content: Content )
+extends	markup.fieldset
+with	Tag.Body[fieldset, Content]
 
 object	fieldset
-extends	Helper.DefaultCompanion[fieldset]
-{
-	def apply( attributes: Attributes )( content: Content ): fieldset = new fieldset( attributes )( content )
-}
+extends	Tag.Body.Appliable[fieldset, Content]

@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	dialog( attributes: Attributes )( content: Content )
-extends	markup.dialog[dialog]( attributes )( content )
-with	Helper.Default[dialog]
-{
-	protected val helper = dialog
-}
+class	dialog( val attributes: Attributes )( val content: Content )
+extends	markup.dialog
+with	Tag.Body[dialog, Content]
 
 object	dialog
-extends	Helper.DefaultCompanion[dialog]
-{
-	def apply( attributes: Attributes )( content: Content ): dialog = new dialog( attributes )( content )
-}
+extends	Tag.Body.Appliable[dialog, Content]

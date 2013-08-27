@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-class	title( attributes: Attributes )( content: Txt )
-extends	markup.title[title]( attributes )( content )
-{
-	protected def copy = new title( _: Attributes )( content )
-}
+class	title( val attributes: Attributes )( val content: Txt )
+extends	markup.title
+with	Tag.Body[title, Txt]
 
-object title
-{
-	def apply( attributes: Attributes )( content: Txt ): title = new title( attributes )( content )
-
-	def apply( content: Txt ): title = apply( Attributes.empty )( content )
-}
+object	title
+extends	Tag.Body.Appliable[title, Txt]

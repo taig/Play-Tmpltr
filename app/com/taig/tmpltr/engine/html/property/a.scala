@@ -4,12 +4,13 @@ import com.taig.tmpltr.Property
 
 trait a
 {
-	class target( target: String ) extends Property( "_" + target )
+	class target( target: String ) extends Property( target )
 	object target
 	{
-		object blank extends target( "blank" )
-		object parent extends target( "parent" )
-		object self extends target( "self" )
-		object top extends target( "top" )
+		object blank extends target( "_blank" )
+		object parent extends target( "_parent" )
+		object self extends target( "_self" )
+		object top extends target( "_top" )
+		class frame( name: String ) extends target( name )
 	}
 }

@@ -1,6 +1,9 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
-abstract class	param[A <: param[A]]( attributes: Attributes )
-extends			Tag[A]( "param", attributes )
+trait	param
+extends	Tag.Empty[param]
+{
+	val tag = "param"
+}

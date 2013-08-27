@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	samp( attributes: Attributes )( content: Content )
-extends	markup.samp[samp]( attributes )( content )
-with	Helper.Default[samp]
-{
-	protected val helper = samp
-}
+class	samp( val attributes: Attributes )( val content: Content )
+extends	markup.samp
+with	Tag.Body[samp, Content]
 
 object	samp
-extends	Helper.DefaultCompanion[samp]
-{
-	def apply( attributes: Attributes )( content: Content ): samp = new samp( attributes )( content )
-}
+extends	Tag.Body.Appliable[samp, Content]

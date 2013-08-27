@@ -4,11 +4,11 @@ import com.taig.tmpltr.Property
 
 trait button
 {
-	class `type`(`type`: String) extends Property( `type` )
+	class `type`( `type`: String ) extends Property( `type` )
 	object `type`
 	{
-		object Button extends `type`( "button" )
-		object Reset extends `type`( "reset" )
-		object Submit extends `type`( "submit" )
+		object button extends `type`( "button" )
+		object reset extends `type`( "reset" )
+		object submit extends `type`( "submit" )
 	}
 }

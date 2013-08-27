@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	summary( attributes: Attributes )( content: Content )
-extends	markup.summary[summary]( attributes )( content )
-with	Helper.Default[summary]
-{
-	protected val helper = summary
-}
+class	summary( val attributes: Attributes )( val content: Content )
+extends	markup.summary
+with	Tag.Body[summary, Content]
 
 object	summary
-extends	Helper.DefaultCompanion[summary]
-{
-	def apply( attributes: Attributes )( content: Content ): summary = new summary( attributes )( content )
-}
+extends	Tag.Body.Appliable[summary, Content]

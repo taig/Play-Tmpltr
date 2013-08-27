@@ -9,5 +9,6 @@ object Build extends sbt.Build
 
 	val main = Project( "play-tmpltr", version ).settings(
 		organization := "com.taig",
-		scalacOptions ++= Seq( "-feature", "-language:implicitConversions" ) )
+//		sourceGenerators in Compile <+= ( dependencyClasspath in TemplatesCompilerProject in Runtime, packageBin in TemplatesCompilerProject in Compile, scalaSource in Compile, sourceManaged in Compile, streams ) map Task.ScalaTemplates,
+		scalacOptions ++= Seq( "-feature", "-language:implicitConversions", "-language:existentials" ) )
 }

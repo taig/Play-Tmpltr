@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	abbr( attributes: Attributes )( content: Content )
-extends	markup.abbr[abbr]( attributes )( content )
-with	Helper.Default[abbr]
-{
-	protected val helper = abbr
-}
+class	abbr( val attributes: Attributes )( val content: Content )
+extends	markup.abbr
+with	Tag.Body[abbr, Content]
 
 object	abbr
-extends	Helper.DefaultCompanion[abbr]
-{
-	def apply( attributes: Attributes )( content: Content ): abbr = new abbr( attributes )( content )
-}
+extends	Tag.Body.Appliable[abbr, Content]

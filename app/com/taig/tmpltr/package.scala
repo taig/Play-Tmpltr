@@ -1,7 +1,10 @@
 package com.taig
 
+import com.taig.tmpltr.engine.html
+
 import play.api.templates.{ Html, Txt }
 import play.api.mvc.{ Call, Content }
+import scala.reflect.runtime.universe._
 
 package object tmpltr
 {
@@ -29,6 +32,8 @@ package object tmpltr
 
 	private def attributesFromTuples( tuples: (String, _)* ) = attributesFromMap( Map( tuples: _* ).mapValues( setFromAny ) )
 
+	implicit def htmlFromOptionTag( tag: Option[Tag[_]] ) = tag.map( htmlFromTag ).getOrElse( Html.empty )
+
 	implicit def htmlFromTag( tag: Tag[_] ) = Html( tag.toString )
 	
 	implicit def htmlFromContent( content: Content ) = content match
@@ -36,6 +41,10 @@ package object tmpltr
 		case html: Html => html
 		case _ => Html( content.body )
 	}
+
+	implicit def markupBodyFromContent( content: Content ): markup.body = html.body( content )
+
+	implicit def markupHeadFromContent( content: Content ): markup.head = html.head( content )
 
 	implicit def optionFromProperty[P <: Property]( property: P ) = Option( property )
 
@@ -59,5 +68,15 @@ package object tmpltr
 		case _ => txtFromString( content.body )
 	}
 
-	implicit def txtFromString( string: String ) = Txt( string )	
+	implicit def txtFromString( string: String ) = Txt( string )
+
+	implicit class Reflector[A]( val element: A )
+	{
+		def construct( classes: Class[_]* )( arguments: Any* ): A =
+		{
+			Reflection
+				.newInstance[A]( Reflection.mirror.classSymbol( getClass ) )( classes: _* )( arguments: _* )
+				.getOrElse( throw new RuntimeException( "No suitable constructor available" ) )
+		}
+	}
 }

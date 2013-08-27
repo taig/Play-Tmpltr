@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	caption( attributes: Attributes )( content: Content )
-extends markup.caption[caption]( attributes )( content )
-with	Helper.Default[caption]
-{
-	protected val helper = caption
-}
+class	caption( val attributes: Attributes )( val content: Content )
+extends	markup.caption
+with	Tag.Body[caption, Content]
 
 object	caption
-extends	Helper.DefaultCompanion[caption]
-{
-	def apply( attributes: Attributes )( content: Content ): caption = new caption( attributes )( content )
-}
+extends	Tag.Body.Appliable[caption, Content]

@@ -4,21 +4,22 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	button( `type`: Option[button.`type`], name: Option[String], attributes: Attributes )( content: Content )
-extends markup.button[button]( attributes ~~ ( ( "type" -> `type`, "name" -> name ) ) )( content )
+class	button( val attributes: Attributes )( val content: Content )
+extends	markup.button
+with	Tag.Body[button, Content]
 {
-	protected def copy = new button( `type`, name, _: Attributes )( content )
+	def this( `type`: Option[button.`type`], name: Option[String], attributes: Attributes )( content: Content ) =
+	{
+		this( attributes ~~ ( ( "type" -> `type`, "name" -> name ) ) )( content )
+	}
 }
 
 object	button
-extends	property.button
+extends	Tag.Body.Appliable[button, Content]
+with	property.button
 {
 	def apply( `type`: Option[`type`] = None, name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): button =
 	{
-		new button( `type`, name, attributes  )( content )
+		new button( `type`, name, attributes )( content )
 	}
-
-	def apply( attributes: Attributes )( content: Content ): button = apply( None, None, attributes )( content )
-
-	def apply( content: Content ): button = apply( Attributes.empty )( content )
 }

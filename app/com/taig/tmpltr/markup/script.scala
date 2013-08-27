@@ -4,5 +4,8 @@ import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-abstract class	script[A <: script[A]]( attributes: Attributes )( content: Txt )
-extends			Tag[A]( "script", content, attributes, false )
+trait	script
+extends	Tag.Body[script, Txt]
+{
+	val tag = "script"
+}

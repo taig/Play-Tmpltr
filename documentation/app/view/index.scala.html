@@ -3,7 +3,7 @@
 @import WebJarAssets.locate
 
 @boilerplate {
-	@meta.charset( "utf-8" )
+	@meta( charset = "utf-8" )
 
 	@title( name )
 
@@ -13,10 +13,10 @@
 	@link.style( routes.Assets.at( "stylesheet/rainbow.css" ) )
 	@link.style( routes.Assets.at( "stylesheet/main.css" ) )
 
-	@script.reference( routes.WebJarAssets.at( locate( "jquery.min.js" ) ) )
-	@script.reference( routes.WebJarAssets.at( locate( "bootstrap.min.js" ) ) )
-	@script.reference( routes.Assets.at( "javascript/highlight.pack.js" ) )
-	@script.reference( routes.Assets.at( "javascript/main.js" ) )
+	@script( routes.WebJarAssets.at( locate( "jquery.min.js" ) ) )
+	@script( routes.WebJarAssets.at( locate( "bootstrap.min.js" ) ) )
+	@script( routes.Assets.at( "javascript/highlight.pack.js" ) )
+	@script( routes.Assets.at( "javascript/main.js" ) )
 } {
 	@bs.container {
 		@div( "id" -> "title" ) {

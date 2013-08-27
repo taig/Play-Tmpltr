@@ -1,17 +1,19 @@
 package com.taig.tmpltr.engine.bootstrap
 
 import com.taig.tmpltr._
+import com.taig.tmpltr.engine.html
 
 import play.api.templates.Html
 
-class	icon( image: icon.image, attributes: Attributes )
-extends	markup.span[icon]( attributes ~ ( "class" -> ( "glyphicon", image ) ) )( Html.empty )
+class	icon private( attributes: Attributes )
+extends	html.span( attributes )( Html.empty )
+with	Tag.Empty[icon]
 {
-	protected def copy = new icon( image, _: Attributes )
+	def this( image: String, attributes: Attributes ) = this( attributes ~ ( "class" -> ( "glyphicon", image ) ) )
 }
 
 object	icon
-extends property.icon
+extends	property.icon
 {
-	def apply( image: String, attributes: Attributes = Attributes.empty ) = new icon( new image( image ), attributes )
+	def apply( image: String, attributes: Attributes = Attributes.empty ) = new icon( image, attributes )
 }

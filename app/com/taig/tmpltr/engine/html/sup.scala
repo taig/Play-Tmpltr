@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	sup( attributes: Attributes )( content: Content )
-extends	markup.sup[sup]( attributes )( content )
-with	Helper.Default[sup]
-{
-	protected val helper = sup
-}
+class	sup( val attributes: Attributes )( val content: Content )
+extends	markup.sup
+with	Tag.Body[sup, Content]
 
 object	sup
-extends	Helper.DefaultCompanion[sup]
-{
-	def apply( attributes: Attributes )( content: Content ): sup = new sup( attributes )( content )
-}
+extends	Tag.Body.Appliable[sup, Content]

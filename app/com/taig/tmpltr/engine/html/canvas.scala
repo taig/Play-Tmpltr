@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	canvas( attributes: Attributes )( content: Content )
-extends	markup.canvas[canvas]( attributes )( content )
-with	Helper.Default[canvas]
-{
-	protected val helper = canvas
-}
+class	canvas( val attributes: Attributes )( val content: Content )
+extends	markup.canvas
+with	Tag.Body[canvas, Content]
 
 object	canvas
-extends	Helper.DefaultCompanion[canvas]
-{
-	def apply( attributes: Attributes )( content: Content ): canvas = new canvas( attributes )( content )
-}
+extends	Tag.Body.Appliable[canvas, Content]

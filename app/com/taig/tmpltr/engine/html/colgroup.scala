@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	colgroup( attributes: Attributes )( content: Content )
-extends	markup.colgroup[colgroup]( attributes )( content )
-with	Helper.Default[colgroup]
-{
-	protected val helper = colgroup
-}
+class	colgroup( val attributes: Attributes )( val content: Content )
+extends	markup.colgroup
+with	Tag.Body[colgroup, Content]
 
 object	colgroup
-extends	Helper.DefaultCompanion[colgroup]
-{
-	def apply( attributes: Attributes )( content: Content ): colgroup = new colgroup( attributes )( content )
-}
+extends	Tag.Body.Appliable[colgroup, Content]

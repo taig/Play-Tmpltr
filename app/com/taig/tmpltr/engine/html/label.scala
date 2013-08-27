@@ -4,20 +4,21 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	label( `for`: Option[String], attributes: Attributes )( content: Content )
-extends	markup.label[label]( attributes ~ ( "for" -> `for` )  )( content )
+class	label( val attributes: Attributes )( val content: Content )
+extends	markup.label
+with	Tag.Body[label, Content]
 {
-	protected def copy = new label( `for`, _: Attributes )( content )
+	def this( `for`: Option[String], attributes: Attributes )( content: Content ) =
+	{
+		this( attributes ~ ( "for" -> `for` )  )( content )
+	}
 }
 
-object label
+object	label
+extends	Tag.Body.Appliable[label, Content]
 {
-	def apply( `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): label =
+	def apply( `for`: Option[String] = None, attributes: Attributes )( content: Content ): label =
 	{
 		new label( `for`, attributes )( content )
 	}
-
-	def apply( attributes: Attributes )( content: Content ): label = apply( None, attributes )( content )
-
-	def apply( content: Content ): label = apply( Attributes.empty )( content )
 }

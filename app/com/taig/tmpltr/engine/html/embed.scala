@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	embed( attributes: Attributes )( content: Content )
-extends	markup.embed[embed]( attributes )( content )
-with	Helper.Default[embed]
-{
-	protected val helper = embed
-}
+class	embed( val attributes: Attributes )( val content: Content )
+extends	markup.embed
+with	Tag.Body[embed, Content]
 
 object	embed
-extends	Helper.DefaultCompanion[embed]
-{
-	def apply( attributes: Attributes )( content: Content ): embed = new embed( attributes )( content )
-}
+extends	Tag.Body.Appliable[embed, Content]

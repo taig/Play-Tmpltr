@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	div( attributes: Attributes )( content: Content )
-extends	markup.div[div]( attributes )( content )
-with	Helper.Default[div]
-{
-	protected val helper = div
-}
+class	div( val attributes: Attributes )( val content: Content )
+extends	markup.div
+with	Tag.Body[div, Content]
 
 object	div
-extends	Helper.DefaultCompanion[div]
-{
-	def apply( attributes: Attributes )( content: Content ): div = new div( attributes )( content )
-}
+extends	Tag.Body.Appliable[div, Content]

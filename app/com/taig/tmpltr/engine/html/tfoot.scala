@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	tfoot( attributes: Attributes )( content: Content )
-extends	markup.tfoot[tfoot]( attributes )( content )
-with	Helper.Default[tfoot]
-{
-	protected val helper = tfoot
-}
+class	tfoot( val attributes: Attributes )( val content: Content )
+extends	markup.tfoot
+with	Tag.Body[tfoot, Content]
 
 object	tfoot
-extends	Helper.DefaultCompanion[tfoot]
-{
-	def apply( attributes: Attributes )( content: Content ): tfoot = new tfoot( attributes )( content )
-}
+extends	Tag.Body.Appliable[tfoot, Content]

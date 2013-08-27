@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-abstract class	textarea[A <: textarea[A]]( attributes: Attributes )( content: Txt )
-extends			Tag[A]( "textarea", content, attributes )
+trait	textarea
+extends	Tag.Body[textarea, Txt]
+{
+	val tag = "textarea"
+}

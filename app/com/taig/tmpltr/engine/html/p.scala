@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	p( attributes: Attributes )( content: Content )
-extends	markup.p[p]( attributes )( content )
-with	Helper.Default[p]
-{
-	protected val helper = p
-}
+class	p( val attributes: Attributes )( val content: Content )
+extends	markup.p
+with	Tag.Body[p, Content]
 
 object	p
-extends	Helper.DefaultCompanion[p]
-{
-	def apply( attributes: Attributes )( content: Content ): p = new p( attributes )( content )
-}
+extends	Tag.Body.Appliable[p, Content]

@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	footer( attributes: Attributes )( content: Content )
-extends	markup.footer[footer]( attributes )( content )
-with	Helper.Default[footer]
-{
-	protected val helper = footer
-}
+class	footer( val attributes: Attributes )( val content: Content )
+extends	markup.footer
+with	Tag.Body[footer, Content]
 
 object	footer
-extends	Helper.DefaultCompanion[footer]
-{
-	def apply( attributes: Attributes )( content: Content ): footer = new footer( attributes )( content )
-}
+extends	Tag.Body.Appliable[footer, Content]

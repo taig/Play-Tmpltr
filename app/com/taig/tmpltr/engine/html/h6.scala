@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	h6( attributes: Attributes )( content: Content )
-extends	markup.h[h6]( 6, attributes )( content )
-with	Helper.Default[h6]
-{
-	protected val helper = h6
-}
+class	h6( val attributes: Attributes )( val content: Content )
+extends	markup.h6
+with	Tag.Body[h6, Content]
 
 object	h6
-extends	Helper.DefaultCompanion[h6]
-{
-	def apply( attributes: Attributes )( content: Content ): h6 = new h6( attributes )( content )
-}
+extends	Tag.Body.Appliable[h6, Content]

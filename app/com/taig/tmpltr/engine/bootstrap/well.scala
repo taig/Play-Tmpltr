@@ -1,19 +1,25 @@
 package com.taig.tmpltr.engine.bootstrap
 
 import com.taig.tmpltr._
+import com.taig.tmpltr.engine.html
 
 import play.api.mvc.Content
 
-class	well( size: well.size, attributes: Attributes )( content: Content )
-extends markup.div[well]( attributes ~ ( "class" -> size ) )( content )
+class	well( attributes: Attributes )( content: Content )
+extends html.div( attributes ~ ( "class" -> "well" ) )( content )
+with	Tag.Body[well, Content]
 {
-	protected def copy = new well( size, _: Attributes )( content )
+	def this( size: Option[well.size], attributes: Attributes )( content: Content ) =
+	{
+		this( attributes ~ ( "class" -> size ) )( content )
+	}
 }
 
 object	well
-extends	property.well
+extends	Tag.Body.Appliable[well, Content]
+with	property.well
 {
-	def apply( size: size = well.size.default, attributes: Attributes = Attributes.empty )( content: Content ) =
+	def apply( size: Option[size] = None, attributes: Attributes = Attributes.empty )( content: Content ): well =
 	{
 		new well( size, attributes )( content )
 	}

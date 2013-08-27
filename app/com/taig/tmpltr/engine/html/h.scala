@@ -4,18 +4,14 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	h( level: Int, attributes: Attributes )( content: Content )
-extends markup.h[h]( level, attributes )( content )
-{
-	protected def copy = new h( level, _: Attributes )( content )
-}
+class	h( val level: Int, val attributes: Attributes )( val content: Content )
+extends	markup.h
+with	Tag.Body[h, Content]
 
-object h
+object	h
 {
-	def apply( level: Int = 1, attributes: Attributes = Attributes.empty )( content: Content ): h =
+	def apply( level: Int, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new h( level, attributes )( content )
 	}
-
-	def apply( content: Content ): h = apply()( content )
 }

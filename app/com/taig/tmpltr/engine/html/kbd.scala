@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	kbd( attributes: Attributes )( content: Content )
-extends	markup.kbd[kbd]( attributes )( content )
-with	Helper.Default[kbd]
-{
-	protected val helper = kbd
-}
+class	kbd( val attributes: Attributes )( val content: Content )
+extends	markup.kbd
+with	Tag.Body[kbd, Content]
 
 object	kbd
-extends	Helper.DefaultCompanion[kbd]
-{
-	def apply( attributes: Attributes )( content: Content ): kbd = new kbd( attributes )( content )
-}
+extends	Tag.Body.Appliable[kbd, Content]

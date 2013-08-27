@@ -4,20 +4,21 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	obj( data: Option[String], attributes: Attributes )( content: Content )
-extends	markup.obj[obj]( attributes ~ ( "data" -> data ) )( content )
+class	obj( val attributes: Attributes )( val content: Content )
+extends	markup.obj
+with	Tag.Body[obj, Content]
 {
-	protected def copy = new obj( data, _: Attributes )( content )
+	def this( data: Option[String], attributes: Attributes )( content: Content ) =
+	{
+		this( attributes ~ ( "data" -> data ) )( content )
+	}
 }
 
-object obj
+object	obj
+extends	Tag.Body.Appliable[obj, Content]
 {
 	def apply( data: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): obj =
 	{
 		new obj( data, attributes )( content )
 	}
-
-	def apply( attributes: Attributes )( content: Content ): obj = apply( None, attributes )( content )
-
-	def apply( content: Content ): obj = apply( Attributes.empty )( content )
 }

@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-abstract class	keygen[A <: keygen[A]]( attributes: Attributes )( content: Content )
-extends			Tag[A]( "keygen", content, attributes )
+trait	keygen
+extends	Tag.Body[keygen, Content]
+{
+	val tag = "keygen"
+}

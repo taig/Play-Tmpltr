@@ -30,6 +30,8 @@ with	MapLike[String, Set[String], Attributes]
 			.append( end )
 			.toString
 	}
+
+	override def toString = if( isEmpty ) "" else " " + mkString( " " )
 }
 
 object Attributes

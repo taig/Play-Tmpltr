@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	strong( attributes: Attributes )( content: Content )
-extends	markup.strong[strong]( attributes )( content )
-with	Helper.Default[strong]
-{
-	protected val helper = strong
-}
+class	strong( val attributes: Attributes )( val content: Content )
+extends	markup.strong
+with	Tag.Body[strong, Content]
 
 object	strong
-extends	Helper.DefaultCompanion[strong]
-{
-	def apply( attributes: Attributes )( content: Content ): strong = new strong( attributes )( content )
-}
+extends	Tag.Body.Appliable[strong, Content]

@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	aside( attributes: Attributes )( content: Content )
-extends	markup.aside[aside]( attributes )( content )
-with	Helper.Default[aside]
-{
-	protected val helper = aside
-}
+class	aside( val attributes: Attributes )( val content: Content )
+extends	markup.aside
+with	Tag.Body[aside, Content]
 
 object	aside
-extends	Helper.DefaultCompanion[aside]
-{
-	def apply( attributes: Attributes )( content: Content ): aside = new aside( attributes )( content )
-}
+extends	Tag.Body.Appliable[aside, Content]

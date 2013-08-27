@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	wbr( attributes: Attributes )( content: Content )
-extends	markup.wbr[wbr]( attributes )( content )
-with	Helper.Default[wbr]
-{
-	protected val helper = wbr
-}
+class	wbr( val attributes: Attributes )( val content: Content )
+extends	markup.wbr
+with	Tag.Body[wbr, Content]
 
 object	wbr
-extends	Helper.DefaultCompanion[wbr]
-{
-	def apply( attributes: Attributes )( content: Content ): wbr = new wbr( attributes )( content )
-}
+extends	Tag.Body.Appliable[wbr, Content]

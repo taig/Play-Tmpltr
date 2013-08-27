@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 trait panel
 {
-	class style( style: String ) extends Property( "panel" -> "-", style )
+	class style( style: String ) extends Property( "panel", style )
 	object style
 	{
 		object default extends style( "default" )

@@ -2,18 +2,22 @@ package com.taig.tmpltr.engine.html
 
 import com.taig.tmpltr._
 
-class	base( href: Option[String], target: Option[base.target], attributes: Attributes )
-extends	markup.base[base]( attributes ~~ ( ( "href" -> href, "target" -> target ) ) )
+class	base( val attributes: Attributes )
+extends	markup.base
+with	Tag.Empty[base]
 {
-	protected def copy = new base( href, target, _: Attributes )
+	def this( href: Option[String], target: Option[base.target], attributes: Attributes ) =
+	{
+		this( attributes ~~ ( ( "href" -> href, "target" -> target ) ) )
+	}
 }
 
-object base extends property.a
+object	base
+extends	Tag.Empty.Appliable[base]
+with	property.a
 {
 	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty ): base =
 	{
 		new base( href, target, attributes )
 	}
-
-	def apply( attributes: Attributes ): base = apply( None, None, attributes )
 }

@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	time( attributes: Attributes )( content: Content )
-extends	markup.time[time]( attributes )( content )
-with	Helper.Default[time]
-{
-	protected val helper = time
-}
+class	time( val attributes: Attributes )( val content: Content )
+extends	markup.time
+with	Tag.Body[time, Content]
 
 object	time
-extends	Helper.DefaultCompanion[time]
-{
-	def apply( attributes: Attributes )( content: Content ): time = new time( attributes )( content )
-}
+extends	Tag.Body.Appliable[time, Content]

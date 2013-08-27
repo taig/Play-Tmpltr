@@ -4,20 +4,21 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	optgroup( label: Option[String], attributes: Attributes )( content: Content )
-extends	markup.optgroup[optgroup]( attributes ~ ( "label" -> label ) )( content )
+class	optgroup( val attributes: Attributes )( val content: Content )
+extends	markup.optgroup
+with	Tag.Body[optgroup, Content]
 {
-	protected def copy = new optgroup( label, _: Attributes )( content )
+	def this( label: Option[String], attributes: Attributes )( content: Content ) =
+	{
+		this( attributes ~ ( "label" -> label ) )( content )
+	}
 }
 
-object optgroup
+object	optgroup
+extends	Tag.Body.Appliable[optgroup, Content]
 {
 	def apply( label: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): optgroup =
 	{
 		new optgroup( label, attributes )( content )
 	}
-
-	def apply( attributes: Attributes )( content: Content ): optgroup = apply( None, attributes )( content )
-
-	def apply( content: Content ): optgroup = apply( Attributes.empty )( content )
 }

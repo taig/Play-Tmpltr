@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	dfn( attributes: Attributes )( content: Content )
-extends	markup.dfn[dfn]( attributes )( content )
-with	Helper.Default[dfn]
-{
-	protected val helper = dfn
-}
+class	dfn( val attributes: Attributes )( val content: Content )
+extends	markup.dfn
+with	Tag.Body[dfn, Content]
 
 object	dfn
-extends	Helper.DefaultCompanion[dfn]
-{
-	def apply( attributes: Attributes )( content: Content ): dfn = new dfn( attributes )( content )
-}
+extends	Tag.Body.Appliable[dfn, Content]

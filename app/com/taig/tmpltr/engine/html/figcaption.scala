@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	figcaption( attributes: Attributes )( content: Content )
-extends	markup.figcaption[figcaption]( attributes )( content )
-with	Helper.Default[figcaption]
-{
-	protected val helper = figcaption
-}
+class	figcaption( val attributes: Attributes )( val content: Content )
+extends	markup.figcaption
+with	Tag.Body[figcaption, Content]
 
 object	figcaption
-extends	Helper.DefaultCompanion[figcaption]
-{
-	def apply( attributes: Attributes )( content: Content ): figcaption = new figcaption( attributes )( content )
-}
+extends	Tag.Body.Appliable[figcaption, Content]

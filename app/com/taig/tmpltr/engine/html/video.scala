@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	video( attributes: Attributes )( content: Content )
-extends	markup.video[video]( attributes )( content )
-with	Helper.Default[video]
-{
-	protected val helper = video
-}
+class	video( val attributes: Attributes )( val content: Content )
+extends	markup.video
+with	Tag.Body[video, Content]
 
 object	video
-extends	Helper.DefaultCompanion[video]
-{
-	def apply( attributes: Attributes )( content: Content ): video = new video( attributes )( content )
-}
+extends	Tag.Body.Appliable[video, Content]

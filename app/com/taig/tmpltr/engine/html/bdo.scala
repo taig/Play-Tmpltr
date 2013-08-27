@@ -4,15 +4,9 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	bdo( attributes: Attributes )( content: Content )
-extends markup.bdo[bdo]( attributes )( content )
-with	Helper.Default[bdo]
-{
-	protected val helper = bdo
-}
+class	bdo( val attributes: Attributes )( val content: Content )
+extends	markup.bdo
+with	Tag.Body[bdo, Content]
 
 object	bdo
-extends	Helper.DefaultCompanion[bdo]
-{
-	def apply( attributes: Attributes )( content: Content ): bdo = new bdo( attributes )( content )
-}
+extends	Tag.Body.Appliable[bdo, Content]

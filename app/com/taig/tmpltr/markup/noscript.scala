@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-abstract class	noscript[A <: noscript[A]]( attributes: Attributes )( content: Content )
-extends			Tag[A]( "noscript", content, attributes )
+trait	noscript
+extends	Tag.Body[noscript, Content]
+{
+	val tag = "noscript"
+}
