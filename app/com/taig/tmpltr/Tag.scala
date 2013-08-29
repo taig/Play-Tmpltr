@@ -1,6 +1,5 @@
 package com.taig.tmpltr
 
-
 import play.api.mvc.Content
 
 /**

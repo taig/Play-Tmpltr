@@ -8,4 +8,6 @@ trait	script
 extends	Tag.Body[script, Txt]
 {
 	val tag = "script"
+
+	override val minimized = false
 }

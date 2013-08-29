@@ -1,11 +1,11 @@
 import sbt._
-import Keys._
+import sbt.Keys._
 import play.Project._
 
 object Build extends sbt.Build
 {
 	val dependencies = Seq(
-		"org.webjars" %% "webjars-play" % "2.1.0-3",
+		"org.webjars" %% "webjars-play" % "2.2.0-SNAPSHOT",
 		"org.webjars" % "bootstrap" % "3.0.0"
 	)
 	
@@ -16,6 +16,8 @@ object Build extends sbt.Build
 			"com.taig.tmpltr._",
 			"com.taig.tmpltr.engine.html._",
 			"com.taig.tmpltr.engine.{ bootstrap => bs }" ),
+		sourceGenerators in Compile := (sourceGenerators in Compile).value.init,
+		sourceGenerators in Compile <+= ( state, sourceDirectory in Compile, sourceManaged in Compile, templatesTypes, templatesImport ) map Task.ScalaTemplates,
 		scalacOptions ++= Seq( "-feature", "-language:implicitConversions" )
 	).dependsOn( tmpltr ).aggregate( tmpltr )
 }
