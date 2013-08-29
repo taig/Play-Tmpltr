@@ -1,6 +1,7 @@
 package com.taig.tmpltr
 
 import play.api.mvc.Content
+import scala.xml._
 
 /**
  * A representation of an HTML element that may be rendered into a serialized HTML entity.
@@ -8,8 +9,10 @@ import play.api.mvc.Content
  * @see [[com.taig.tmpltr.Tag.Empty]]
  * @see [[com.taig.tmpltr.Tag.Body]]
  */
-trait Tag[+A <: Tag[A]]
+trait Tag[+A <: Tag[A]] extends NodeSeq
 {
+	lazy val theSeq: Seq[Node] = Seq.empty
+
 	protected val self: A = this.asInstanceOf[A]
 
 	/**
@@ -45,6 +48,8 @@ object Tag
 	 */
 	trait Empty[+A <: Empty[A]] extends Tag[A]
 	{
+		override lazy val theSeq: Seq[Node] = Seq( new Elem( null, tag, attributes.toMetaData, TopScope, minimized ) )
+
 		val tag: String
 
 		val attributes: Attributes
@@ -81,6 +86,10 @@ object Tag
 	 */
 	trait Body[+A <: Body[A, C], C <: Content] extends Empty[A]
 	{
+		override lazy val theSeq: Seq[Node] = Seq(
+			new Elem( null, tag, attributes.toMetaData, TopScope, minimized, Unparsed( content.body ) )
+		)
+
 		val content: C
 
 		override def %( attributes: Attributes ): A =

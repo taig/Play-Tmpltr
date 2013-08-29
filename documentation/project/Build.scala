@@ -8,7 +8,7 @@ object Build extends sbt.Build
 		"org.webjars" %% "webjars-play" % "2.2.0-SNAPSHOT",
 		"org.webjars" % "bootstrap" % "3.0.0"
 	)
-	
+
 	val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
 
 	val main = play.Project( "documentation", "0.1", dependencies ).settings(
@@ -16,8 +16,6 @@ object Build extends sbt.Build
 			"com.taig.tmpltr._",
 			"com.taig.tmpltr.engine.html._",
 			"com.taig.tmpltr.engine.{ bootstrap => bs }" ),
-		sourceGenerators in Compile := (sourceGenerators in Compile).value.init,
-		sourceGenerators in Compile <+= ( state, sourceDirectory in Compile, sourceManaged in Compile, templatesTypes, templatesImport ) map Task.ScalaTemplates,
 		scalacOptions ++= Seq( "-feature", "-language:implicitConversions" )
-	).dependsOn( tmpltr ).aggregate( tmpltr )
+	).dependsOn( tmpltr ).aggregate( tmpltr )	
 }

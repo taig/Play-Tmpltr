@@ -1,6 +1,7 @@
 package com.taig.tmpltr
 
 import scala.collection.MapLike
+import scala.xml.{Null, UnprefixedAttribute, MetaData}
 
 class	Attributes( collection: Map[String, Set[String]] )
 extends	Map[String, Set[String]]
@@ -22,6 +23,11 @@ with	MapLike[String, Set[String], Attributes]
 	}
 
 	def ~~( attributes: Attributes ): Attributes = attributes.foldLeft[Attributes]( this )( _ ~ _ )
+
+	def toMetaData: MetaData = foldRight[MetaData]( Null )
+	{
+		case ( (key, value), next ) => new UnprefixedAttribute( key, value.mkString( " " ), next )
+	}
 
 	override def mkString( start: String, separator: String, end: String ) =
 	{
