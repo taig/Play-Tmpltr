@@ -6,7 +6,8 @@ object Build extends sbt.Build
 {
 	val dependencies = Seq(
 		"org.webjars" %% "webjars-play" % "2.1.0-3",
-		"org.webjars" % "bootstrap" % "3.0.0"
+		"org.webjars" % "bootstrap" % "3.0.0",
+		"org.webjars" % "highlightjs" % "7.3-1"
 	)
 
 	val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
