@@ -8,4 +8,6 @@ trait	span
 extends	Tag.Body[span, Content]
 {
 	val tag = "span"
+
+	override val minimized = false
 }
