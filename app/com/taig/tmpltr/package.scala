@@ -1,10 +1,7 @@
 package com.taig
 
-import com.taig.tmpltr.engine.html
-
 import play.api.templates.{ Html, Txt }
 import play.api.mvc.{ Call, Content }
-import scala.reflect.runtime.universe._
 
 package object tmpltr
 {
@@ -41,10 +38,6 @@ package object tmpltr
 		case html: Html => html
 		case _ => Html( content.body )
 	}
-
-	implicit def markupBodyFromContent( content: Content ): markup.body = html.body( content )
-
-	implicit def markupHeadFromContent( content: Content ): markup.head = html.head( content )
 
 	implicit def optionFromProperty[P <: Property]( property: P ) = Option( property )
 

@@ -54,7 +54,7 @@ extends	property.button
 
 	object input
 	{
-		def apply( `type`: Option[`type`] = None, value: Option[String] = None, style: style = button.style.danger, size: Option[size] = None, disabled: Boolean = false, attributes: Attributes ) =
+		def apply( `type`: Option[`type`] = None, value: Option[String] = None, style: style = button.style.danger, size: Option[size] = None, disabled: Boolean = false, attributes: Attributes = Attributes.empty ) =
 		{
 			new input( `type`, value, style, size, disabled, attributes )
 		}
