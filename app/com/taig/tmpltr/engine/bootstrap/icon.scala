@@ -9,11 +9,13 @@ class	icon private( attributes: Attributes )
 extends	html.span( attributes )( Html.empty )
 with	Tag.Empty[icon]
 {
-	def this( image: String, attributes: Attributes ) = this( attributes ~ ( "class" -> ( "glyphicon", image ) ) )
+	def this( image: icon.image, attributes: Attributes ) = this( attributes ~ ( "class" -> ( "glyphicon", image ) ) )
 }
 
 object	icon
 extends	property.icon
 {
-	def apply( image: String, attributes: Attributes = Attributes.empty ) = new icon( image, attributes )
+	def apply( image: icon.image, attributes: Attributes ): icon = new icon( image, attributes )
+	
+	def apply( image: String, attributes: Attributes = Attributes.empty ): icon = apply( new image( image ), attributes )
 }
