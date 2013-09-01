@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	ul( val attributes: Attributes )( val content: Content )
+class	ul( val attributes: Attributes, val content: Content )
 extends	markup.ul
 with	Tag.Body[ul, Content]
 

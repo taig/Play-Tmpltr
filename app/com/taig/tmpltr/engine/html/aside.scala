@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	aside( val attributes: Attributes )( val content: Content )
+class	aside( val attributes: Attributes, val content: Content )
 extends	markup.aside
 with	Tag.Body[aside, Content]
 

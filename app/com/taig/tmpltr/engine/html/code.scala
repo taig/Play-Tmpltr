@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	code( val attributes: Attributes )( val content: Content )
+class	code( val attributes: Attributes, val content: Content )
 extends	markup.code
 with	Tag.Body[code, Content]
 

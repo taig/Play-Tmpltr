@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	samp( val attributes: Attributes )( val content: Content )
+class	samp( val attributes: Attributes, val content: Content )
 extends	markup.samp
 with	Tag.Body[samp, Content]
 

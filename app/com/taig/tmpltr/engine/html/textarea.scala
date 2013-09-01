@@ -4,13 +4,13 @@ import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-class	textarea( val attributes: Attributes )( val content: Txt )
+class	textarea( val attributes: Attributes, val content: Txt )
 extends	markup.textarea
 with	Tag.Body[textarea, Txt]
 {
-	def this( name: Option[String], attributes: Attributes )( content: Txt ) =
+	def this( name: Option[String], attributes: Attributes, content: Txt ) =
 	{
-		this( attributes ~ ( "name" -> name ) )( content )
+		this( attributes ~ ( "name" -> name ), content )
 	}
 }
 
@@ -19,6 +19,6 @@ extends	Tag.Body.Appliable[textarea, Txt]
 {
 	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ): textarea =
 	{
-		new textarea( name, attributes )( content )
+		new textarea( name, attributes, content )
 	}
 }

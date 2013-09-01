@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	dfn( val attributes: Attributes )( val content: Content )
+class	dfn( val attributes: Attributes, val content: Content )
 extends	markup.dfn
 with	Tag.Body[dfn, Content]
 

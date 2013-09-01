@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	dialog( val attributes: Attributes )( val content: Content )
+class	dialog( val attributes: Attributes, val content: Content )
 extends	markup.dialog
 with	Tag.Body[dialog, Content]
 

@@ -5,13 +5,13 @@ import com.taig.tmpltr.engine.html
 
 import play.api.mvc.Content
 
-class	button private( attributes: Attributes )( content: Content )
-extends	html.button( attributes )( content )
+class	button private( attributes: Attributes, content: Content )
+extends	html.button( attributes, content )
 with	Tag.Body[button, Content]
 {
-	def this( `type`: Option[button.`type`], style: button.style, size: Option[button.size], disabled: Boolean, attributes: Attributes )( content: Content ) =
+	def this( `type`: Option[button.`type`], style: button.style, size: Option[button.size], disabled: Boolean, attributes: Attributes, content: Content ) =
 	{
-		this( attributes ~~ ( ( "type" -> `type`, "class" -> ( "btn", style, size ), "disabled" -> ( if( disabled ) Some( "disabled" ) else None ) ) ) )( content )
+		this( attributes ~~ ( ( "type" -> `type`, "class" -> ( "btn", style, size ), "disabled" -> ( if( disabled ) Some( "disabled" ) else None ) ) ), content )
 	}
 }
 
@@ -20,16 +20,16 @@ extends	property.button
 {
 	def apply( `type`: Option[button.`type`] = None, style: button.style = button.style.default, size: Option[button.size] = None, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new button( `type`, style, size, disabled, attributes )( content )
+		new button( `type`, style, size, disabled, attributes, content )
 	}
 
-	class	a private( attributes: Attributes )( content: Content )
-	extends	html.a( attributes )( content )
+	class	a private( attributes: Attributes, content: Content )
+	extends	html.a( attributes, content )
 	with	Tag.Body[a, Content]
 	{
-		def this( href: Option[String], target: Option[a.target], style: style, size: Option[size], disabled: Boolean, attributes: Attributes )( content: Content ) =
+		def this( href: Option[String], target: Option[a.target], style: style, size: Option[size], disabled: Boolean, attributes: Attributes, content: Content ) =
 		{
-			this( attributes ~~ ( ( "href" -> href, "target" -> target, "class" -> ( "btn", style, size, if( disabled ) "disabled" else None ) ) ) )( content )
+			this( attributes ~~ ( ( "href" -> href, "target" -> target, "class" -> ( "btn", style, size, if( disabled ) "disabled" else None ) ) ), content )
 		}
 	}
 
@@ -38,7 +38,7 @@ extends	property.button
 	{
 		def apply( href: Option[String] = None, target: Option[a.target] = None, style: style = button.style.default, size: Option[size] = None, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Content ) =
 		{
-			new a( href, target, style, size, disabled, attributes )( content )
+			new a( href, target, style, size, disabled, attributes, content )
 		}
 	}
 	
@@ -61,7 +61,7 @@ extends	property.button
 	}
 
 	class	close( attributes: Attributes )
-	extends	html.button( attributes ~~ ( ( "class" -> "close", "aria-hidden" -> "true" ) ) )( "&times;" )
+	extends	html.button( attributes ~~ ( ( "class" -> "close", "aria-hidden" -> "true" ) ), "&times;" )
 	with	Tag.Empty[close]
 
 	object	close

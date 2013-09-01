@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-class	title( val attributes: Attributes )( val content: Txt )
+class	title( val attributes: Attributes, val content: Txt )
 extends	markup.title
 with	Tag.Body[title, Txt]
 

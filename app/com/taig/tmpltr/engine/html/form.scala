@@ -4,13 +4,13 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	form( val attributes: Attributes )( val content: Content )
+class	form( val attributes: Attributes, val content: Content )
 extends	markup.form
 with	Tag.Body[form, Content]
 {
-	def this( action: Option[String], method: Option[form.method], attributes: Attributes )( content: Content ) =
+	def this( action: Option[String], method: Option[form.method], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ~~ ( ( "action" -> action, "method" -> method ) ) )( content )
+		this( attributes ~~ ( ( "action" -> action, "method" -> method ) ), content )
 	}
 }
 
@@ -20,6 +20,6 @@ with	property.form
 {
 	def apply( action: Option[String] = None, method: Option[method] = None, attributes: Attributes = Attributes.empty )( content: Content ): form =
 	{
-		new form( action, method, attributes )( content )
+		new form( action, method, attributes, content )
 	}
 }

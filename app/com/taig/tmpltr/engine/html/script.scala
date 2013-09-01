@@ -4,13 +4,13 @@ import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-class	script( val attributes: Attributes )( val content: Txt )
+class	script( val attributes: Attributes, val content: Txt )
 extends	markup.script
 with	Tag.Body[script, Txt]
 {
 	def this( src: Option[String], attributes: Attributes ) =
 	{
-		this( attributes ~ ( "src" -> src ) )( Txt.empty )
+		this( attributes ~ ( "src" -> src ), Txt.empty )
 	}
 }
 

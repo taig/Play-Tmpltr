@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	header( val attributes: Attributes )( val content: Content )
+class	header( val attributes: Attributes, val content: Content )
 extends	markup.header
 with	Tag.Body[header, Content]
 

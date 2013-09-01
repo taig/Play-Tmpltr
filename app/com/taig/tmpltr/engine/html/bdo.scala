@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	bdo( val attributes: Attributes )( val content: Content )
+class	bdo( val attributes: Attributes, val content: Content )
 extends	markup.bdo
 with	Tag.Body[bdo, Content]
 

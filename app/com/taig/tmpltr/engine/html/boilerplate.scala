@@ -5,12 +5,12 @@ import com.taig.tmpltr.engine.{ html => element }
 
 import play.api.mvc.Content
 
-class	boilerplate private( val attributes: Attributes )( val content: Content )
+class	boilerplate private( val attributes: Attributes, val content: Content )
 extends	Tag.Body[boilerplate, Content]
 {
 	def this( attributes: Attributes, head: markup.head, body: markup.body ) =
 	{
-		this( attributes )( html( attributes )( head += body ) )
+		this( attributes, new html( attributes, head += body ) )
 	}
 
 	val tag = null

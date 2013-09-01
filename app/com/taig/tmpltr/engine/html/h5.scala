@@ -4,8 +4,8 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	h5( attributes: Attributes )( content: Content )
-extends	h( 5, attributes )( content )
+class	h5( attributes: Attributes, content: Content )
+extends	h( 5, attributes, content )
 with	Tag.Body[h5, Content]
 
 object	h5

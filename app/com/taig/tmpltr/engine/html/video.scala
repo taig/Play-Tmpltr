@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	video( val attributes: Attributes )( val content: Content )
+class	video( val attributes: Attributes, val content: Content )
 extends	markup.video
 with	Tag.Body[video, Content]
 

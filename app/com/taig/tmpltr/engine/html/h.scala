@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	h( val level: Int, val attributes: Attributes )( val content: Content )
+class	h( val level: Int, val attributes: Attributes, val content: Content )
 extends	markup.h
 with	Tag.Body[h, Content]
 {
@@ -15,6 +15,6 @@ object	h
 {
 	def apply( level: Int, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new h( level, attributes )( content )
+		new h( level, attributes, content )
 	}
 }

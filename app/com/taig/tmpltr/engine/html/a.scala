@@ -4,13 +4,13 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	a( val attributes: Attributes )( val content: Content )
+class	a( val attributes: Attributes, val content: Content )
 extends	markup.a
 with	Tag.Body[a, Content]
 {
-	def this( href: Option[String], target: Option[a.target], attributes: Attributes )( content: Content ) =
+	def this( href: Option[String], target: Option[a.target], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ~~ ( ( "href" -> href, "target" -> target ) ) )( content )
+		this( attributes ~~ ( ( "href" -> href, "target" -> target ) ), content )
 	}
 }
 
@@ -20,6 +20,6 @@ with	property.a
 {
 	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty )( content: Content ): a =
 	{
-		new a( href, target, attributes )( content )
+		new a( href, target, attributes, content )
 	}
 }

@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	hgroup( val attributes: Attributes )( val content: Content )
+class	hgroup( val attributes: Attributes, val content: Content )
 extends	markup.hgroup
 with	Tag.Body[hgroup, Content]
 

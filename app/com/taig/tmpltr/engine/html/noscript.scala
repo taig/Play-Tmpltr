@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	noscript( val attributes: Attributes )( val content: Content )
+class	noscript( val attributes: Attributes, val content: Content )
 extends	markup.noscript
 with	Tag.Body[noscript, Content]
 

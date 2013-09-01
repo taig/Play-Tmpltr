@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	strong( val attributes: Attributes )( val content: Content )
+class	strong( val attributes: Attributes, val content: Content )
 extends	markup.strong
 with	Tag.Body[strong, Content]
 

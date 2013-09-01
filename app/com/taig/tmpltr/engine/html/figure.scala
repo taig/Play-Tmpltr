@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	figure( val attributes: Attributes )( val content: Content )
+class	figure( val attributes: Attributes, val content: Content )
 extends	markup.figure
 with	Tag.Body[figure, Content]
 

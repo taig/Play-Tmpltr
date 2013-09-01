@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	figcaption( val attributes: Attributes )( val content: Content )
+class	figcaption( val attributes: Attributes, val content: Content )
 extends	markup.figcaption
 with	Tag.Body[figcaption, Content]
 

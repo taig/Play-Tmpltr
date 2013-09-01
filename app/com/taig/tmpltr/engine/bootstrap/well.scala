@@ -5,13 +5,13 @@ import com.taig.tmpltr.engine.html
 
 import play.api.mvc.Content
 
-class	well( attributes: Attributes )( content: Content )
-extends html.div( attributes ~ ( "class" -> "well" ) )( content )
+class	well( attributes: Attributes, content: Content )
+extends html.div( attributes ~ ( "class" -> "well" ), content )
 with	Tag.Body[well, Content]
 {
-	def this( size: Option[well.size], attributes: Attributes )( content: Content ) =
+	def this( size: Option[well.size], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ~ ( "class" -> size ) )( content )
+		this( attributes ~ ( "class" -> size ), content )
 	}
 }
 
@@ -21,6 +21,6 @@ with	property.well
 {
 	def apply( size: Option[size] = None, attributes: Attributes = Attributes.empty )( content: Content ): well =
 	{
-		new well( size, attributes )( content )
+		new well( size, attributes, content )
 	}
 }

@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	legend( val attributes: Attributes )( val content: Content )
+class	legend( val attributes: Attributes, val content: Content )
 extends	markup.legend
 with	Tag.Body[legend, Content]
 

@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import play.api.mvc.Content
 
-class	div( val attributes: Attributes )( val content: Content )
+class	div( val attributes: Attributes, val content: Content )
 extends	markup.div
 with	Tag.Body[div, Content]
 

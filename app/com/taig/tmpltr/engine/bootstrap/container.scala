@@ -6,8 +6,8 @@ import com.taig.tmpltr.engine.html
 
 import play.api.mvc.Content
 
-class	container( attributes: Attributes )( content: Content )
-extends	html.div( attributes ~ ( "class" -> "container" ) )( content )
+class	container( attributes: Attributes, content: Content )
+extends	html.div( attributes ~ ( "class" -> "container" ), content )
 with	Tag.Body[container, Content]
 
 object	container
