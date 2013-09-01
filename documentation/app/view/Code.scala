@@ -1,7 +1,7 @@
 package views
 
-import play.api.templates.{Txt, HtmlFormat, Html}
-import scala.xml.{Node, NodeSeq}
+import play.api.templates.HtmlFormat
+import scala.xml.{ Node, NodeSeq }
 
 trait Code extends NodeSeq
 {
@@ -15,22 +15,30 @@ trait Code extends NodeSeq
 
 	val preview: Option[String]
 
-	protected implicit def stringToOption( string: String ): Option[String] = Some( string )
+	protected implicit def optionFromString( string: String ): Option[String] = Some( string )
 
-	override def toString = Code.Format( code, language, true ) +
-		result.fold( "" )( Code.Format( _, "xml", true ).toString ) +
-		preview.fold( "" )( Code.Format( _, None, false ).toString )
+	override def toString =
+	{
+		"<div class=\"examples\">" +
+			Code.Format( "Code", code, language, true ) +
+			result.map( Code.Format( "Result", _, "xml", true ) ).getOrElse( "" ) +
+			preview.map( Code.Format( "Preview", _, None, false ) ).getOrElse( "" ) +
+		"</div>"
+	}
 }
 
 object Code
 {
-	case class Format( code: String, language: Option[String], escape: Boolean )
+	case class Format( label: String, code: String, language: Option[String], escape: Boolean )
 	{
 		override def toString =
 		{
-			"<pre class=\"code" + language.map( " language-" + _ ).getOrElse( "" ) + "\">" +
-				( if( escape ) { HtmlFormat.escape( code.trim ).toString } else { code } ) +
-			"</pre>"
+			"<div class=\"example\">" +
+				"<span class=\"label\">" + label + "</span>" +
+				"<pre class=\"" + language.map( " language-" + _ ).getOrElse( "" ) + "\">" +
+					( if( escape ) { HtmlFormat.escape( code.trim ).toString } else { code } ) +
+				"</pre>" +
+			"</div>"
 		}
 	}
 }

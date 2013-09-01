@@ -1,6 +1,6 @@
 $( document ).ready( function()
 {
-	$( 'pre.code' ).each( function( index, element )
+	$( '.example pre' ).each( function( index, element )
 	{
 		hljs.highlightBlock( element )
 	} );
