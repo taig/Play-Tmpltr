@@ -1,4 +1,4 @@
-package views.installation
+package view.installation
 
 import views.Code
 
@@ -7,7 +7,7 @@ object Example2 extends Code
 	override val language = "xml"
 
 	val code: String =
-		"""
+		s"""
 		  |@( args: Any* )
 		  |
 		  |@import com.taig.tmpltr._

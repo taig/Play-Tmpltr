@@ -1,4 +1,4 @@
-package views.usage.html
+package view.usage.html
 
 import views.Code
 

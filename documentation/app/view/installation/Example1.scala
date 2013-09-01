@@ -1,4 +1,4 @@
-package views.installation
+package view.installation
 
 import views.Code
 
