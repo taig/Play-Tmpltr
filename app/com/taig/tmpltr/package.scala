@@ -68,7 +68,7 @@ package object tmpltr
 		def construct( classes: Class[_]* )( arguments: Any* ): A =
 		{
 			Reflection
-				.newInstance[A]( Reflection.mirror.classSymbol( getClass ) )( classes: _* )( arguments: _* )
+				.newInstance[A]( Reflection.mirror.classSymbol( element.getClass ) )( classes: _* )( arguments: _* )
 				.getOrElse( throw new RuntimeException( "No suitable constructor available" ) )
 		}
 	}
