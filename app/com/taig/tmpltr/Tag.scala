@@ -100,7 +100,7 @@ object Tag
 		override def toString =
 		{
 			"<" + tag + attributes +
-			( if( minimized && content.body.isEmpty ) " />" else ">" +content.body.trim + "</" + tag + ">" )
+			( if( minimized && content.body.isEmpty ) " />" else ">" + content.body.trim + "</" + tag + ">" )
 		}
 	}
 
