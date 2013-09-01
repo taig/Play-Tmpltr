@@ -17,7 +17,7 @@ with	Tag.Body[script, Txt]
 object	script
 extends	Tag.Body.Appliable[script, Txt]
 {
-	def apply( src: Option[String] = None, attributes: Attributes = Attributes.empty ): script =
+	def apply( src: Option[String] = None, attributes: Attributes = Attributes.empty ) =
 	{
 		new script( src, attributes )
 	}

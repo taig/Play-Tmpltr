@@ -17,7 +17,7 @@ with	Tag.Body[style, Txt]
 object	style
 extends	Tag.Body.Appliable[style, Txt]
 {
-	def apply( `type`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ): style =
+	def apply( `type`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ) =
 	{
 		new style( `type`, attributes, content )
 	}

@@ -16,7 +16,7 @@ object	input
 extends	Tag.Empty.Appliable[input]
 with	property.input
 {
-	def apply( `type`: Option[`type`] = None, name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty ): input =
+	def apply( `type`: Option[`type`] = None, name: Option[String] = None, value: Option[String] = None, attributes: Attributes = Attributes.empty ) =
 	{
 		new input( `type`, name, value, attributes )
 	}

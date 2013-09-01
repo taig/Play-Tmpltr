@@ -15,5 +15,5 @@ with	Tag.Empty[icon]
 object	icon
 extends	property.icon
 {
-	def apply( image: image, attributes: Attributes = Attributes.empty ): icon = new icon( image, attributes )
+	def apply( image: image, attributes: Attributes = Attributes.empty ) = new icon( image, attributes )
 }

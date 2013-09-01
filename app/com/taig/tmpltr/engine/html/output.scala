@@ -17,7 +17,7 @@ with	Tag.Body[output, Content]
 object	output
 extends	Tag.Body.Appliable[output, Content]
 {
-	def apply( name: Option[String] = None, `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): output =
+	def apply( name: Option[String] = None, `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new output( name, `for`, attributes, content )
 	}

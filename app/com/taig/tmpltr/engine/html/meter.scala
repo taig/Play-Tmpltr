@@ -17,7 +17,7 @@ with	Tag.Body[meter, Content]
 object	meter
 extends	Tag.Body.Appliable[meter, Content]
 {
-	def apply( value: Option[Float] = None, min: Option[Float] = None, max: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Content ): meter =
+	def apply( value: Option[Float] = None, min: Option[Float] = None, max: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new meter( value, min, max, attributes, content )
 	}

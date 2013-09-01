@@ -17,7 +17,7 @@ with	Tag.Body[label, Content]
 object	label
 extends	Tag.Body.Appliable[label, Content]
 {
-	def apply( `for`: Option[String] = None, attributes: Attributes )( content: Content ): label =
+	def apply( `for`: Option[String] = None, attributes: Attributes )( content: Content ) =
 	{
 		new label( `for`, attributes, content )
 	}

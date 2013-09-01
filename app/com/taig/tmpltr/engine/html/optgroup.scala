@@ -17,7 +17,7 @@ with	Tag.Body[optgroup, Content]
 object	optgroup
 extends	Tag.Body.Appliable[optgroup, Content]
 {
-	def apply( label: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): optgroup =
+	def apply( label: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new optgroup( label, attributes, content )
 	}

@@ -16,7 +16,7 @@ object	base
 extends	Tag.Empty.Appliable[base]
 with	property.a
 {
-	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty ): base =
+	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty ) =
 	{
 		new base( href, target, attributes )
 	}

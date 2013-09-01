@@ -19,7 +19,7 @@ object	well
 extends	Tag.Body.Appliable[well, Content]
 with	property.well
 {
-	def apply( size: Option[size] = None, attributes: Attributes = Attributes.empty )( content: Content ): well =
+	def apply( size: Option[size] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new well( size, attributes, content )
 	}

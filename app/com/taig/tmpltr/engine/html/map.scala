@@ -17,7 +17,7 @@ with	Tag.Body[map, Content]
 object	map
 extends	Tag.Body.Appliable[map, Content]
 {
-	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): map =
+	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new map( name, attributes, content )
 	}

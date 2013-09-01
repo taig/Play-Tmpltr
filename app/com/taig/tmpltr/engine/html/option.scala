@@ -17,7 +17,7 @@ with	Tag.Body[option, Content]
 object	option
 extends	Tag.Body.Appliable[option, Content]
 {
-	def apply( value: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): option =
+	def apply( value: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new option( value, attributes, content )
 	}

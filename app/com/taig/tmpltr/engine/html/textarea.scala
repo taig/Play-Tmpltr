@@ -17,7 +17,7 @@ with	Tag.Body[textarea, Txt]
 object	textarea
 extends	Tag.Body.Appliable[textarea, Txt]
 {
-	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ): textarea =
+	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ) =
 	{
 		new textarea( name, attributes, content )
 	}

@@ -17,7 +17,7 @@ with	Tag.Body[progress, Content]
 object	progress
 extends	Tag.Body.Appliable[progress, Content]
 {
-	def apply( value: Option[Float] = None, maxvalue: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Content ): progress =
+	def apply( value: Option[Float] = None, maxvalue: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new progress( value, maxvalue, attributes, content )
 	}

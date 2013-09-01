@@ -15,7 +15,7 @@ with	Tag.Empty[img]
 object	img
 extends	Tag.Empty.Appliable[img]
 {
-	def apply( src: Option[String] = None, alt: Option[String] = None, attributes: Attributes = Attributes.empty ): img =
+	def apply( src: Option[String] = None, alt: Option[String] = None, attributes: Attributes = Attributes.empty ) =
 	{
 		new img( src, alt, attributes )
 	}

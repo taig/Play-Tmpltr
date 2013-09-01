@@ -17,7 +17,7 @@ with	Tag.Body[select, Content]
 object	select
 extends	Tag.Body.Appliable[select, Content]
 {
-	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): select =
+	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new select( name, attributes, content )
 	}

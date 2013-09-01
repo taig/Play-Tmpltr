@@ -17,7 +17,7 @@ with	Tag.Body[iframe, Content]
 object	iframe
 extends	Tag.Body.Appliable[iframe, Content]
 {
-	def apply( src: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): iframe =
+	def apply( src: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new iframe( src, attributes, content )
 	}

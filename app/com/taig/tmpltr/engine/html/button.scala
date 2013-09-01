@@ -18,7 +18,7 @@ object	button
 extends	Tag.Body.Appliable[button, Content]
 with	property.button
 {
-	def apply( `type`: Option[`type`] = None, name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ): button =
+	def apply( `type`: Option[`type`] = None, name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new button( `type`, name, attributes, content )
 	}

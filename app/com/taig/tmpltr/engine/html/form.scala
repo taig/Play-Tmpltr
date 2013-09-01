@@ -18,7 +18,7 @@ object	form
 extends	Tag.Body.Appliable[form, Content]
 with	property.form
 {
-	def apply( action: Option[String] = None, method: Option[method] = None, attributes: Attributes = Attributes.empty )( content: Content ): form =
+	def apply( action: Option[String] = None, method: Option[method] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new form( action, method, attributes, content )
 	}
