@@ -4,7 +4,7 @@ import com.taig.tmpltr._
 
 import com.taig.tmpltr.engine.html
 
-class	image private( attributes: Attributes )
+class	image /*private*/( attributes: Attributes )
 extends html.img( attributes )
 with	Tag.Empty[image]
 {

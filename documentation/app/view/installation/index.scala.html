@@ -1,7 +1,5 @@
 @( level: Int, name: String, repository: String, library: String, sample: String, documentation: String )
 
-@import view.installation._
-
 @h( level ){ Installation }
 @p {
 	When your @cite{ Play Framework } (Scala) is @a( "http://www.playframework.com/documentation/2.1.1/Installing",
@@ -29,7 +27,23 @@
 @p {
 	If your view now looks somehow like this, your basic configuration is ready.
 }
-@Example1
+@example(
+	example.source( """
+		|@*************************
+		|* Your view's signature. *
+		|*************************@
+		|@( args: Any* )
+		|
+		|@***********************
+		|* Play Tmpltr imports. *
+		|***********************@
+		|@import com.taig.tmpltr._
+		|@import com.taig.tmpltr.engine.html._
+		|
+		|@p{ Your @cite{ HTML5 } goes here. }
+		""".stripMargin
+	)
+)
 
 @p {
 	You may have already noticed the @code{ engine } part in the previous import statements. You won't be surprised if
@@ -39,7 +53,18 @@
 	Therefore you need to overcome this by prefixing the @code{ bootstrap } utilities (use
 	@code( "com.taig.tmpltr.engine.bootstrap" ) or @code( "com.taig.tmpltr.engine.{ bootstrap => bs }" ) instead).
 }
-@Example2
+@example(
+	example.source( """
+		|@( args: Any* )
+		|
+		|@import com.taig.tmpltr._
+		|@import com.taig.tmpltr.engine.html._
+		|@import com.taig.tmpltr.engine.{ bootstrap => bs }
+		|
+		|@bs.lead{ Your prefixed @cite{ Twitter Bootstrap } goes here. }
+		""".stripMargin
+	)
+)
 
 @p {
 	Alternatively you can add frequently used imports to your @code{ Build.scala } file. That's a useful thing if
@@ -47,4 +72,15 @@
 	directives to your project settings. @cite{ Play } will then take care of importing these files into your views.
 	Less pain for you.
 }
-@Example3
+@example(
+	example.source( """
+		|val main = play.Project( "project-name", "1.0" ).settings(
+		|    templatesImport ++= Seq(
+		|        "com.taig.tmpltr._",
+		|        "com.taig.tmpltr.engine.html._",
+		|        "com.taig.tmpltr.engine.{ bootstrap => bs }"
+		|    )
+		|)
+		""".stripMargin
+	)
+)

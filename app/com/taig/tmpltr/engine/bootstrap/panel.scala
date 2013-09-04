@@ -5,7 +5,7 @@ import com.taig.tmpltr.engine.html
 
 import play.api.mvc.Content
 
-class	panel private( attributes: Attributes, content: Content )
+class	panel /*private*/( attributes: Attributes, content: Content )
 extends	html.div( attributes ~ ( "class" -> "panel" ), content )
 with	Tag.Body[panel, Content]
 {

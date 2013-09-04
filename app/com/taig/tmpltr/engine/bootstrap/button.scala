@@ -5,7 +5,7 @@ import com.taig.tmpltr.engine.html
 
 import play.api.mvc.Content
 
-class	button private( attributes: Attributes, content: Content )
+class	button /*private*/( attributes: Attributes, content: Content )
 extends	html.button( attributes, content )
 with	Tag.Body[button, Content]
 {
@@ -23,7 +23,7 @@ extends	property.button
 		new button( `type`, style, size, disabled, attributes, content )
 	}
 
-	class	a private( attributes: Attributes, content: Content )
+	class	a /*private*/( attributes: Attributes, content: Content )
 	extends	html.a( attributes, content )
 	with	Tag.Body[a, Content]
 	{
@@ -42,7 +42,7 @@ extends	property.button
 		}
 	}
 	
-	class	input private( attributes: Attributes )
+	class	input /*private*/( attributes: Attributes )
 	extends	html.input( attributes )
 	with	Tag.Empty[input]
 	{

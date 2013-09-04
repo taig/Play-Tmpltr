@@ -29,10 +29,10 @@ package object tmpltr
 
 	private def attributesFromTuples( tuples: (String, _)* ) = attributesFromMap( Map( tuples: _* ).mapValues( setFromAny ) )
 
-	implicit def htmlFromOptionTag( tag: Option[Tag[_]] ) = tag.map( htmlFromTag ).getOrElse( Html.empty )
+	implicit def htmlFromOptionTag( tag: Option[Tag[_]] ) = tag.map( _.toHtml ).getOrElse( Html.empty )
 
-	implicit def htmlFromTag( tag: Tag[_] ) = Html( tag.toString )
-	
+	implicit def htmlFromTag( tag: Tag[_] ) = tag.toHtml
+
 	implicit def htmlFromContent( content: Content ) = content match
 	{
 		case html: Html => html
@@ -42,6 +42,8 @@ package object tmpltr
 	implicit def optionFromProperty[P <: Property]( property: P ) = Option( property )
 
 	implicit def optionFromString( string: String ): Option[String] = Some( string )
+
+	implicit def optionFromTag[T <: Tag[T]]( tag: T ): Option[T] = Some( tag )
 
 	implicit def optionStringFromCall( call: Call ): Option[String] = Some( call.toString )
 
@@ -62,14 +64,4 @@ package object tmpltr
 	}
 
 	implicit def txtFromString( string: String ) = Txt( string )
-
-	implicit class Reflector[A]( val element: A )
-	{
-		def construct( classes: Class[_]* )( arguments: Any* ): A =
-		{
-			Reflection
-				.newInstance[A]( Reflection.mirror.classSymbol( element.getClass ) )( classes: _* )( arguments: _* )
-				.getOrElse( throw new RuntimeException( "No suitable constructor available" ) )
-		}
-	}
 }

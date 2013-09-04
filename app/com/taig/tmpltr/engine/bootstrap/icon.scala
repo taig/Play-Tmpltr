@@ -5,7 +5,7 @@ import com.taig.tmpltr.engine.html
 
 import play.api.templates.Html
 
-class	icon private( attributes: Attributes )
+class	icon /*private*/( attributes: Attributes )
 extends	html.span( attributes, Html.empty )
 with	Tag.Empty[icon]
 {

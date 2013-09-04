@@ -1,14 +1,27 @@
 @( level: Int, name: String, repository: String, library: String, sample: String, documentation: String )
 
-@import view.usage.html._
-
 @h( level ){ Tags }
 @p {
 	When you've imported all @code( "com.taig.tmpltr.engine.html._" ) utilities right into your namespace as adviced
 	above you will have easy access to all @cite{ HTML } features. In fact all you need is @cite{ Play's } magic @code( "@" )
 	character followed by the name of the @cite{ HTML } tag.
 }
-@Example1
+@example(
+	example.source( """
+		|@div {
+		|    @h1{ No big surprises here. }
+		|    @p{ If you know the common @em{ HTML } tags this will be easy for you. }
+		|}
+		""".stripMargin
+	),
+	example.result( "xml" )( """
+		|<div>
+		|    <h1>No big surprises here.</h1>
+		|    <p>If you know the common <em>HTML</em> tags this will be easy for you.</p>
+		|</div>
+		""".stripMargin
+	)
+)
 
 @p {
 	There are two exceptions though: calling @code( "@object" ) or @code( "@var" ) won't get your far. These are
@@ -28,19 +41,40 @@
 	@a( documentation, a.target.blank ){ @cite{ ScalaDoc } } first. Let me show you the @code{ &lt;input /&gt; } tag to
 	give you a better understanding of what I'm talking about.
 }
-@Example2
-
+@example(
+	example.source( """
+		|@input( type: Option[type], name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* )
+		|@input( type: Option[type], name: Option[String], value: Option[String], attributes: (String, String)* )
+		|@input( type: Option[type], name: Option[String], attributes: (String, String)* )
+		""".stripMargin
+	)
+)
+	
 @p {
 	As you can see there are parameter fields that allow you to quickly pass commom attribute values to the input tag.
 	You may also ignore the @code{ Option } types if you have @code( "com.taig.tmpltr._" ) imported. Just pass over the
 	type in the brackets.
 }
-@Example3
+@example(
+	example.source( """
+		|@input( input.`type`.text, "username", "taig", "Enter username ..."  )
+		""".stripMargin
+	),
+	example.result( "xml" )( """
+		|<input type="submit" name="username" value="taig" placeholder="Enter username ..." />
+		""".stripMargin
+	)
+)
 
 @p {
 	But wait! There is more …
 }
-@Example4
+@example(
+	example.source( """
+		|@input.text( "username", "taig", "Enter username ..."  )
+		""".stripMargin
+	)
+)
 
 @h( level ){ Attributes }
 @p {
@@ -48,11 +82,49 @@
 	in pretty handy if @cite{ @name's } constructors aren't able to fullfill your needs. Just add some tuples to get
 	your tag's attributes right.
 }
-@Example5
+@example(
+	example.source( """
+		|@canvas( "id" -> "whiteboard", "class" -> "grey large" ) {
+		|    @p{ No canvas, no fun. }
+		|}
+		""".stripMargin
+	),
+	example.result( "xml" )( """
+		|<canvas id="whiteboard" class="grey large">
+		|    <p>No canvas, no fun.</p>
+		|</canvas>
+		""".stripMargin
+	)
+)
 
 @h( level ){ Boilerplate }
 @p {
 	We're done. You now know how to use @cite{ @name } to build your views. Just let me give you the @code( "@boilerplate" )
 	tag to take along your way down the page.
 }
-@Example6
+@example(
+	example.source( """
+		|@boilerplate {
+		|    @meta.charset( "utf-8" )
+		|    …
+		|} {
+		|    @h1{ Hello there! }
+		|    …
+		|}
+		""".stripMargin
+	),
+	example.result( "xml" )( """
+		|<!DOCTYPE html>
+		|<html>
+		|    <head>
+		|        <meta charset="utf-8" />
+		|        …
+		|    </head>
+		|    <body>
+		|        <h1>Hello there!</h1>
+		|        …
+		|    </body>
+		|</html>
+		""".stripMargin
+	)
+)

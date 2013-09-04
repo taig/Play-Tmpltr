@@ -1,11 +1,11 @@
-package engine.bootstrap
+package widget
 
 import com.taig.tmpltr._
 import com.taig.tmpltr.engine.html
 
 import play.api.mvc.Content
 
-class	callout private( attributes: Attributes, content: Content )
+class	callout /*private*/( attributes: Attributes, content: Content )
 extends	html.div( attributes, content )
 with	Tag.Body[callout, Content]
 {

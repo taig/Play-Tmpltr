@@ -16,7 +16,8 @@ object Build extends sbt.Build
 		templatesImport ++= Seq(
 			"com.taig.tmpltr._",
 			"com.taig.tmpltr.engine.html._",
-			"com.taig.tmpltr.engine.{ bootstrap => bs }" ),
+			"com.taig.tmpltr.engine.{ bootstrap => bs }",
+			"widget._" ),
 		scalacOptions ++= Seq( "-feature", "-language:implicitConversions" )
 	).dependsOn( tmpltr ).aggregate( tmpltr )	
 }

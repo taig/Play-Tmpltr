@@ -1,6 +1,7 @@
 package com.taig.tmpltr
 
 import play.api.mvc.Content
+import play.api.templates.Html
 import scala.xml._
 
 /**
@@ -23,6 +24,8 @@ trait Tag[+A <: Tag[A]] extends NodeSeq
 	 */
 	def %( attributes: Attributes ): A = this.asInstanceOf[A]
 
+	def toHtml: Html = Html( toString )
+
 	/**
 	 * Render the HTML representation of this [[com.taig.tmpltr.Tag]].
 	 * 
@@ -33,9 +36,12 @@ trait Tag[+A <: Tag[A]] extends NodeSeq
 
 object Tag
 {
-	trait Appliable
+	trait Appliable[A <: Tag[A]]
 	{
-		protected lazy val `class` = Reflection.mirror.staticClass( getClass.getName.takeWhile( _ != '$' ) )
+		protected lazy val `class`: reflect.Class[A] =
+		{
+			reflect.Companion[A]( getClass ).getAccompanyingClass
+		}
 	}
 
 	/**
@@ -58,7 +64,7 @@ object Tag
 
 		override def %( attributes: Attributes ): A =
 		{
-			self.construct( classOf[Attributes] )( this.attributes ~~ attributes )
+			reflect.Class( getClass.asInstanceOf[Class[A]] ).newInstance( this.attributes ~~ attributes )
 		}
 
 		override def toString = "<" + tag + attributes + ( if( minimized ) " />" else "></" + tag + ">" )
@@ -66,14 +72,9 @@ object Tag
 
 	object Empty
 	{
-		trait Appliable[A <: Tag.Empty[A]] extends Tag.Appliable
+		trait Appliable[A <: Tag.Empty[A]] extends Tag.Appliable[A]
 		{
-			def apply( attributes: Attributes ): A =
-			{
-				Reflection
-					.newInstance[A]( `class` )( classOf[Attributes] )( attributes )
-					.getOrElse( throw new RuntimeException( "No suitable constructor available" ) )
-			}
+			def apply( attributes: Attributes ): A = `class`.newInstance( attributes )
 		}
 	}
 
@@ -84,7 +85,7 @@ object Tag
 	 * @tparam A The implementing class.
 	 * @tparam C The type of the body's valid [[play.api.mvc.Content]].
 	 */
-	trait Body[+A <: Body[A, C], C <: Content] extends Empty[A]
+	trait Body[+A <: Body[A, C], +C <: Content] extends Empty[A]
 	{
 		override lazy val theSeq: Seq[Node] = Seq(
 			new Elem( null, tag, attributes.toMetaData, TopScope, minimized, Unparsed( content.body ) )
@@ -94,7 +95,7 @@ object Tag
 
 		override def %( attributes: Attributes ): A =
 		{
-			self.construct( classOf[Attributes], content.getClass )( this.attributes ~~ attributes, content )
+			reflect.Class( getClass.asInstanceOf[Class[A]] ).newInstance( this.attributes ~~ attributes, content )
 		}
 
 		override def toString =
@@ -106,14 +107,9 @@ object Tag
 
 	object Body
 	{
-		trait Appliable[A <: Tag.Body[A, C], C <: Content] extends Tag.Appliable
+		trait Appliable[A <: Tag.Body[A, C], C <: Content] extends Tag.Appliable[A]
 		{
-			def apply( attributes: Attributes )( content: C ): A =
-			{
-				Reflection
-					.newInstance[A]( `class` )( classOf[Attributes], content.getClass )( attributes, content )
-					.getOrElse( throw new RuntimeException( "No suitable constructor available" ) )
-			}
+			def apply( attributes: Attributes )( content: C ): A = `class`.newInstance( attributes, content )
 
 			def apply( content: C ): A = apply( Attributes.empty )( content )
 		}

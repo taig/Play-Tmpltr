@@ -27,48 +27,42 @@ div.container {
 	width: 740px;
 }
 
-.examples {
-	margin-bottom: 24px;
+.code-example {
+	background-color: #484A4A;
+	border: 1px solid #3B3C3C;
+	border-radius: 4px;
+	box-shadow: 1px 1px 0 #7A7D7D inset;
+	margin-bottom: 12px;
 }
 
-.example {
-	background-color: #616363;
-	border: 1px solid #474949;
+.code-example .highlight:not( :first-child ) {
+	border-top: 1px solid #3B3C3C;
 	box-shadow: 1px 1px 0 #7A7D7D inset;
 }
 
-.example:first-child {
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
+.highlight {
+	overflow: auto;
+	padding: 2px 10px 10px 10px;
 }
 
-.example:last-child {
-	border-top: none;
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
+.highlight * {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
 }
 
-.example .label {
+.highlight .label {
 	color: #7A7D7D;
 	font-size: 12px;
 	font-weight: bold;
-	left: 10px;
 	letter-spacing: 1px;
-	padding: 0;
-	position: relative;
 	text-transform: uppercase;
-	top: 3px;
 }
 
-.example pre {
+pre code {
 	color: #D1D9E1;
-	background: none;
-	border: none;
-	border-radius: 0;
 	line-height: 20px;
-	margin: 0;
-	overflow: auto;
-	padding: 2px 12px 12px;
 	white-space: pre;
 	word-wrap: normal;
 }
