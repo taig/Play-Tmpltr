@@ -1,6 +1,10 @@
 @()
 
-@bs_version = @{ "[unknown]" }
+@bs_version = @{
+	"([\\d\\.]+)".r
+		.findFirstIn( routes.WebJarAssets.at( WebJarAssets.locate( "bootstrap.css" ) ).toString )
+		.getOrElse( "[unknown]" )
+}
 
 @p( "class" -> "text-center" ) { @small {
 	Tested with @cite{ Play Framework } @span( "class" -> "version" ){ @play.core.PlayVersion.current } and @cite{
