@@ -1,0 +1,120 @@
+#!/usr/bin/env scala -feature -language:postfixOps
+
+import java.io.File
+import sys.process._
+
+val void = new ProcessLogger
+{
+	def buffer[T]( f: => T ): T = f
+
+	def out(s: => String) {}
+
+	def err(s: => String) {}
+}
+
+val root = new File( "/" )
+
+// Resolve temporary storage.
+val temp = new File( System.getProperty( "java.io.tmpdir" ) + "tmpltr" )
+
+println( "Temporary storage:\t" + temp )
+
+// Resolve project directory.
+val tmpltr =
+{
+	def isValidProjectPath( path: String ): Boolean =
+	{
+		"play project".!!.contains( s"play-tmpltr (in build file:${new File( path ).getAbsolutePath}" )
+	}
+
+	var path = System.getProperty( "user.dir" )
+	
+	while( !isValidProjectPath( path ) )
+	{
+		println( "Please specify the proper project path ('" + path + "' is not valid):" )
+		path = readLine()
+	}
+
+	new File( path )
+}
+
+println( "Project:\t\t" + tmpltr )
+
+// Resolve documentation directory.
+val documentation = new File( tmpltr + "/documentation" )
+
+println( "Documentation:\t\t" + documentation )
+
+// Resolve PlayFramework directory.
+val play =
+{
+	new File( "- (.+)/play/play_.+\\.jar"
+		.r
+		.findFirstMatchIn( Process( Seq( "play", "classpath" ), tmpltr ) !! )
+		.map( path => new File( path.group( 1 ) ).getParentFile.getParent )
+		.getOrElse
+		{
+			println( "Could not find PlayFramework base path; please specify:" )
+			readLine()
+		}
+	)
+}
+
+println( "PlayFramework:\t\t" + play )
+
+// Check if git is ready.
+if( !( Process( Seq( "git", "status" ), tmpltr ) !! ).contains( "nothing to commit" ) )
+{
+	println( "Git has uncommitted changes. Please resolve." )
+	System.exit( -1 )
+}
+
+if( ( Process( Seq( "git", "rev-parse", "--abbrev-ref HEAD" ), tmpltr ) !! ).equals( "gh-pages" ) )
+{
+	println( "Please switch to a proper branch before deploying." )
+	System.exit( - 1 )
+}
+
+// Check if no other Play application is blocking server execution.
+if( new File( documentation + "/RUNNING_PID" ).exists() )
+{
+	println( "There is already a running Play server. Please terminate." )
+	System.exit( - 1 )
+}
+
+// Clean and prepare temporary storage.
+print( "Cleaning temporary storage ..." )
+Option( temp.listFiles ).foreach( _.foreach( _.delete ) )
+temp.mkdir
+println( " Done!" )
+
+// Launch documentation server and download the rendered HTML.
+print( "Starting documentation server to retrieve HTML ..." )
+val port = 9999
+Process( Seq( "play", s"start $port" ), documentation ) run void
+Process( Seq( "wget", "-r", "-l 1", "-k", "-p", "-nH", "-t 0", "--retry-connrefused", "-P", s"$temp/documentation", s"localhost:$port" ), root ) ! void
+Process( Seq( "play", "stop" ), documentation ) ! void
+println( " Done!" )
+
+// Publish binaries and copy scalaDoc.
+print( "Publishing binaries ..." )
+Process( Seq( "play", "publish-local" ), tmpltr ) ! void
+Process( Seq( "cp", "-r", s"$tmpltr/target/scala-2.10/api", s"$temp/scaladoc" ) ) ! void
+println( " Done!" )
+
+// Prepare gh-pages.
+Process( Seq( "git", "checkout", "gh-pages" ), tmpltr ) ! void
+Option( documentation.listFiles ).foreach( _.foreach( _.delete ) )
+
+// Insert documentation, scalaDoc and binaries.
+Process( Seq( "mv", s"$temp/documentation/index.html", s"$temp/documentation/asset", s"$temp/documentation/webjars", s"$tmpltr" ) ) ! void
+Process( Seq( "mv", s"$temp/scaladoc", s"$tmpltr/scaladoc" ) ) ! void
+Process( Seq( "cp", "-r", s"$play/repository/local/com.taig", s"$tmpltr/release" ) ) ! void
+
+// Update git.
+print( "Uploading changes ..." )
+Process( Seq( "git", "add", "index.html", "asset", "webjars", "scaladoc", "release" ), tmpltr ) ! void
+Process( Seq( "git", "commit", "-m", "Updated public information." ), tmpltr ) ! void
+Process( Seq( "git", "push" ), tmpltr ) ! void
+Process( Seq( "git", "checkout", "-" ), tmpltr ) ! void
+println( " Done!" )
