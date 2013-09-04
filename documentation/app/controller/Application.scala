@@ -10,8 +10,8 @@ object Application extends Controller
 			view.html.index(
 				name = "Play Tmpltr",
 				repository = "https://github.com/Taig/Play-Tmpltr",
-				source = "https://github.com/Taig/Play-Tmpltr/blob/master/module/library",
-				documentation = "https://github.com/Taig/Play-Tmpltr/blob/master/module/sample",
+				source = "https://github.com/Taig/Play-Tmpltr/tree/master",
+				documentation = "https://github.com/Taig/Play-Tmpltr/tree/master/documentation",
 				scalaDoc = "http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package"
 			)
 		)
