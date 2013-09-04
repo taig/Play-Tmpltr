@@ -35,28 +35,28 @@
 			elements.
 		}
 
-		@view.html.version()
+		@version()
 
 		@section( "id" -> "intro" ) {
 			@bs.page_header{ @h2{ Introduction } }
-			@view.introduction.html.index( 3, name, repository, library, sample, documentation )
+			@introduction( 3, name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "getting-started" ) {
 			@bs.page_header{ @h2{ Getting Started } }
-			@view.installation.html.index( 3, name, repository, library, sample, documentation )
+			@installation( 3, name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "usage" ) {
 			@bs.page_header{ @h2{ Usage } }
-			@view.usage.html.index( 3, name, repository, library, sample, documentation )
+			@usage( 3, name, repository, library, sample, documentation )
 		}
 
 		@section( "id" -> "license" ) {
 			@bs.page_header{ @h2{ License } }
-			@view.license.html.index()
+			@license()
 		}
 	}
 
-	@view.html.analytics()
+	@analytics()
 }
