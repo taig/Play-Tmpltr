@@ -1,4 +1,4 @@
-@( level: Int, name: String, repository: String, library: String, sample: String, documentation: String )
+@( level: Int, name: String, repository: String, source: String, documentation: String, scalaDoc: String )
 
 @h( level ){ Tags }
 @p {
@@ -38,7 +38,7 @@
 @p {
 	If some tags aren't working the way you expected them to or you find yourself hacking around the module chances are
 	you missed a constructor that already covers your use-case. So, when in doubt better have a look into the
-	@a( documentation, a.target.blank ){ @cite{ ScalaDoc } } first. Let me show you the @code{ &lt;input /&gt; } tag to
+	@a( scalaDoc, a.target.blank ){ @cite{ ScalaDoc } } first. Let me show you the @code{ &lt;input /&gt; } tag to
 	give you a better understanding of what I'm talking about.
 }
 @example(

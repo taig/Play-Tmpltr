@@ -1,15 +1,15 @@
-@( level: Int, name: String, repository: String, library: String, sample: String, documentation: String )
+@( level: Int, name: String, repository: String, source: String, documentation: String, scalaDoc: String )
 
 @p{
 	@cite{ @name's } most important features with useful examples are listed below. If you are missing something take a
-	look into the @a( sample, a.target.blank ){ source code } of this documentation page. It's actually a @cite{ Play }
-	application built with @cite( name ). Alternatively you might want to browse the @a( documentation, a.target.blank ){
+	look into the @a( documentation, a.target.blank ){ source code } of this documentation page. It's actually a @cite{ Play }
+	application built with @cite( name ). Alternatively you might want to browse the @a( scalaDoc, a.target.blank ){
 	@cite{ ScalaDoc } } to get an overview of the available features. Also this module is far from being feature
 	complete. So if you find yourself adding some utilities for your project make sure to send me a pull request!
 }
 
 @h( level ){ HTML }
-@html( level + 1, name, repository, library, sample, documentation )
+@html( level + 1, name, repository, source, documentation, scalaDoc )
 
 @h( level ){ Twitter Bootstrap }
-@bootstrap( level + 1, name, repository, library, sample, documentation )
+@bootstrap( level + 1, name, repository, source, documentation, scalaDoc )

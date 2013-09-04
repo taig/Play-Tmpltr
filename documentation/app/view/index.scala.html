@@ -1,4 +1,4 @@
-@( name: String, repository: String, library: String, sample: String, documentation: String )
+@( name: String, repository: String, source: String, documentation: String, scalaDoc: String )
 
 @import WebJarAssets.locate
 
@@ -23,7 +23,7 @@
 			@h1{ @bs.icon( "fire", attributes = "style" -> "margin-top: 18px;" ) @name }
 			@div( "id" -> "links" ) {
 				@bs.button.a( repository, bs.button.a.target.blank ){ @bs.icon( "globe" ) GitHub }
-				@bs.button.a( documentation, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
+				@bs.button.a( scalaDoc, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
 				@bs.button.a( "mailto:my.taig@gmail.com" ){ @bs.icon( "envelope" ) Contact }
 			}
 		}
@@ -39,17 +39,17 @@
 
 		@section( "id" -> "intro" ) {
 			@bs.page_header{ @h2{ Introduction } }
-			@introduction( 3, name, repository, library, sample, documentation )
+			@introduction( 3, name, repository, source, documentation, scalaDoc )
 		}
 
 		@section( "id" -> "getting-started" ) {
 			@bs.page_header{ @h2{ Getting Started } }
-			@installation( 3, name, repository, library, sample, documentation )
+			@installation( 3, name, repository, source, documentation, scalaDoc )
 		}
 
 		@section( "id" -> "usage" ) {
 			@bs.page_header{ @h2{ Usage } }
-			@usage( 3, name, repository, library, sample, documentation )
+			@usage( 3, name, repository, source, documentation, scalaDoc )
 		}
 
 		@section( "id" -> "license" ) {
