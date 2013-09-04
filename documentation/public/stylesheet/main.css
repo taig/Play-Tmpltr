@@ -28,7 +28,7 @@ div.container {
 }
 
 .code-example {
-	background-color: #484A4A;
+	background: url( "/asset/image/noise.png" ) 0 0 repeat #484A4A;
 	border: 1px solid #3B3C3C;
 	border-radius: 4px;
 	box-shadow: 1px 1px 0 #7A7D7D inset;
