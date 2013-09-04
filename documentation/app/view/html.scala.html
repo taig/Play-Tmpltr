@@ -23,9 +23,13 @@
 	)
 )
 
-@p {
-	There are two exceptions though: calling @code( "@object" ) or @code( "@var" ) won't get your far. These are
-	keywords of the @cite{ Scala } language. Use @code( "@obj" ) and @code( "@variable" ) instead.
+@callout( callout.`type`.warning ) {
+	@h4{ Please Note }
+	@p{
+		The @cite{ HTML } tags @code( "&lt;object /&gt;" ) and @code( "&lt;var /&gt;" ) cannot be invoked via
+		@code( "@object" ) or @code( "@var" ) since those are keywords of the @cite{ Scala } language. Use
+		@code( "@obj" ) and @code( "@variable" ) instead.
+	}
 }
 
 @h( level ){ Tag Arguments }
