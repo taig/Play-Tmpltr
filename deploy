@@ -109,7 +109,7 @@ Process( Seq( "rm", "-r", "index.html", "asset", "webjars", "scaladoc" ) )
 // Insert documentation, scalaDoc and binaries.
 Process( Seq( "mv", s"$temp/documentation/index.html", s"$temp/documentation/asset", s"$temp/documentation/webjars", s"$tmpltr" ) ) ! void
 Process( Seq( "mv", s"$temp/scaladoc", s"$tmpltr/scaladoc" ) ) ! void
-Process( Seq( "cp", "-r", s"$play/repository/local/com.taig", s"$tmpltr/release/com.taig" ) ) ! void
+Process( Seq( "cp", "-r", s"$play/repository/local/com.taig", s"$tmpltr/release" ) ) ! void
 
 // Update git.
 print( "Uploading changes ..." )
