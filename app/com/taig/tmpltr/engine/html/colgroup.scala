@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	colgroup( attributes: Attributes )( content: Html )
-extends	markup.colgroup[colgroup]( attributes )( content )
-{
-	protected def copy = new colgroup( _: Attributes )( content )
-}
+class	colgroup( val attributes: Attributes, val content: Content )
+extends	markup.colgroup
+with	Tag.Body[colgroup, Content]
 
-object colgroup
-{
-	def apply( attributes: Attributes )( content: Html ): colgroup = new colgroup( attributes )( content )
-
-	def apply( content: Html ): colgroup = apply( Attributes.empty )( content )
-}
+object	colgroup
+extends	Tag.Body.Appliable[colgroup, Content]

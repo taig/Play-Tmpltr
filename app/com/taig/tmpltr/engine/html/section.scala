@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	section( attributes: Attributes )( content: Html )
-extends	markup.section[section]( attributes )( content )
-{
-	protected def copy = new section( _: Attributes )( content )
-}
+class	section( val attributes: Attributes, val content: Content )
+extends	markup.section
+with	Tag.Body[section, Content]
 
-object section
-{
-	def apply( attributes: Attributes )( content: Html ): section = new section( attributes )( content )
-
-	def apply( content: Html ): section = apply( Attributes.empty )( content )
-}
+object	section
+extends	Tag.Body.Appliable[section, Content]

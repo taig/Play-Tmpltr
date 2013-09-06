@@ -1,8 +1,13 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-abstract class	script[A <: script[A]]( attributes: Attributes )( content: Txt )
-extends			Tag[A]( "script", attributes, content, false )
+trait	script
+extends	Tag.Body[script, Txt]
+{
+	val tag = "script"
+
+	override val minimized = false
+}

@@ -1,34 +1,42 @@
 package com.taig.tmpltr.engine.html
 
 import com.taig.tmpltr._
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
 
-class	link( attributes: Attributes )
-extends	markup.link[link]( attributes )
+class	link( val attributes: Attributes )
+extends	markup.link
+with	Tag.Empty[link]
 {
 	def this( rel: Option[link.rel], href: Option[String], `type`: Option[String], attributes: Attributes ) =
 	{
-		this( attributes ++ Attributes( "rel" -> rel, "href" -> href, "type" -> `type` ) )
+		this( attributes ~~ ( ( "rel" -> rel, "href" -> href, "type" -> `type` ) ) )
 	}
-
-	protected def copy = new link( _: Attributes )
 }
 
-object link extends property.link
+object	link
+extends	Tag.Empty.Appliable[link]
+with	property.link
 {
 	def apply( rel: Option[rel] = None, href: Option[String] = None, `type`: Option[String] = None, attributes: Attributes = Attributes.empty ): link =
 	{
 		new link( rel, href, `type`, attributes )
 	}
 
-	def apply( attributes: Attributes ): link = apply( None, None, None, attributes )
-
-	object style
+	class	style( attributes: Attributes )
+	extends	link( attributes ~ ( "rel" -> rel.stylesheet ) )
+	with	Tag.Empty[style]
 	{
-		def apply( href: Option[String] = None, attributes: Attributes = Attributes.empty ): link =
+		def this( href: Option[String], attributes: Attributes ) =
 		{
-			link( rel.stylesheet, href, attributes = attributes )
+			this( attributes ~ ( "href" -> href ) )
+		}
+	}
+
+	object	style
+	extends	Tag.Empty.Appliable[style]
+	{
+		def apply( href: Option[String] = None, attributes: Attributes = Attributes.empty ): style =
+		{
+			new style( href, attributes )
 		}
 	}
 }

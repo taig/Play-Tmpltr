@@ -1,52 +1,117 @@
 body {
-    padding: 20px;
+	padding: 20px;
 }
 
 cite {
-    letter-spacing: 1px;
-    border-bottom: 1px dotted grey;
+	letter-spacing: 1px;
+	border-bottom: 1px dotted grey;
 }
+
 a:hover cite { border: none; }
 
 section {
-    margin-top: 60px;
+	margin-top: 60px;
 }
 
 p {
-    line-height: 26px;
-    text-align: justify;
+	line-height: 26px;
+	text-align: justify;
 }
+
 p span.version {
-    font-family: monospace;
-    font-weight: bold;
+	font-family: monospace;
+	font-weight: bold;
 }
 
 div.container {
-    width: 740px;
+	width: 740px;
 }
 
-pre.code {
-	color: #D1D9E1;
-	background-color: #474949;
-	line-height: 20px;
-	margin-bottom: 24px;
+.code-example {
+	background: url( "/asset/image/noise.png" ) 0 0 repeat #484A4A;
+	border: 1px solid #3B3C3C;
+	border-radius: 4px;
+	box-shadow: 1px 1px 0 #7A7D7D inset;
+	margin-bottom: 12px;
+}
+
+.code-example .highlight:not( :first-child ) {
+	border-top: 1px solid #3B3C3C;
+	box-shadow: 1px 1px 0 #7A7D7D inset;
+}
+
+.highlight {
 	overflow: auto;
-	padding: 12px;
+	padding: 2px 10px 10px 10px;
+}
+
+.highlight * {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.highlight .label {
+	color: #7A7D7D;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+pre code {
+	color: #D1D9E1;
+	line-height: 20px;
 	white-space: pre;
 	word-wrap: normal;
 }
 
 #title {
-    margin-bottom: 16px;
-    position: relative;
+	margin-bottom: 16px;
+	position: relative;
 }
 
 #title h1 {
-    display: inline;
+	display: inline;
 }
 
 #links {
-    position: absolute;
-    right: 0;
-    top: 14px;
+	position: absolute;
+	right: 0;
+	top: 14px;
+}
+
+.bs-callout {
+	margin: 20px 0;
+	padding: 15px 30px 15px 15px;
+	border-left: 5px solid #EEEEEE;
+}
+
+.bs-callout h4 {
+	margin-top: 0;
+}
+
+.bs-callout p:last-child {
+	margin-bottom: 0;
+}
+
+.bs-callout code,
+.bs-callout .highlight {
+	background-color: #FFFFFF;
+}
+
+.bs-callout-danger {
+	background-color: #FCF2F2;
+	border-color: #DFB5B4;
+}
+
+.bs-callout-warning {
+	background-color: #FEFBED;
+	border-color: #F1E7BC;
+}
+
+.bs-callout-info {
+	background-color: #F0F7FD;
+	border-color: #D0E3F0;
 }

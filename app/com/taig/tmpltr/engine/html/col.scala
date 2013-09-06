@@ -1,15 +1,10 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-class	col( attributes: Attributes )
-extends	markup.col[col]( attributes )
-{
-	protected def copy = new col( _: Attributes )
-}
+class	col( val attributes: Attributes )
+extends	markup.col
+with	Tag.Empty[col]
 
-object col
-{
-	def apply( attributes: Attributes = Attributes.empty ): col = new col( attributes )
-}
+object	col
+extends	Tag.Empty.Appliable[col]

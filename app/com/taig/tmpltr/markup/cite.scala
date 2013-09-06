@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-abstract class	cite[A <: cite[A]]( attributes: Attributes )( content: Html )
-extends			Tag[A]( "cite", attributes, content )
+trait	cite
+extends	Tag.Body[cite, Content]
+{
+	val tag = "cite"
+}

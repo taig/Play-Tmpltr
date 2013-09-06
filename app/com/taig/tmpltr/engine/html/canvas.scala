@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	canvas( attributes: Attributes )( content: Html )
-extends	markup.canvas[canvas]( attributes )( content )
-{
-	protected def copy = new canvas( _: Attributes )( content )
-}
+class	canvas( val attributes: Attributes, val content: Content )
+extends	markup.canvas
+with	Tag.Body[canvas, Content]
 
-object canvas
-{
-	def apply( attributes: Attributes )( content: Html ): canvas = new canvas( attributes )( content )
-
-	def apply( content: Html ): canvas = apply( Attributes.empty )( content )
-}
+object	canvas
+extends	Tag.Body.Appliable[canvas, Content]

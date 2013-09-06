@@ -1,21 +1,13 @@
 package com.taig.tmpltr.engine.bootstrap
 
 import com.taig.tmpltr._
+import com.taig.tmpltr.engine.html
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	lead( attributes: Attributes )( content: Html )
-extends	markup.p[lead]( attributes )( content )
-{
-	protected def copy = new lead( _: Attributes )( content )
-}
+class	lead( attributes: Attributes, content: Content )
+extends	html.p( attributes ~ ( "class" -> "lead" ), content )
+with	Tag.Body[lead, Content]
 
-object lead
-{
-	def apply( attributes: Attributes )( content: Html ): lead =
-	{
-		new lead( attributes ++ ( "class" -> "lead" ) )( content )
-	}
-
-	def apply( content: Html ): lead = apply( Attributes.empty )( content )
-}
+object	lead
+extends	Tag.Body.Appliable[lead, Content]

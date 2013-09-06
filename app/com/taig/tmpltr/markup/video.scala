@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-abstract class	video[A <: video[A]]( attributes: Attributes )( content: Html )
-extends			Tag[A]( "video", attributes, content )
+trait	video
+extends	Tag.Body[video, Content]
+{
+	val tag = "video"
+}

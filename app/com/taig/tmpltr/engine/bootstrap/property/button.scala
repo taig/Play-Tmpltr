@@ -4,16 +4,15 @@ import com.taig.tmpltr._
 
 trait button
 {
-	class size( size: Option[String] ) extends Property( "btn" -> "-", size )
+	class size( size: String ) extends Property( "btn", size )
 	object size
 	{
-		object default extends size( None )
 		object large extends size( "lg" )
 		object small extends size( "sm" )
 		object tiny extends size( "xs" )
 	}
 
-	class style( style: Option[String] ) extends Property( "btn" -> "-", style )
+	class style( style: String ) extends Property( "btn", style )
 	object style
 	{
 		object danger extends style( "danger" )
@@ -24,5 +23,13 @@ trait button
 		object primary extends style( "primary" )
 		object success extends style( "success" )
 		object warning extends style( "warning" )
+	}
+
+	class `type`( `type`: String ) extends Property( `type` )
+	object `type`
+	{
+		object button extends `type`( "button" )
+		object reset extends `type`( "reset" )
+		object submit extends `type`( "submit" )
 	}
 }

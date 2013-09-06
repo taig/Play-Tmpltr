@@ -1,15 +1,11 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-class	hr( attributes: Attributes )
-extends	markup.hr[hr]( attributes )
-{
-	protected def copy = new hr( _: Attributes )
-}
+class	hr( val attributes: Attributes )
+extends	markup.hr
+with	Tag.Empty[hr]
 
-object hr
-{
-	def apply( attributes: Attributes = Attributes.empty ): hr = new hr( attributes )
-}
+object	hr
+extends	hr( Attributes.empty )
+with	Tag.Empty.Appliable[hr]

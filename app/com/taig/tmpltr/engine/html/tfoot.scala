@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	tfoot( attributes: Attributes )( content: Html )
-extends	markup.tfoot[tfoot]( attributes )( content )
-{
-	protected def copy = new tfoot( _: Attributes )( content )
-}
+class	tfoot( val attributes: Attributes, val content: Content )
+extends	markup.tfoot
+with	Tag.Body[tfoot, Content]
 
-object tfoot
-{
-	def apply( attributes: Attributes )( content: Html ): tfoot = new tfoot( attributes )( content )
-
-	def apply( content: Html ): tfoot = apply( Attributes.empty )( content )
-}
+object	tfoot
+extends	Tag.Body.Appliable[tfoot, Content]

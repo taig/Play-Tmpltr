@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	thead( attributes: Attributes )( content: Html )
-extends	markup.thead[thead]( attributes )( content )
-{
-	protected def copy = new thead( _: Attributes )( content )
-}
+class	thead( val attributes: Attributes, val content: Content )
+extends	markup.thead
+with	Tag.Body[thead, Content]
 
-object thead
-{
-	def apply( attributes: Attributes )( content: Html ): thead = new thead( attributes )( content )
-
-	def apply( content: Html ): thead = apply( Attributes.empty )( content )
-}
+object	thead
+extends	Tag.Body.Appliable[thead, Content]

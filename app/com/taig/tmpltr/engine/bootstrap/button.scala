@@ -3,94 +3,68 @@ package com.taig.tmpltr.engine.bootstrap
 import com.taig.tmpltr._
 import com.taig.tmpltr.engine.html
 
-import play.api.templates.Html
+import play.api.mvc.Content
+
+class	button /*private*/( attributes: Attributes, content: Content )
+extends	html.button( attributes, content )
+with	Tag.Body[button, Content]
+{
+	def this( `type`: Option[button.`type`], style: button.style, size: Option[button.size], disabled: Boolean, attributes: Attributes, content: Content ) =
+	{
+		this( attributes ~~ ( ( "type" -> `type`, "class" -> ( "btn", style, size ), "disabled" -> ( if( disabled ) Some( "disabled" ) else None ) ) ), content )
+	}
+}
 
 object	button
 extends	property.button
 {
-	class	a( attributes: Attributes )( content: Html )
-	extends	markup.a[a]( attributes )( content )
+	def apply( `type`: Option[button.`type`] = None, style: button.style = button.style.default, size: Option[button.size] = None, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		def this( href: Option[String], target: Option[a.target], style: Option[a.style], size: Option[a.size], disabled: Boolean, attributes: Attributes )( content: Html ) =
-		{
-			this( attributes ++ Attributes(
-					"href" -> href,
-					"target" -> target,
-					"class" -> Seq[Option[_]](
-						"btn",
-						style,
-						size,
-						if( disabled ) { "disabled" } else { None } ) )
-			)( content )
-		}
+		new button( `type`, style, size, disabled, attributes, content )
+	}
 
-		protected def copy = new a( _: Attributes )( content )
+	class	a /*private*/( attributes: Attributes, content: Content )
+	extends	html.a( attributes, content )
+	with	Tag.Body[a, Content]
+	{
+		def this( href: Option[String], target: Option[a.target], style: style, size: Option[size], disabled: Boolean, attributes: Attributes, content: Content ) =
+		{
+			this( attributes ~~ ( ( "href" -> href, "target" -> target, "class" -> ( "btn", style, size, if( disabled ) "disabled" else None ) ) ), content )
+		}
 	}
 
 	object	a
 	extends	html.property.a
-	with	property.button
 	{
-		def apply( href: Option[String] = None, target: Option[target] = None, style: style = a.style.default, size: size = a.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Html ): a =
+		def apply( href: Option[String] = None, target: Option[a.target] = None, style: style = button.style.default, size: Option[size] = None, disabled: Boolean = false, attributes: Attributes = Attributes.empty )( content: Content ) =
 		{
-			new a( href, target, style, size, disabled, attributes )( content )
+			new a( href, target, style, size, disabled, attributes, content )
+		}
+	}
+	
+	class	input /*private*/( attributes: Attributes )
+	extends	html.input( attributes )
+	with	Tag.Empty[input]
+	{
+		def this( `type`: Option[`type`], value: Option[String], style: style, size: Option[size], disabled: Boolean, attributes: Attributes ) =
+		{
+			this( attributes ~~ ( ( "type" -> `type`, "value" -> value, "class" -> ( "btn", style, size ) ) ) ~~ ( if( disabled ) "disabled" -> "disabled" else Attributes.empty ) )
 		}
 	}
 
-	class	input( attributes: Attributes )
-	extends	markup.input[input]( attributes )
+	object input
 	{
-		def this( `type`: Option[input.`type`], value: Option[String], name: Option[String], style: Option[input.style], size: Option[input.size], disabled: Boolean, attributes: Attributes ) =
+		def apply( `type`: Option[`type`] = None, value: Option[String] = None, style: style = button.style.danger, size: Option[size] = None, disabled: Boolean = false, attributes: Attributes = Attributes.empty ) =
 		{
-			this( attributes ++ Attributes(
-				"type" -> `type`,
-				"value" -> value,
-				"name" -> name,
-				"class" -> Seq[Option[_]]( "btn", style, size ) ) ++ {
-				if( disabled ) { Attributes( "disabled" -> "disabled" ) } else { Attributes.empty } } )
+			new input( `type`, value, style, size, disabled, attributes )
 		}
-
-		protected def copy = new input( _: Attributes )
 	}
 
-	object	input
-	extends	property.button
-	{
-		class `type`( `type`: String ) extends Property( `type` )
-		object `type`
-		{
-			object button extends `type`( "button" )
-			object reset extends `type`( "reset" )
-			object submit extends `type`( "submit" )
-		}
+	class	close( attributes: Attributes )
+	extends	html.button( attributes ~~ ( ( "class" -> "close", "aria-hidden" -> "true" ) ), "&times;" )
+	with	Tag.Empty[close]
 
-		def apply( `type`: Option[`type`] = None, value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
-		{
-			new input( `type`, value, name, style, size, disabled, attributes )
-		}
-
-		object button
-		{
-			def apply( value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
-			{
-				input( `type`.button, value, name, style, size, disabled, attributes )
-			}
-		}
-
-		object reset
-		{
-			def apply( value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
-			{
-				input( `type`.reset, value, name, style, size, disabled, attributes )
-			}
-		}
-
-		object submit
-		{
-			def apply( value: Option[String] = None, name: Option[String] = None, style: style = input.style.default, size: size = input.size.default, disabled: Boolean = false, attributes: Attributes = Attributes.empty ): input =
-			{
-				input( `type`.submit, value, name, style, size, disabled, attributes )
-			}
-		}
-	}
+	object	close
+	extends	close( Attributes.empty )
+	with	Tag.Empty.Appliable[close]
 }

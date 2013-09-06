@@ -1,13 +1,12 @@
 package com.taig.tmpltr
 
-abstract class Property( val prefix: Option[(String, String)], val identifier: Option[String] )
+abstract class Property( val prefix: Option[(String, String)], val identifier: String )
 {
 	def this( identifier: String ) = this( None, identifier )
 
-	def this( prefix: (String, String), identifier: Option[String] ) = this( Some( prefix ), identifier )
+	def this( prefix: (String, String), identifier: String ) = this( Some( prefix ), identifier )
 
-	override def toString =
-	{
-		identifier.fold( "" )( prefix.fold( "" ){ case (prefix, divider) => prefix + divider } + _ )
-	}
+	def this( prefix: String, identifier: String ) = this( Some( prefix -> "-" ), identifier )
+
+	override def toString = prefix.map( t => t._1 + t._2 ).getOrElse( "" ) + identifier
 }

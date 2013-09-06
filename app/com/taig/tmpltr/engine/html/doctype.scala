@@ -1,15 +1,9 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-class	doctype
-extends	markup.doctype[doctype]( "html" )
+object	doctype
+extends	markup.doctype
 {
-	protected def copy = ( _: Attributes ) => new doctype
-}
-
-object doctype
-{
-	def apply(): doctype = new doctype
+	val `type` = "html"
 }

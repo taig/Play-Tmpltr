@@ -2,17 +2,13 @@ package com.taig.tmpltr.engine.bootstrap
 
 import com.taig.tmpltr._
 
-import play.api.templates.Html
+import com.taig.tmpltr.engine.html
 
-class	container( attributes: Attributes )( content: Html )
-extends	markup.div[container]( attributes ++ ( "class" -> "container" ) )( content )
-{
-	protected def copy = new container( _: Attributes )( content )
-}
+import play.api.mvc.Content
 
-object container
-{
-	def apply( attributes: Attributes )( content: Html ): container = new container( attributes )( content )
+class	container( attributes: Attributes, content: Content )
+extends	html.div( attributes ~ ( "class" -> "container" ), content )
+with	Tag.Body[container, Content]
 
-	def apply( content: Html ): container = apply( Attributes.empty )( content )
-}
+object	container
+extends	Tag.Body.Appliable[container, Content]

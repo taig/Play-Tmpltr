@@ -1,24 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	ul( attributes: Attributes )( content: Html )
-extends	markup.ul[ul]( attributes )( content )
-{
-	protected def copy = new ul( _: Attributes )( content )
-}
+class	ul( val attributes: Attributes, val content: Content )
+extends	markup.ul
+with	Tag.Body[ul, Content]
 
-object ul
-{
-	def apply( attributes: Attributes )( content: Html ): ul = new ul( attributes )( content )
-
-	def apply( content: Html ): ul = apply( Attributes.empty )( content )
-
-	def apply( list: Traversable[Any], attributes: Attributes = Attributes.empty ): ul =
-	{
-		apply( attributes )( Html( list.map( element => li( Html( element.toString ) ) ).mkString ) )
-	}
-}
+object	ul
+extends	Tag.Body.Appliable[ul, Content]

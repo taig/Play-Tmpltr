@@ -1,9 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.Tag
+import com.taig.tmpltr._
 
-abstract class	doctype[A <: doctype[A]]( `type`: String )
-extends			Tag[A]( "!DOCTYPE" )
+trait	doctype
+extends	Tag[doctype]
 {
-	override def toString = "<" + label + " " + `type` + ">"
+	val `type`: String
+
+	override def toString = "<!DOCTYPE " + `type` + ">"
 }

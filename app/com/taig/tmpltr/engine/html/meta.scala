@@ -1,40 +1,42 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-class	meta( attributes: Attributes )
-extends	markup.meta[meta]( attributes )
+class	meta( val attributes: Attributes )
+extends	markup.meta
+with	Tag.Empty[meta]
 {
-	def this( name: Option[String], content: Option[String], attributes: Attributes ) =
+	def this( name: String, content: String, attributes: Attributes ) =
 	{
-		this( attributes ++ Attributes( "name" -> name, "content" -> content ) )
+		this( attributes ~~ ( ( "name" -> name, "content" -> content ) ) )
 	}
 
-	def this( charset: Option[String], attributes: Attributes ) =
+	def this( charset: String, attributes: Attributes ) =
 	{
-		this( attributes ++ Attributes( "charset" -> charset ) )
+		this( attributes ~ ( "charset" -> charset ) )
 	}
-
-	protected def copy = new meta( _: Attributes )
 }
 
-object meta
+object	meta
+extends	Tag.Empty.Appliable[meta]
 {
-	def apply( name: Option[String] = None, content: Option[String] = None, attributes: Attributes = Attributes.empty ): meta =
+	def apply( name: String, content: String, attributes: Attributes ): meta =
 	{
 		new meta( name, content, attributes )
 	}
 
-	def apply( charset: Option[String], attributes: Attributes ): meta =
+	def apply( name: String, content: String ): meta =
+	{
+		new meta( name, content, Attributes.empty )
+	}
+
+	def apply( charset: String, attributes: Attributes ): meta =
 	{
 		new meta( charset, attributes )
 	}
 
-	def apply( charset: Option[String] ): meta =
+	def apply( charset: String ): meta =
 	{
-		apply( charset, Attributes.empty )
+		new meta( charset, Attributes.empty )
 	}
-
-	def apply( attributes: Attributes ): meta = new meta( attributes )
 }

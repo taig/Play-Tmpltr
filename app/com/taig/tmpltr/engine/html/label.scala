@@ -1,29 +1,24 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	label( attributes: Attributes )( content: Html )
-extends	markup.label[label]( attributes )( content )
+class	label( val attributes: Attributes, val content: Content )
+extends	markup.label
+with	Tag.Body[label, Content]
 {
-	def this( `for`: Option[String], attributes: Attributes )( content: Html ) =
+	def this( `for`: Option[String], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ++ Attributes( "for" -> `for` ) )( content )
+		this( attributes ~ ( "for" -> `for` ), content )
 	}
-
-	protected def copy = new label( _: Attributes )( content )
 }
 
-object label
+object	label
+extends	Tag.Body.Appliable[label, Content]
 {
-	def apply( `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): label =
+	def apply( `for`: Option[String] = None, attributes: Attributes )( content: Content ) =
 	{
-		new label( `for`, attributes )( content )
+		new label( `for`, attributes, content )
 	}
-
-	def apply( attributes: Attributes )( content: Html ): label = apply( None, attributes )( content )
-
-	def apply( content: Html ): label = apply( Attributes.empty )( content )
 }

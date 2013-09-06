@@ -1,27 +1,25 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	a( attributes: Attributes )( content: Html )
-extends	markup.a[a]( attributes )( content )
+class	a( val attributes: Attributes, val content: Content )
+extends	markup.a
+with	Tag.Body[a, Content]
 {
-	def this( href: Option[String], target: Option[a.target], attributes: Attributes )( content: Html ) =
+	def this( href: Option[String], target: Option[a.target], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ++ Attributes( "href" -> href, "target" -> target ) )( content )
+		this( attributes ~~ ( ( "href" -> href, "target" -> target ) ), content )
 	}
-
-	protected def copy = new a( _: Attributes )( content )
 }
 
-object a extends property.a
+object	a
+extends	Tag.Body.Appliable[a, Content]
+with	property.a
 {
-	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty )( content: Html ): a =
+	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new a( href, target, attributes )( content )
+		new a( href, target, attributes, content )
 	}
-
-	def apply( attributes: Attributes ): a = apply( attributes = attributes )
 }

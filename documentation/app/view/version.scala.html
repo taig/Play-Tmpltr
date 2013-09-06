@@ -1,24 +1,12 @@
 @()
 
-@import scala.io.Source
-
-@bs_version() = @{
-	val iterator = Source.fromFile( "project/Build.scala" )
-			.getLines()
-			.map( "bootstrap.+\"(\\d(?:\\.\\d)*(?:-\\d)?)\"".r.findFirstMatchIn _ )
-			.flatten
-
-	if( iterator.hasNext )
-	{
-		iterator.next.group( 1 )
-	}
-	else
-	{
-		"[unknown]"
-	}
+@bs_version = @{
+	"([\\d\\.]+)".r
+		.findFirstIn( routes.WebJarAssets.at( WebJarAssets.locate( "bootstrap.css" ) ).toString )
+		.getOrElse( "[unknown]" )
 }
 
 @p( "class" -> "text-center" ) { @small {
-	Tested with @cite{ Play Framework } @span( "class" -> "version" )( play.core.PlayVersion.current ) and @cite{
-	Twitter Bootstrap } @span( "class" -> "version" )( bs_version ).
+	Tested with @cite{ Play Framework } @span( "class" -> "version" ){ @play.core.PlayVersion.current } and @cite{
+	Bootstrap } @span( "class" -> "version" ){ @bs_version }.
 } }

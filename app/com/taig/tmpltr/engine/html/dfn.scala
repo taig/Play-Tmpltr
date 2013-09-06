@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	dfn( attributes: Attributes )( content: Html )
-extends	markup.dfn[dfn]( attributes )( content )
-{
-	protected def copy = new dfn( _: Attributes )( content )
-}
+class	dfn( val attributes: Attributes, val content: Content )
+extends	markup.dfn
+with	Tag.Body[dfn, Content]
 
-object dfn
-{
-	def apply( attributes: Attributes )( content: Html ): dfn = new dfn( attributes )( content )
-
-	def apply( content: Html ): dfn = apply( Attributes.empty )( content )
-}
+object	dfn
+extends	Tag.Body.Appliable[dfn, Content]

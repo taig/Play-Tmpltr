@@ -1,4 +1,4 @@
-@( name: String, repository: String, library: String, sample: String, documentation: String )
+@( name: String, repository: String, source: String, documentation: String, scalaDoc: String )
 
 @import WebJarAssets.locate
 
@@ -6,24 +6,24 @@
 	@meta( charset = "utf-8" )
 
 	@title( name )
-	
+
 	@link( link.rel.icon, routes.Assets.at( "image/favicon.png" ), "image/png" )
 
 	@link.style( routes.WebJarAssets.at( locate( "bootstrap.min.css" ) ) )
 	@link.style( routes.Assets.at( "stylesheet/rainbow.css" ) )
 	@link.style( routes.Assets.at( "stylesheet/main.css" ) )
 
-	@script.reference( routes.WebJarAssets.at( locate( "jquery.min.js" ) ) )
-	@script.reference( routes.WebJarAssets.at( locate( "bootstrap.min.js" ) ) )
-	@script.reference( routes.Assets.at( "javascript/highlight.pack.js" ) )
-	@script.reference( routes.Assets.at( "javascript/main.js" ) )
+	@script( routes.WebJarAssets.at( locate( "jquery.min.js" ) ) )
+	@script( routes.WebJarAssets.at( locate( "bootstrap.min.js" ) ) )
+	@script( routes.WebJarAssets.at( locate( "highlight.min.js" ) ) )
+	@script( routes.Assets.at( "javascript/main.js" ) )
 } {
 	@bs.container {
 		@div( "id" -> "title" ) {
 			@h1{ @bs.icon( "fire", attributes = "style" -> "margin-top: 18px;" ) @name }
 			@div( "id" -> "links" ) {
 				@bs.button.a( repository, bs.button.a.target.blank ){ @bs.icon( "globe" ) GitHub }
-				@bs.button.a( documentation, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
+				@bs.button.a( scalaDoc, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
 				@bs.button.a( "mailto:my.taig@gmail.com" ){ @bs.icon( "envelope" ) Contact }
 			}
 		}
@@ -31,30 +31,30 @@
 		@bs.lead {
 			A module for the @a( "http://www.playframework.com/", a.target.blank ){ @cite { Play Framework 2 } } (Scala)
 			that helps keeping your views clean and free from boilerplate code with advanced templating utilities for
-			@cite { HTML } and @a( "http://twitter.github.io/bootstrap/", a.target.blank ){ @cite { Twitter Bootstrap } }
+			@cite { HTML } and @a( "http://getbootstrap.com/", a.target.blank ){ @cite { Bootstrap } }
 			elements.
 		}
 
 		@version()
 
 		@section( "id" -> "intro" ) {
-			@bs.page_header( 2 ){ Introduction }
-			@view.introduction.html.index( 3, name, repository, library, sample, documentation )
+			@bs.page_header{ @h2{ Introduction } }
+			@introduction( 3, name, repository, source, documentation, scalaDoc )
 		}
 
 		@section( "id" -> "getting-started" ) {
-			@bs.page_header( 2 ){ Getting Started }
-			@view.installation.html.index( 3, name, repository, library, sample, documentation )
+			@bs.page_header{ @h2{ Getting Started } }
+			@installation( 3, name, repository, source, documentation, scalaDoc )
 		}
 
 		@section( "id" -> "usage" ) {
-			@bs.page_header( 2 ){ Usage }
-			@view.usage.html.index( 3, name, repository, library, sample, documentation )
+			@bs.page_header{ @h2{ Usage } }
+			@usage( 3, name, repository, source, documentation, scalaDoc )
 		}
 
 		@section( "id" -> "license" ) {
-			@bs.page_header( 2 ){ License }
-			@view.license.html.index()
+			@bs.page_header{ @h2{ License } }
+			@license()
 		}
 	}
 

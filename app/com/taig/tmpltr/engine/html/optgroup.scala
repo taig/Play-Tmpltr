@@ -1,24 +1,24 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	optgroup( label: Option[String], attributes: Attributes )( content: Html )
-extends	markup.optgroup[optgroup]( attributes ++ Attributes( "label" -> label ) )( content )
+class	optgroup( val attributes: Attributes, val content: Content )
+extends	markup.optgroup
+with	Tag.Body[optgroup, Content]
 {
-	protected def copy = new optgroup( label, _: Attributes )( content )
+	def this( label: Option[String], attributes: Attributes, content: Content ) =
+	{
+		this( attributes ~ ( "label" -> label ), content )
+	}
 }
 
-object optgroup
+object	optgroup
+extends	Tag.Body.Appliable[optgroup, Content]
 {
-	def apply( label: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): optgroup =
+	def apply( label: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new optgroup( label, attributes )( content )
+		new optgroup( label, attributes, content )
 	}
-
-	def apply( attributes: Attributes )( content: Html ): optgroup = apply( None, attributes )( content )
-
-	def apply( content: Html ): optgroup = apply( Attributes.empty )( content )
 }

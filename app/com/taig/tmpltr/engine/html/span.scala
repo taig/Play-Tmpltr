@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	span( attributes: Attributes )( content: Html )
-extends	markup.span[span]( attributes )( content )
-{
-	protected def copy = new span( _: Attributes )( content )
-}
+class	span( val attributes: Attributes, val content: Content )
+extends	markup.span
+with	Tag.Body[span, Content]
 
-object span
-{
-	def apply( attributes: Attributes )( content: Html ): span = new span( attributes )( content )
-
-	def apply( content: Html ): span = apply( Attributes.empty )( content )
-}
+object	span
+extends	Tag.Body.Appliable[span, Content]

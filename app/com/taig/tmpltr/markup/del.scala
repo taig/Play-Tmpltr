@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-abstract class	del[A <: del[A]]( attributes: Attributes )( content: Html )
-extends			Tag[A]( "del", attributes, content )
+trait	del
+extends	Tag.Body[del, Content]
+{
+	val tag = "del"
+}

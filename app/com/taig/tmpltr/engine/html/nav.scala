@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	nav( attributes: Attributes )( content: Html )
-extends	markup.nav[nav]( attributes )( content )
-{
-	protected def copy = new nav( _: Attributes )( content )
-}
+class	nav( val attributes: Attributes, val content: Content )
+extends	markup.nav
+with	Tag.Body[nav, Content]
 
-object nav
-{
-	def apply( attributes: Attributes )( content: Html ): nav = new nav( attributes )( content )
-
-	def apply( content: Html ): nav = apply( Attributes.empty )( content )
-}
+object	nav
+extends	Tag.Body.Appliable[nav, Content]

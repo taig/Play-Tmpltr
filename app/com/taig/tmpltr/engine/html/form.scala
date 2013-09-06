@@ -1,29 +1,25 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	form( attributes: Attributes )( content: Html )
-extends	markup.form[form]( attributes )( content )
+class	form( val attributes: Attributes, val content: Content )
+extends	markup.form
+with	Tag.Body[form, Content]
 {
-	def this( action: Option[String], method: Option[form.method], attributes: Attributes )( content: Html ) =
+	def this( action: Option[String], method: Option[form.method], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ++ Attributes( "action" -> action, "method" -> method ) )( content )
+		this( attributes ~~ ( ( "action" -> action, "method" -> method ) ), content )
 	}
-
-	protected def copy = new form( _: Attributes )( content )
 }
 
-object form extends property.form
+object	form
+extends	Tag.Body.Appliable[form, Content]
+with	property.form
 {
-	def apply( action: Option[String] = None, method: Option[method] = None, attributes: Attributes = Attributes.empty )( content: Html ): form =
+	def apply( action: Option[String] = None, method: Option[method] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new form( action, method, attributes )( content )
+		new form( action, method, attributes, content )
 	}
-
-	def apply( attributes: Attributes )( content: Html ): form = apply( None, None, attributes )( content )
-
-	def apply( content: Html ): form = apply( Attributes.empty )( content )
 }

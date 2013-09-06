@@ -1,25 +1,23 @@
 package com.taig.tmpltr.engine.bootstrap
 
 import com.taig.tmpltr._
-import com.taig.tmpltr.{ markup, Attributes }
 
-class	image( attributes: Attributes )
-extends markup.img[image]( attributes )
+import com.taig.tmpltr.engine.html
+
+class	image /*private*/( attributes: Attributes )
+extends html.img( attributes )
+with	Tag.Empty[image]
 {
-	def this( shape: image.shape, responsive: Boolean, attributes: Attributes ) =
+	def this( shape: Option[image.shape], responsive: Boolean, attributes: Attributes ) =
 	{
-		this( attributes ++  Attributes( "class" -> Seq[Option[_]](
-			shape,
-			if( responsive ) { "img-responsive" } else { None } ) ) )
+		this( attributes ~ ( "class" -> ( shape, if( responsive ) "img-responsive" else None ) ) )
 	}
-
-	protected def copy = new image( _: Attributes )
 }
 
 object	image
 extends	property.image
 {
-	def apply( shape: shape = image.shape.default, responsive: Boolean = false, attributes: Attributes = Attributes.empty ): image =
+	def apply( shape: Option[shape] = None, responsive: Boolean = false, attributes: Attributes = Attributes.empty ) =
 	{
 		new image( shape, responsive, attributes )
 	}

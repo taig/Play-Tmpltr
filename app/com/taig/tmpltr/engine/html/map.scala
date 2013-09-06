@@ -1,29 +1,24 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	map( attributes: Attributes )( content: Html )
-extends	markup.map[map]( attributes )( content )
+class	map( val attributes: Attributes, val content: Content )
+extends	markup.map
+with	Tag.Body[map, Content]
 {
-	def this( name: Option[String], attributes: Attributes )( content: Html ) =
+	def this( name: Option[String], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ++ Attributes( "name" -> name ) )( content )
+		this( attributes ~ ( "name" -> name ), content )
 	}
-
-	protected def copy = new map( _: Attributes )( content )
 }
 
-object map
+object	map
+extends	Tag.Body.Appliable[map, Content]
 {
-	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): map =
+	def apply( name: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new map( name, attributes )( content )
+		new map( name, attributes, content )
 	}
-
-	def apply( attributes: Attributes )( content: Html ): map = apply( None, attributes )( content )
-
-	def apply( content: Html ): map = apply( Attributes.empty )( content )
 }

@@ -1,8 +1,11 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-abstract class	form[A <: form[A]]( attributes: Attributes )( content: Html )
-extends			Tag[A]( "form", attributes, content )
+trait	form
+extends	Tag.Body[form, Content]
+{
+	val tag = "form"
+}

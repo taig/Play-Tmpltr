@@ -1,15 +1,11 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-class	br( attributes: Attributes )
-extends markup.br[br]( attributes )
-{
-	protected def copy = new br( _: Attributes )
-}
+class	br( val attributes: Attributes )
+extends	markup.br
+with	Tag.Empty[br]
 
-object br
-{
-	def apply( attributes: Attributes = Attributes.empty ): br = new br( attributes )
-}
+object	br
+extends br( Attributes.empty )
+with	Tag.Empty.Appliable[br]

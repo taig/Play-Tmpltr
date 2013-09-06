@@ -1,34 +1,24 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	output( attributes: Attributes )( content: Html )
-extends	markup.output[output]( attributes )( content )
+class	output( val attributes: Attributes, val content: Content )
+extends	markup.output
+with	Tag.Body[output, Content]
 {
-	def this( name: Option[String], `for`: Option[String], attributes: Attributes )( content: Html ) =
+	def this( name: Option[String], `for`: Option[String], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ++ Attributes( "name" -> name, "for" -> `for` ) )( content )
+		this( attributes ~~ ( ( "name" -> name, "for" -> `for` ) ), content )
 	}
-
-	protected def copy = new output( _: Attributes )( content )
 }
 
-object output
+object	output
+extends	Tag.Body.Appliable[output, Content]
 {
-	def apply( name: Option[String] = None, `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): output =
+	def apply( name: Option[String] = None, `for`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new output( name, `for`, attributes )( content )
+		new output( name, `for`, attributes, content )
 	}
-
-	def apply( name: Option[String], attributes: Attributes )( content: Html ): output =
-	{
-		apply( name, None, attributes )( content )
-	}
-
-	def apply( attributes: Attributes )( content: Html ): output = apply( None, attributes )( content )
-
-	def apply( content: Html ): output = apply( Attributes.empty )( content )
 }

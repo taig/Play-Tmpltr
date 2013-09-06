@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	dialog( attributes: Attributes )( content: Html )
-extends	markup.dialog[dialog]( attributes )( content )
-{
-	protected def copy = new dialog( _: Attributes )( content )
-}
+class	dialog( val attributes: Attributes, val content: Content )
+extends	markup.dialog
+with	Tag.Body[dialog, Content]
 
-object dialog
-{
-	def apply( attributes: Attributes )( content: Html ): dialog = new dialog( attributes )( content )
-
-	def apply( content: Html ): dialog = apply( Attributes.empty )( content )
-}
+object	dialog
+extends	Tag.Body.Appliable[dialog, Content]

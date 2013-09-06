@@ -1,29 +1,24 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	option( attributes: Attributes )( content: Html )
-extends	markup.option[option]( attributes )( content )
+class	option( val attributes: Attributes, val content: Content )
+extends	markup.option
+with	Tag.Body[option, Content]
 {
-	def this( value: Option[String], attributes: Attributes )( content: Html ) =
+	def this( value: Option[String], attributes: Attributes, content: Content ) =
 	{
-		this( attributes ++ Attributes( "value" -> value ) )( content )
+		this( attributes ~ ( "value" -> value ), content )
 	}
-
-	protected def copy = new option( _: Attributes )( content )
 }
 
-object option
+object	option
+extends	Tag.Body.Appliable[option, Content]
 {
-	def apply( value: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Html ): option =
+	def apply( value: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new option( value, attributes )( content )
+		new option( value, attributes, content )
 	}
-
-	def apply( attributes: Attributes )( content: Html ): option = apply( None, attributes )( content )
-
-	def apply( content: Html ): option = apply( Attributes.empty )( content )
 }

@@ -1,29 +1,24 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
 import play.api.templates.Txt
 
-class	style( attributes: Attributes )( content: Txt )
-extends	markup.style[style]( attributes )( content )
+class	style( val attributes: Attributes, val content: Txt )
+extends	markup.style
+with	Tag.Body[style, Txt]
 {
-	def this( `type`: Option[String], attributes: Attributes )( content: Txt ) =
+	def this( `type`: Option[String], attributes: Attributes, content: Txt ) =
 	{
-		this( attributes ++ Attributes( "type" -> `type` ) )( content )
+		this( attributes ~ ( "type" -> `type` ), content )
 	}
-
-	protected def copy = new style( _: Attributes )( content )
 }
 
-object style
+object	style
+extends	Tag.Body.Appliable[style, Txt]
 {
-	def apply( `type`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ): style =
+	def apply( `type`: Option[String] = None, attributes: Attributes = Attributes.empty )( content: Txt ) =
 	{
-		new style( `type`, attributes )( content )
+		new style( `type`, attributes, content )
 	}
-
-	def apply( attributes: Attributes )( content: Txt ): style = apply( None, attributes )( content )
-
-	def apply( content: Txt ): style = apply( Attributes.empty )( content )
 }

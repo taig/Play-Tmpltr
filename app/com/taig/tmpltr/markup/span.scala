@@ -1,8 +1,13 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-abstract class	span[A <: span[A]]( attributes: Attributes )( content: Html )
-extends			Tag[A]( "span", attributes, content )
+trait	span
+extends	Tag.Body[span, Content]
+{
+	val tag = "span"
+
+	override val minimized = false
+}

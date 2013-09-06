@@ -4,7 +4,7 @@ import com.taig.tmpltr.Property
 
 trait input
 {
-	class `type`(`type`: String) extends Property( `type` )
+	class `type`( `type`: String ) extends Property( `type` )
 	object `type`
 	{
 		object button extends `type`( "button" )

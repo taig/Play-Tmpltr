@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	audio( attributes: Attributes )( content: Html )
-extends	markup.audio[audio]( attributes )( content )
-{
-	protected def copy = new audio( _: Attributes )( content )
-}
+class	audio( val attributes: Attributes, val content: Content )
+extends	markup.audio
+with	Tag.Body[audio, Content]
 
-object audio
-{
-	def apply( attributes: Attributes )( content: Html ): audio = new audio( attributes )( content )
-
-	def apply( content: Html ): audio = apply( Attributes.empty )( content )
-}
+object	audio
+extends	Tag.Body.Appliable[audio, Content]

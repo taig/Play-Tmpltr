@@ -8,11 +8,11 @@ object Application extends Controller
 	{
 		Ok(
 			view.html.index(
-				"Play Tmpltr",
-				"https://github.com/Taig/Play-Tmpltr",
-				"https://github.com/Taig/Play-Tmpltr/blob/master/module/library",
-				"https://github.com/Taig/Play-Tmpltr/blob/master/module/sample",
-				"http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package"
+				name = "Play Tmpltr",
+				repository = "https://github.com/Taig/Play-Tmpltr",
+				source = "https://github.com/Taig/Play-Tmpltr/tree/master",
+				documentation = "https://github.com/Taig/Play-Tmpltr/tree/master/documentation",
+				scalaDoc = "http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package"
 			)
 		)
 	}

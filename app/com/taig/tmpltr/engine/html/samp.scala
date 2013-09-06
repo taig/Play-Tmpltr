@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	samp( attributes: Attributes )( content: Html )
-extends	markup.samp[samp]( attributes )( content )
-{
-	protected def copy = new samp( _: Attributes )( content )
-}
+class	samp( val attributes: Attributes, val content: Content )
+extends	markup.samp
+with	Tag.Body[samp, Content]
 
-object samp
-{
-	def apply( attributes: Attributes )( content: Html ): samp = new samp( attributes )( content )
-
-	def apply( content: Html ): samp = apply( Attributes.empty )( content )
-}
+object	samp
+extends	Tag.Body.Appliable[samp, Content]

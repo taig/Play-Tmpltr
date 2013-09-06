@@ -1,19 +1,12 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	ins( attributes: Attributes )( content: Html )
-extends	markup.ins[ins]( attributes )( content )
-{
-	protected def copy = new ins( _: Attributes )( content )
-}
+class	ins( val attributes: Attributes, val content: Content )
+extends	markup.ins
+with	Tag.Body[ins, Content]
 
-object ins
-{
-	def apply( attributes: Attributes )( content: Html ): ins = new ins( attributes )( content )
-
-	def apply( content: Html ): ins = apply( Attributes.empty )( content )
-}
+object	ins
+extends	Tag.Body.Appliable[ins, Content]

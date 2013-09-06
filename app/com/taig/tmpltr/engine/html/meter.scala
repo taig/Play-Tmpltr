@@ -1,29 +1,24 @@
 package com.taig.tmpltr.engine.html
 
-import com.taig.tmpltr.markup
-import com.taig.tmpltr.Attributes
+import com.taig.tmpltr._
 
-import play.api.templates.Html
+import play.api.mvc.Content
 
-class	meter( value: Option[Float], min: Option[Float], max: Option[Float], attributes: Attributes )( content: Html )
-extends	markup.meter[meter]( attributes ++ Attributes( "value" -> value, "min" -> min, "max" -> max ) )( content )
+class	meter( val attributes: Attributes, val content: Content )
+extends	markup.meter
+with	Tag.Body[meter, Content]
 {
-	protected def copy = new meter( value, min, max, _: Attributes )( content )
+	def this( value: Option[Float], min: Option[Float], max: Option[Float], attributes: Attributes, content: Content ) =
+	{
+		this( attributes ~~ ( ( "value" -> value, "min" -> min, "max" -> max ) ), content )
+	}
 }
 
-object meter
+object	meter
+extends	Tag.Body.Appliable[meter, Content]
 {
-	def apply( value: Option[Float] = None, min: Option[Float] = None, max: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Html ): meter =
+	def apply( value: Option[Float] = None, min: Option[Float] = None, max: Option[Float] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
-		new meter( value, min, max, attributes )( content )
+		new meter( value, min, max, attributes, content )
 	}
-
-	def apply( value: Option[Float], attributes: Attributes )( content: Html ): meter =
-	{
-		apply( value, None, None, attributes )( content )
-	}
-
-	def apply( attributes: Attributes )( content: Html ): meter = apply( None, attributes )( content )
-
-	def apply( content: Html ): meter = apply( Attributes.empty )( content )
 }

@@ -1,6 +1,9 @@
 package com.taig.tmpltr.markup
 
-import com.taig.tmpltr.{ Attributes, Tag }
+import com.taig.tmpltr._
 
-abstract class	area[A <: area[A]]( attributes: Attributes )
-extends			Tag[A]( "area", attributes )
+trait	area
+extends	Tag.Empty[area]
+{
+	val tag = "area"
+}
