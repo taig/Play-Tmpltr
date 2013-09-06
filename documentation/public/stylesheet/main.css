@@ -68,18 +68,18 @@ pre code {
 }
 
 #title {
+	height: 60px;
 	margin-bottom: 16px;
-	position: relative;
 }
 
 #title h1 {
-	display: inline;
+	float: left;
+	margin: 0;
 }
 
 #links {
-	position: absolute;
-	right: 0;
-	top: 14px;
+	float: right;
+	margin-top: 25px;
 }
 
 .bs-callout {
