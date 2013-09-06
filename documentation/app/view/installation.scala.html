@@ -2,17 +2,34 @@
 
 @h( level ){ Installation }
 @p {
-	When your @cite{ Play Framework } (Scala) is @a( "http://www.playframework.com/documentation/2.1.1/Installing",
-	a.target.blank ){ up } and @a( "http://www.playframework.com/documentation/2.1.1/NewApplication", a.target.blank ){
-	running } you need to add @cite( name ) to your project dependencies. A binary version for easy integration is
-	currently not available but will be published very soon. By then you have to compile the @a( repository, a.target.blank ){
-	sources } by yourself, add a @code{ Build.scala } file and include it as a local repository. Or add it as sub
-	project. Or just wait a few more days for me to publish the binaries and provide a better installation guide.
+	When your @cite{ Play Framework } (Scala) application is
+	@a( "http://www.playframework.com/documentation/2.1.3/Installing", a.target.blank ){ up } and
+	@a( "http://www.playframework.com/documentation/2.1.3/NewApplication", a.target.blank ){ running } you need to add
+	@cite( name ) to your project dependencies. In order to do so you have to add my @cite{ GitHub } page as resolver.
 }
+@example(
+	example.source( "resolvers += Resolver.url( \"Play Tmpltr\", url( \"http://taig.github.io/Play-Tmpltr/release\" ) )( Resolver.ivyStylePatterns )" )
+)
+
+@p {
+	Now @cite{ sbt } will automatically fetch the @cite( name ) binaries for you if you add it to the project
+	dependencies.
+}
+@example(
+	example.source( "libraryDependencies += \"com.taig\" %% \"play-tmpltr\" % \"0.1\"" )
+)
+	
 @p {
 	If you're planning to use @cite{ @name's } @a( "http://twitter.github.io/bootstrap/index.html", a.target.blank ){
 	@cite{ Bootstrap } } utilities you have to take care of adding all necessary files to your application and
 	to reference them in your view's @code{ &lt;head /&gt; } area.
+}
+
+@callout( callout.`type`.info ) {
+	@p {
+		You might want to check out the @a( "http://www.webjars.org/", a.target.blank ){ @cite{ WebJars } } project to
+		easily integrate asset dependencies such as @cite{ Bootstrap } or @cite{ jQuery }.
+	}
 }
 
 @h3 { Integration }
