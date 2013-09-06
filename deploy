@@ -84,7 +84,7 @@ if( new File( documentation + "/RUNNING_PID" ).exists() )
 
 // Clean and prepare temporary storage.
 print( "Cleaning temporary storage ..." )
-Option( temp.listFiles ).foreach( _.foreach( _.delete ) )
+Process( Seq( "rm", "-r" ) ++ temp.list, temp ) ! void
 temp.mkdir
 println( " Done!" )
 
@@ -104,7 +104,7 @@ println( " Done!" )
 
 // Prepare gh-pages.
 Process( Seq( "git", "checkout", "gh-pages" ), tmpltr ) ! void
-Option( documentation.listFiles ).foreach( _.foreach( _.delete ) )
+Process( Seq( "rm", "-r", "index.html", "asset", "webjars", "scaladoc" ) )
 
 // Insert documentation, scalaDoc and binaries.
 Process( Seq( "mv", s"$temp/documentation/index.html", s"$temp/documentation/asset", s"$temp/documentation/webjars", s"$tmpltr" ) ) ! void
