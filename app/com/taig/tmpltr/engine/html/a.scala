@@ -18,7 +18,7 @@ object	a
 extends	Tag.Body.Appliable[a, Content]
 with	property.a
 {
-	def apply( href: Option[String] = None, target: Option[target] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
+	def apply( href: String, target: Option[target] = None, attributes: Attributes = Attributes.empty )( content: Content ) =
 	{
 		new a( href, target, attributes, content )
 	}
