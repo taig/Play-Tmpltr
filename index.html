@@ -1,0 +1,214 @@
+
+
+
+<!DOCTYPE html>
+<html><head><meta charset="utf-8" />
+
+	<title>Play Tmpltr</title>
+
+	<link rel="icon" href="asset/image/favicon.png" type="image/png" />
+
+	<link href="webjars/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="asset/stylesheet/rainbow.css" rel="stylesheet" />
+	<link href="asset/stylesheet/main.css" rel="stylesheet" />
+
+	<script src="webjars/jquery/1.9.0/jquery.min.js"></script>
+	<script src="webjars/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="webjars/highlightjs/7.3/highlight.min.js"></script>
+	<script src="asset/javascript/main.js"></script></head><body><div class="container"><div id="title"><h1><span style="margin-top: 18px;" class="glyphicon glyphicon-fire"></span> Play Tmpltr</h1>
+			<div id="links"><a href="https://github.com/Taig/Play-Tmpltr" target="_blank" class="btn btn-default"><span class="glyphicon glyphicon-globe"></span> GitHub</a>
+				<a href="http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package" target="_blank" class="btn btn-default"><span class="glyphicon glyphicon-book"></span> ScalaDoc</a>
+				<a href="mailto:my.taig@gmail.com" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span> Contact</a></div></div>
+
+		<p class="lead">A module for the <a href="http://www.playframework.com/" target="_blank"><cite>Play Framework 2</cite></a> (Scala)
+			that helps keeping your views clean and free from boilerplate code with advanced templating utilities for
+			<cite>HTML</cite> and <a href="http://getbootstrap.com/" target="_blank"><cite>Bootstrap</cite></a>
+			elements.</p>
+
+		
+
+
+
+<p class="text-center"><small>Tested with <cite>Play Framework</cite> <span class="version">2.1.3</span> and <cite>Bootstrap</cite> <span class="version">3.0.0</span>.</small></p>
+
+		<section id="intro"><div class="page-header"><h2>Introduction</h2></div>
+			
+
+<p>I love the <cite>Play Framework</cite>. And I also love how beatuiful its views can be with plain old <cite>HTML</cite>
+	and some <cite>Scala</cite> variables here and there. But no later than when it comes to build up some <cite>Bootstrap</cite>
+	forms the drawbacks are inevitable. The views suddenly become a varied mixture of <cite>HTML</cite> and some way too
+	inflexible field constructors—or they drown in repetetive boilerplate code that is required by <cite>Bootstrap</cite>.
+	<cite>Play Tmpltr</cite> is an approach to create consistent and beautiful views within the <cite>Play Framework</cite>.</p></section>
+
+		<section id="getting-started"><div class="page-header"><h2>Getting Started</h2></div>
+			
+
+<h3>Installation</h3>
+<p>When your <cite>Play Framework</cite> (Scala) is <a href="http://www.playframework.com/documentation/2.1.1/Installing" target="_blank">up</a> and <a href="http://www.playframework.com/documentation/2.1.1/NewApplication" target="_blank">running</a> you need to add <cite>Play Tmpltr</cite> to your project dependencies. A binary version for easy integration is
+	currently not available but will be published very soon. By then you have to compile the <a href="https://github.com/Taig/Play-Tmpltr" target="_blank">sources</a> by yourself, add a <code>Build.scala</code> file and include it as a local repository. Or add it as sub
+	project. Or just wait a few more days for me to publish the binaries and provide a better installation guide.</p>
+<p>If you're planning to use <cite>Play Tmpltr's</cite> <a href="http://twitter.github.io/bootstrap/index.html" target="_blank"><cite>Bootstrap</cite></a> utilities you have to take care of adding all necessary files to your application and
+	to reference them in your view's <code>&lt;head /&gt;</code> area.</p>
+
+<h3>Integration</h3>
+<p>The dependencies are set up properly and you want to start building some beautiful views? Well, then it's time to
+	deal with the imports now. Add <code>com.taig.tmpltr.engine.html._</code> to the import directives in the head of
+	your view and <strong>all</strong> the <cite>HTML</cite> tools will be ready to use. But without importing <code>com.taig.tmpltr._</code>
+	using them won't be fun, because all the implicit conversions are located there. So make sure to add both statements
+	before you go on.</p>
+
+<p>If your view now looks somehow like this, your basic configuration is ready.</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@*************************
+* Your view&#x27;s signature. *
+*************************@
+@( args: Any* )
+
+@***********************
+* Play Tmpltr imports. *
+***********************@
+@import com.taig.tmpltr._
+@import com.taig.tmpltr.engine.html._
+
+@p{ Your @cite{ HTML5 } goes here. }</code></pre></div></div>
+
+<p>You may have already noticed the <code>engine</code> part in the previous import statements. You won't be surprised if
+	I tell you that there are even more packages in there, will you? To enable the module's <cite>Bootstrap</cite>
+	support you simply have to import <code>com.taig.tmpltr.engine.bootstrap._</code>. Unfortunately this will cause
+	namespace issues if you're planning to use the <cite>HTML</cite> and the <cite>Bootstrap</cite> engine simultaneously.
+	Therefore you need to overcome this by prefixing the <code>bootstrap</code> utilities (use
+	<code>com.taig.tmpltr.engine.bootstrap</code> or <code>com.taig.tmpltr.engine.{ bootstrap => bs }</code> instead).</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@( args: Any* )
+
+@import com.taig.tmpltr._
+@import com.taig.tmpltr.engine.html._
+@import com.taig.tmpltr.engine.{ bootstrap =&gt; bs }
+
+@bs.lead{ Your prefixed @cite{ Bootstrap } goes here. }</code></pre></div></div>
+
+<p>Alternatively you can add frequently used imports to your <code>Build.scala</code> file. That's a useful thing if
+	you have multiple views that rely on <cite>Play Tmpltr</cite>. Open your <code>project/Build.scala</code> file and add the import
+	directives to your project settings. <cite>Play</cite> will then take care of importing these files into your views.
+	Less pain for you.</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">val main = play.Project( &quot;project-name&quot;, &quot;1.0&quot; ).settings(
+    templatesImport ++= Seq(
+        &quot;com.taig.tmpltr._&quot;,
+        &quot;com.taig.tmpltr.engine.html._&quot;,
+        &quot;com.taig.tmpltr.engine.{ bootstrap =&gt; bs }&quot;
+    )
+)</code></pre></div></div>
+
+<div class="bs-callout bs-callout-warning"><h4>Please Note</h4>
+	<p>Predefining the imports in your <code>Build.scala</code> file may break your IDE's code completion. Start off by
+		manually importing the <cite>Play Tmpltr</cite> tools if you feel like you're missing some hints from your IDE to find
+		your way around.</p></div></section>
+
+		<section id="usage"><div class="page-header"><h2>Usage</h2></div>
+			
+
+<p><cite>Play Tmpltr's</cite> most important features with useful examples are listed below. If you are missing something take a
+	look into the <a href="https://github.com/Taig/Play-Tmpltr/tree/master/documentation" target="_blank">source code</a> of this documentation page. It's actually a <cite>Play</cite>
+	application built with <cite>Play Tmpltr</cite>. Alternatively you might want to browse the <a href="http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package" target="_blank"><cite>ScalaDoc</cite></a> to get an overview of the available features. Also this module is far from being feature
+	complete. So if you find yourself adding some utilities for your project make sure to send me a pull request!</p>
+
+<h3>HTML</h3>
+
+
+<h4>Tags</h4>
+<p>When you've imported all <code>com.taig.tmpltr.engine.html._</code> utilities right into your namespace as adviced
+	above you will have easy access to all <cite>HTML</cite> features. In fact all you need is <cite>Play's</cite> magic <code>@</code>
+	character followed by the name of the <cite>HTML</cite> tag.</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@div {
+    @h1{ No big surprises here. }
+    @p{ If you know the common @em{ HTML } tags this will be easy for you. }
+}</code></pre></div><div class="highlight"><span class="label">Result</span><pre><code class="language-xml">&lt;div&gt;
+    &lt;h1&gt;No big surprises here.&lt;/h1&gt;
+    &lt;p&gt;If you know the common &lt;em&gt;HTML&lt;/em&gt; tags this will be easy for you.&lt;/p&gt;
+&lt;/div&gt;</code></pre></div></div>
+
+<div class="bs-callout bs-callout-warning"><h4>Please Note</h4>
+	<p>The <cite>HTML</cite> tags <code>&lt;object /&gt;</code> and <code>&lt;var /&gt;</code> cannot be invoked via
+		<code>@object</code> or <code>@var</code> since those are keywords of the <cite>Scala</cite> language. Use
+		<code>@obj</code> and <code>@variable</code> instead.</p></div>
+
+<h4>Tag Arguments</h4>
+<p>Most of the tags are capable to receive plenty of input parameters. In the examples above we only passed one
+	argument to the tags: the actual <cite>HTML</cite> content. This, of course, is possible with all tags that may have
+	a body by the <cite>HTML5</cite> specification. So <cite>Play Tmpltr</cite> won't allow you to pass a body to a <code>&lt;meta /&gt;</code>
+	tag for instance.</p>
+<p>If some tags aren't working the way you expected them to or you find yourself hacking around the module chances are
+	you missed a constructor that already covers your use-case. So, when in doubt better have a look into the
+	<a href="http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package" target="_blank"><cite>ScalaDoc</cite></a> first. Let me show you the <code>&lt;input /&gt;</code> tag to
+	give you a better understanding of what I'm talking about.</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@input( type: Option[type], name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* )
+@input( type: Option[type], name: Option[String], value: Option[String], attributes: (String, String)* )
+@input( type: Option[type], name: Option[String], attributes: (String, String)* )</code></pre></div></div>
+	
+<p>As you can see there are parameter fields that allow you to quickly pass commom attribute values to the input tag.
+	You may also ignore the <code>Option</code> types if you have <code>com.taig.tmpltr._</code> imported. Just pass over the
+	type in the brackets.</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@input( input.`type`.text, &quot;username&quot;, &quot;taig&quot;, &quot;Enter username ...&quot;  )</code></pre></div><div class="highlight"><span class="label">Result</span><pre><code class="language-xml">&lt;input type=&quot;submit&quot; name=&quot;username&quot; value=&quot;taig&quot; placeholder=&quot;Enter username ...&quot; /&gt;</code></pre></div></div>
+
+<p>But wait! There is more …</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@input.text( &quot;username&quot;, &quot;taig&quot;, &quot;Enter username ...&quot;  )</code></pre></div></div>
+
+<h4>Attributes</h4>
+<p>You sure have noticed the <code>attributes: (String, String)*</code> parameter in the above examples. It comes
+	in pretty handy if <cite>Play Tmpltr's</cite> constructors aren't able to fullfill your needs. Just add some tuples to get
+	your tag's attributes right.</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@canvas( &quot;id&quot; -&gt; &quot;whiteboard&quot;, &quot;class&quot; -&gt; &quot;grey large&quot; ) {
+    @p{ No canvas, no fun. }
+}</code></pre></div><div class="highlight"><span class="label">Result</span><pre><code class="language-xml">&lt;canvas id=&quot;whiteboard&quot; class=&quot;grey large&quot;&gt;
+    &lt;p&gt;No canvas, no fun.&lt;/p&gt;
+&lt;/canvas&gt;</code></pre></div></div>
+
+<h4>Boilerplate</h4>
+<p>We're done. You now know how to use <cite>Play Tmpltr</cite> to build your views. Just let me give you the <code>@boilerplate</code>
+	tag to take along your way down the page.</p>
+<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@boilerplate {
+    @meta.charset( &quot;utf-8&quot; )
+    …
+} {
+    @h1{ Hello there! }
+    …
+}</code></pre></div><div class="highlight"><span class="label">Result</span><pre><code class="language-xml">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        …
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello there!&lt;/h1&gt;
+        …
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div>
+
+<h3>Bootstrap</h3>
+
+
+<div class="bs-callout bs-callout-info"><h4>To Be Continued ...</h4>
+	<p>This section is currently under active development.</p></div></section>
+
+		<section id="license"><div class="page-header"><h2>License</h2></div>
+			
+
+<p class="lead">The MIT License (MIT)</p>
+<p>Copyright (c) 2013 <a href="mailto:my.taig@gmail.com">Nikas Klein</a></p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+	documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+	the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+	permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+	Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+	OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></section></div>
+
+	<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-40666656-1', 'github.io');
+	ga('send', 'pageview');</script></body></html>
