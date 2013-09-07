@@ -3,6 +3,18 @@ body > .container {
 	padding-top: 90px;
 }
 
+a[href^="http://"]:not([href*="taig.github.io/Play-Tmpltr"]):after {
+	color: #3673A8;
+	content: "\E164";
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-size: 60%;
+	margin-left: 0.4em;
+	position: relative;
+	top: -0.1em;
+	text-decoration: none;
+}
+
 cite {
 	letter-spacing: 1px;
 	border-bottom: 1px dotted grey;
@@ -35,6 +47,7 @@ div.container {
 	margin-bottom: 16px;
 	position: fixed;
 	width: 100%;
+	z-index: 100;
 }
 
 #title h1 {
