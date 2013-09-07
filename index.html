@@ -48,11 +48,11 @@
 	<a href="http://www.playframework.com/documentation/2.1.3/Installing" target="_blank">up</a> and
 	<a href="http://www.playframework.com/documentation/2.1.3/NewApplication" target="_blank">running</a> you need to add
 	<cite>Play Tmpltr</cite> to your project dependencies. In order to do so you have to add my <cite>GitHub</cite> page as resolver.</p>
-<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">resolvers += Resolver.url( &quot;Play Tmpltr&quot;, url( &quot;http://taig.github.io/Play-Tmpltr/release&quot; ) )( Resolver.ivyStylePatterns )</code></pre></div></div>
+<div class="code-example highlight"><pre><code class="no-highlight">resolvers += Resolver.url( &quot;Play Tmpltr&quot;, url( &quot;http://taig.github.io/Play-Tmpltr/release&quot; ) )( Resolver.ivyStylePatterns )</code></pre></div>
 
 <p>Now <cite>sbt</cite> will automatically fetch the <cite>Play Tmpltr</cite> binaries for you if you add it to the project
 	dependencies.</p>
-<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">libraryDependencies += &quot;com.taig&quot; %% &quot;play-tmpltr&quot; % &quot;0.1&quot;</code></pre></div></div>
+<div class="code-example highlight"><pre><code class="no-highlight">libraryDependencies += &quot;com.taig&quot; %% &quot;play-tmpltr&quot; % &quot;0.1&quot;</code></pre></div>
 	
 <p>If you're planning to use <cite>Play Tmpltr's</cite> <a href="http://twitter.github.io/bootstrap/index.html" target="_blank"><cite>Bootstrap</cite></a> utilities you have to take care of adding all necessary files to your application and
 	to reference them in your view's <code>&lt;head /&gt;</code> area.</p>
@@ -68,7 +68,7 @@
 	before you go on.</p>
 
 <p>If your view now looks somehow like this, your basic configuration is ready.</p>
-<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@*************************
+<div class="code-example highlight"><pre><code class="no-highlight">@*************************
 * Your view&#x27;s signature. *
 *************************@
 @( args: Any* )
@@ -79,7 +79,7 @@
 @import com.taig.tmpltr._
 @import com.taig.tmpltr.engine.html._
 
-@p{ Your @cite{ HTML5 } goes here. }</code></pre></div></div>
+@p{ Your @cite{ HTML5 } goes here. }</code></pre></div>
 
 <p>You may have already noticed the <code>engine</code> part in the previous import statements. You won't be surprised if
 	I tell you that there are even more packages in there, will you? To enable the module's <cite>Bootstrap</cite>
@@ -87,25 +87,25 @@
 	namespace issues if you're planning to use the <cite>HTML</cite> and the <cite>Bootstrap</cite> engine simultaneously.
 	Therefore you need to overcome this by prefixing the <code>bootstrap</code> utilities (use
 	<code>com.taig.tmpltr.engine.bootstrap</code> or <code>com.taig.tmpltr.engine.{ bootstrap => bs }</code> instead).</p>
-<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@( args: Any* )
+<div class="code-example highlight"><pre><code class="no-highlight">@( args: Any* )
 
 @import com.taig.tmpltr._
 @import com.taig.tmpltr.engine.html._
 @import com.taig.tmpltr.engine.{ bootstrap =&gt; bs }
 
-@bs.lead{ Your prefixed @cite{ Bootstrap } goes here. }</code></pre></div></div>
+@bs.lead{ Your prefixed @cite{ Bootstrap } goes here. }</code></pre></div>
 
 <p>Alternatively you can add frequently used imports to your <code>Build.scala</code> file. That's a useful thing if
 	you have multiple views that rely on <cite>Play Tmpltr</cite>. Open your <code>project/Build.scala</code> file and add the import
 	directives to your project settings. <cite>Play</cite> will then take care of importing these files into your views.
 	Less pain for you.</p>
-<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">val main = play.Project( &quot;project-name&quot;, &quot;1.0&quot; ).settings(
+<div class="code-example highlight"><pre><code class="no-highlight">val main = play.Project( &quot;project-name&quot;, &quot;1.0&quot; ).settings(
     templatesImport ++= Seq(
         &quot;com.taig.tmpltr._&quot;,
         &quot;com.taig.tmpltr.engine.html._&quot;,
         &quot;com.taig.tmpltr.engine.{ bootstrap =&gt; bs }&quot;
     )
-)</code></pre></div></div>
+)</code></pre></div>
 
 <div class="bs-callout bs-callout-warning"><h4>Please Note</h4>
 	<p>Predefining the imports in your <code>Build.scala</code> file may break your IDE's code completion. Start off by
@@ -149,9 +149,9 @@
 	you missed a constructor that already covers your use-case. So, when in doubt better have a look into the
 	<a href="http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package" target="_blank"><cite>ScalaDoc</cite></a> first. Let me show you the <code>&lt;input /&gt;</code> tag to
 	give you a better understanding of what I'm talking about.</p>
-<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@input( type: Option[type], name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* )
+<div class="code-example highlight"><pre><code class="no-highlight">@input( type: Option[type], name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* )
 @input( type: Option[type], name: Option[String], value: Option[String], attributes: (String, String)* )
-@input( type: Option[type], name: Option[String], attributes: (String, String)* )</code></pre></div></div>
+@input( type: Option[type], name: Option[String], attributes: (String, String)* )</code></pre></div>
 	
 <p>As you can see there are parameter fields that allow you to quickly pass commom attribute values to the input tag.
 	You may also ignore the <code>Option</code> types if you have <code>com.taig.tmpltr._</code> imported. Just pass over the
@@ -159,7 +159,7 @@
 <div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@input( input.`type`.text, &quot;username&quot;, &quot;taig&quot;, &quot;Enter username ...&quot;  )</code></pre></div><div class="highlight"><span class="label">Result</span><pre><code class="language-xml">&lt;input type=&quot;submit&quot; name=&quot;username&quot; value=&quot;taig&quot; placeholder=&quot;Enter username ...&quot; /&gt;</code></pre></div></div>
 
 <p>But wait! There is more …</p>
-<div class="code-example"><div class="highlight"><span class="label">Source</span><pre><code class="no-highlight">@input.text( &quot;username&quot;, &quot;taig&quot;, &quot;Enter username ...&quot;  )</code></pre></div></div>
+<div class="code-example highlight"><pre><code class="no-highlight">@input.text( &quot;username&quot;, &quot;taig&quot;, &quot;Enter username ...&quot;  )</code></pre></div>
 
 <h4>Attributes</h4>
 <p>You sure have noticed the <code>attributes: (String, String)*</code> parameter in the above examples. It comes

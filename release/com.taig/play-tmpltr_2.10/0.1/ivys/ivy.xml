@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
-	<info organisation="com.taig" module="play-tmpltr_2.10" revision="0.1" status="release" publication="20130907044551">
+	<info organisation="com.taig" module="play-tmpltr_2.10" revision="0.1" status="release" publication="20130907053644">
 		<description>
 		play-tmpltr
 		</description>
