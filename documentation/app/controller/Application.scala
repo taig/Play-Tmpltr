@@ -12,7 +12,7 @@ object Application extends Controller
 				repository = "https://github.com/Taig/Play-Tmpltr",
 				source = "https://github.com/Taig/Play-Tmpltr/tree/master",
 				documentation = "https://github.com/Taig/Play-Tmpltr/tree/master/documentation",
-				scalaDoc = "http://taig.github.io/Play-Tmpltr/doc/#com.taig.tmpltr.package"
+				scalaDoc = "http://taig.github.io/Play-Tmpltr/scaladoc/#com.taig.tmpltr.package"
 			)
 		)
 	}
