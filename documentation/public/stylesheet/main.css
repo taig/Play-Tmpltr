@@ -40,7 +40,7 @@ div.container {
 }
 
 #title {
-	background: #FFFFFF;
+	background: rgba(255, 255, 255, .95);
 	border-bottom: 1px solid #D6D6D6;
 	height: 70px;
 	margin-bottom: 16px;
@@ -60,7 +60,7 @@ div.container {
 }
 
 .code-example {
-	background: url( "/asset/image/noise.png" ) 0 0 repeat #484A4A;
+	background: url("/asset/image/noise.png") 0 0 repeat #484A4A;
 	border: 1px solid #3B3C3C;
 	border-radius: 4px;
 	box-shadow: 1px 1px 0 #7A7D7D inset;
