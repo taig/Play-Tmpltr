@@ -9,7 +9,7 @@ a[href^="http://"]:not([href*="taig.github.io/Play-Tmpltr"]):after {
 	display: inline-block;
 	font-family: 'Glyphicons Halflings';
 	font-size: 60%;
-	margin-left: 0.4em;
+	padding-left: 0.4em;
 	position: relative;
 	top: -0.1em;
 	text-decoration: none;
