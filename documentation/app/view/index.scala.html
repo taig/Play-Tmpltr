@@ -18,16 +18,18 @@
 	@script( routes.WebJarAssets.at( locate( "highlight.min.js" ) ) )
 	@script( routes.Assets.at( "javascript/main.js" ) )
 } {
-	@bs.container {
-		@div( "id" -> "title" ) {
-			@h1{ @bs.icon( "fire", attributes = "style" -> "margin-top: 18px;" ) @name }
+	@div( "id" -> "title" ) {
+		@bs.container {
+			@h1{ @bs.icon( "fire" ) @name }
 			@div( "id" -> "links" ) {
 				@bs.button.a( repository, bs.button.a.target.blank ){ @bs.icon( "globe" ) GitHub }
 				@bs.button.a( scalaDoc, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
 				@bs.button.a( "mailto:my.taig@gmail.com" ){ @bs.icon( "envelope" ) Contact }
 			}
 		}
+	}
 
+	@bs.container {
 		@bs.lead {
 			A module for the @a( "http://www.playframework.com/", a.target.blank ){ @cite { Play Framework 2 } } (Scala)
 			that helps keeping your views clean and free from boilerplate code with advanced templating utilities for

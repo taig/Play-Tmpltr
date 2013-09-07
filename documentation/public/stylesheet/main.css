@@ -1,5 +1,6 @@
-body {
-	padding: 20px;
+body > .container {
+	padding-bottom: 20px;
+	padding-top: 90px;
 }
 
 cite {
@@ -25,6 +26,25 @@ p span.version {
 
 div.container {
 	width: 740px;
+}
+
+#title {
+	background: #FFFFFF;
+	border-bottom: 1px solid #D6D6D6;
+	height: 70px;
+	margin-bottom: 16px;
+	position: fixed;
+	width: 100%;
+}
+
+#title h1 {
+	float: left;
+	margin: 12px 0 0 0;
+}
+
+#links {
+	float: right;
+	margin-top: 18px;
 }
 
 .code-example {
@@ -65,21 +85,6 @@ pre code {
 	line-height: 20px;
 	white-space: pre;
 	word-wrap: normal;
-}
-
-#title {
-	height: 60px;
-	margin-bottom: 16px;
-}
-
-#title h1 {
-	float: left;
-	margin: 0;
-}
-
-#links {
-	float: right;
-	margin-top: 25px;
 }
 
 .bs-callout {
