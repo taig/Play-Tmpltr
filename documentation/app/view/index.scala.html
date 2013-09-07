@@ -19,16 +19,7 @@
 	@script( routes.WebJarAssets.at( locate( "highlight.min.js" ) ) )
 	@script( routes.Assets.at( "javascript/main.js" ) )
 } {
-	@div( "id" -> "title" ) {
-		@bs.container {
-			@h1{ @bs.icon( "fire" ) @name }
-			@div( "id" -> "links" ) {
-				@bs.button.a( repository, bs.button.a.target.blank ){ @bs.icon( "globe" ) GitHub }
-				@bs.button.a( scalaDoc, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
-				@bs.button.a( "mailto:my.taig@gmail.com" ){ @bs.icon( "envelope" ) Contact }
-			}
-		}
-	}
+	@header( name, repository, source, documentation, scalaDoc )
 
 	@bs.container {
 		@bs.lead {
