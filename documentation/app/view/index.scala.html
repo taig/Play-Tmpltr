@@ -1,5 +1,6 @@
 @( name: String, repository: String, source: String, documentation: String, scalaDoc: String )
 
+@import model.Version
 @import WebJarAssets.locate
 
 @boilerplate {
@@ -37,7 +38,10 @@
 			elements.
 		}
 
-		@version()
+		@p( "class" -> "text-center" ) { @small {
+			Tested with @cite{ Play Framework } @span( "class" -> "version" )( Version.play ) and @cite{ Bootstrap }
+			@span( "class" -> "version" )( Version.bootstrap ).
+		} }
 
 		@section( "id" -> "intro" ) {
 			@bs.page_header{ @h2{ Introduction } }
