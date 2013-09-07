@@ -3,7 +3,7 @@ body > .container {
 	padding-top: 90px;
 }
 
-a[href^="http://"]:not([href*="taig.github.io/Play-Tmpltr"]):after {
+a[href^="http://"]:not( [href*="taig.github.io/Play-Tmpltr"] ):after {
 	color: #3673A8;
 	content: "\E164";
 	display: inline-block;
@@ -12,12 +12,11 @@ a[href^="http://"]:not([href*="taig.github.io/Play-Tmpltr"]):after {
 	padding-left: 0.4em;
 	position: relative;
 	top: -0.1em;
-	text-decoration: none;
 }
 
 cite {
-	letter-spacing: 1px;
 	border-bottom: 1px dotted grey;
+	letter-spacing: 1px;
 }
 
 a:hover cite { border: none; }
