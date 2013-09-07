@@ -23,9 +23,27 @@ object example
 		new example( attributes, code, result, preview )
 	}
 
-	abstract class	code[A <: code[A]]( title: String, language: Option[String], attributes: Attributes, content: Content )
-	extends			html.div( attributes ~ ( "class" -> "highlight" ), html.span( "class" -> "label" )( title ).toString + html.pre( html.code( "class" -> language.map( "language-" + _ ).getOrElse( "no-highlight" ) )( HtmlFormat.escape( content.body ) ) ) )
+	abstract class	code[A <: code[A]]( title: Option[String], language: Option[String], attributes: Attributes, content: Content )
+	extends			html.div( attributes ~ ( "class" -> "highlight" ), title.map( html.span( "class" -> "label" )( _ ).toString ).getOrElse( "" ) + html.pre( html.code( "class" -> language.map( "language-" + _ ).getOrElse( "no-highlight" ) )( HtmlFormat.escape( content.body ) ) ) )
 	with			Tag.Body[A, Content]
+
+	class	simple( language: Option[String], attributes: Attributes, content: Content )
+	extends	code[simple]( None, language, attributes ~ ( "class" -> "code-example" ), content )
+	{
+		/*private*/ def this( attributes: Attributes, content: Content ) =
+		{
+			this( None, attributes, content )
+		}
+	}
+
+	object	simple
+	extends	Tag.Body.Appliable[simple, Content]
+	{
+		def apply( language: String, attributes: Attributes = Attributes.empty )( content: Content ) =
+		{
+			new simple( language, attributes, content )
+		}
+	}
 
 	class	source( language: Option[String], attributes: Attributes, content: Content )
 	extends	code[source]( "Source", language, attributes, content )

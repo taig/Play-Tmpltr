@@ -45,8 +45,8 @@
 	@a( scalaDoc, a.target.blank ){ @cite{ ScalaDoc } } first. Let me show you the @code{ &lt;input /&gt; } tag to
 	give you a better understanding of what I'm talking about.
 }
-@example(
-	example.source( """
+@example.simple(
+	Txt( """
 		|@input( type: Option[type], name: Option[String], value: Option[String], placeholder: Option[String], attributes: (String, String)* )
 		|@input( type: Option[type], name: Option[String], value: Option[String], attributes: (String, String)* )
 		|@input( type: Option[type], name: Option[String], attributes: (String, String)* )
@@ -73,12 +73,7 @@
 @p {
 	But wait! There is more …
 }
-@example(
-	example.source( """
-		|@input.text( "username", "taig", "Enter username ..."  )
-		""".stripMargin
-	)
-)
+@example.simple{ @@input.text( "username", "taig", "Enter username ..."  ) }
 
 @h( level ){ Attributes }
 @p {
