@@ -3,6 +3,11 @@ body > .container {
 	padding-top: 90px;
 }
 
+.container {
+	max-width: 740px;
+	width: 100%;
+}
+
 a[href^="http://"]:not( [href*="taig.github.io/Play-Tmpltr"] ):after {
 	color: #3673A8;
 	content: "\E164";
@@ -33,10 +38,6 @@ p {
 p span.version {
 	font-family: monospace;
 	font-weight: bold;
-}
-
-div.container {
-	width: 740px;
 }
 
 #title {
