@@ -63,6 +63,13 @@ p code {
 	margin: 12px 0 0 0;
 }
 
+@media all and (max-width: 530px) {
+	#title h1 {
+		float: none;
+		text-align: center;
+	}
+}
+
 #links {
 	float: right;
 	margin-top: 18px;
