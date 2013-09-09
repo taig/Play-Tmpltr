@@ -1,3 +1,7 @@
+body {
+	width: 100%;
+}
+
 body > .container {
 	padding-bottom: 20px;
 	padding-top: 90px;
@@ -58,6 +62,12 @@ p span.version {
 #links {
 	float: right;
 	margin-top: 18px;
+}
+
+@media all and (max-width: 600px) {
+	#links .glyphicon {
+		display: none;
+	}
 }
 
 .code-example {
