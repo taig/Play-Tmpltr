@@ -1,11 +1,13 @@
 @( name: String, repository: String, source: String, documentation: String, scalaDoc: String )
 
+@import model.Version
 @import WebJarAssets.locate
 
 @boilerplate {
-	@meta( charset = "utf-8" )
-
 	@title( name )
+
+	@meta( charset = "utf-8" )
+	@meta( name = "viewport", content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" )
 
 	@link( link.rel.icon, routes.Assets.at( "image/favicon.png" ), "image/png" )
 
@@ -18,16 +20,7 @@
 	@script( routes.WebJarAssets.at( locate( "highlight.min.js" ) ) )
 	@script( routes.Assets.at( "javascript/main.js" ) )
 } {
-	@div( "id" -> "title" ) {
-		@bs.container {
-			@h1{ @bs.icon( "fire" ) @name }
-			@div( "id" -> "links" ) {
-				@bs.button.a( repository, bs.button.a.target.blank ){ @bs.icon( "globe" ) GitHub }
-				@bs.button.a( scalaDoc, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
-				@bs.button.a( "mailto:my.taig@gmail.com" ){ @bs.icon( "envelope" ) Contact }
-			}
-		}
-	}
+	@header( name, repository, source, documentation, scalaDoc )
 
 	@bs.container {
 		@bs.lead {
@@ -37,7 +30,10 @@
 			elements.
 		}
 
-		@version()
+		@p( "class" -> "text-center" ) { @small {
+			Tested with @cite{ Play Framework } @span( "class" -> "version" )( Version.play ) and @cite{ Bootstrap }
+			@span( "class" -> "version" )( Version.bootstrap ).
+		} }
 
 		@section( "id" -> "intro" ) {
 			@bs.page_header{ @h2{ Introduction } }

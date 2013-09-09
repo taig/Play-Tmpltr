@@ -104,11 +104,11 @@ println( " Done!" )
 
 // Prepare gh-pages.
 Process( Seq( "git", "checkout", "gh-pages" ), tmpltr ) ! void
-Process( Seq( "rm", "-r", "index.html", "asset", "webjars", "scaladoc" ) )
+Process( Seq( "rm", "-r", "index.html", "asset", "webjars", "scaladoc" ), tmpltr ) ! void
 
 // Insert documentation, scalaDoc and binaries.
-Process( Seq( "mv", s"$temp/documentation/index.html", s"$temp/documentation/asset", s"$temp/documentation/webjars", s"$tmpltr" ) ) ! void
-Process( Seq( "mv", s"$temp/scaladoc", s"$tmpltr/scaladoc" ) ) ! void
+Process( Seq( "mv", "index.html", "asset", "webjars", s"$tmpltr" ), new File( s"$temp/documentation" ) ) ! void
+Process( Seq( "mv", "scaladoc", s"$tmpltr/scaladoc" ), temp ) ! void
 Process( Seq( "cp", "-r", s"$play/repository/local/com.taig", s"$tmpltr/release" ) ) ! void
 
 // Update git.

@@ -1,0 +1,12 @@
+@( name: String, repository: String, source: String, documentation: String, scalaDoc: String )
+
+@div( "id" -> "title" ) {
+	@bs.container {
+		@h1{ @bs.icon( "fire" ) @name }
+		@div( "id" -> "links" ) {
+			@bs.button.a( repository, bs.button.a.target.blank ){ @bs.icon( "globe" ) GitHub }
+			@bs.button.a( scalaDoc, bs.button.a.target.blank ){ @bs.icon( "book" ) ScalaDoc }
+			@bs.button.a( "mailto:my.taig@gmail.com" ){ @bs.icon( "envelope" ) Contact }
+		}
+	}
+}
