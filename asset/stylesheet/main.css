@@ -58,9 +58,26 @@ p code {
 	z-index: 100;
 }
 
+@media all and (max-width: 600px) {
+	#title h1 {
+		position: inherit;
+	}
+
+	body > .container {
+		padding-top: 0;
+	}
+}
+
 #title h1 {
 	float: left;
 	margin: 12px 0 0 0;
+}
+
+@media all and (max-width: 530px) {
+	#title h1 {
+		float: none;
+		text-align: center;
+	}
 }
 
 #links {
