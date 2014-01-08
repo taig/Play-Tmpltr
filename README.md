@@ -30,8 +30,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/4c9a59b4be99755a514d19e0edbea303 "githalytics.com")](http://githalytics.com/Taig/Play-Tmpltr)
-
   [1]: http://taig.github.io/Play-Tmpltr
   [2]: http://www.playframework.com
   [3]: http://twitter.github.io/bootstrap
