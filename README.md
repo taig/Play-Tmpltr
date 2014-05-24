@@ -10,7 +10,7 @@ link or by executing the project's sample application.
 
 The MIT License (MIT)
 
-Copyright (c) 2013 [Nikas Klein](mailto:my.taig@gmail.com)
+Copyright (c) 2014 Nikas Klein <my.taig@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/4c9a59b4be99755a514d19e0edbea303 "githalytics.com")](http://githalytics.com/Taig/Play-Tmpltr)
 
   [1]: http://taig.github.io/Play-Tmpltr
   [2]: http://www.playframework.com
