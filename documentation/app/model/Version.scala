@@ -11,11 +11,4 @@ object Version
 	{
 		case line if line.startsWith( "version" ) => "([\\d\\.]+)".r.findFirstIn( line )
 	} ).flatten.getOrElse( "1.0" )
-
-	lazy val bootstrap =
-	{
-		"([\\d\\.]+)".r
-			.findFirstIn( routes.WebJarAssets.at( WebJarAssets.locate( "bootstrap.css" ) ).toString )
-			.getOrElse( "[unknown]" )
-	}
 }
