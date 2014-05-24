@@ -1,12 +1,13 @@
 import sbt._
 import sbt.Keys._
 import play.Project._
+import sbtbuildinfo.Plugin._
 
 object Build extends sbt.Build
 {
-	val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
+	lazy val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
 
-	val main = play.Project( "documentation" )
+	lazy val main = play.Project( "play-tmpltr-documentation", settings = buildInfoSettings )
 		.settings(
 			libraryDependencies ++= Seq(
 				"org.webjars" %% "webjars-play" % "2.2.1",
@@ -19,7 +20,11 @@ object Build extends sbt.Build
 				"com.taig.tmpltr.engine.html._",
 				"widget._",
 				"widget.{ bootstrap => bs }"
-			)
+			),
+			version := ( version in tmpltr ).value,
+			sourceGenerators in Compile <+= buildInfo,
+			buildInfoKeys := Seq[BuildInfoKey]( name, version, scalaVersion ),
+			buildInfoPackage := "com.taig"
 		)
 		.dependsOn( tmpltr )
 		.aggregate( tmpltr )
