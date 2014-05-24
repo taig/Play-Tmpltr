@@ -1,4 +1,4 @@
-package com.taig.tmpltr.engine
+package widget
 
 package object bootstrap
 {

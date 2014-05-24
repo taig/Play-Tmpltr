@@ -1,4 +1,4 @@
-package com.taig.tmpltr.engine.bootstrap.property
+package widget.bootstrap.property
 
 import com.taig.tmpltr._
 

@@ -1,24 +1,31 @@
 import sbt._
 import sbt.Keys._
 import play.Project._
+import sbtbuildinfo.Plugin._
 
 object Build extends sbt.Build
 {
-	val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
+	lazy val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
 
-	val main = play.Project(
-		"documentation",
-		dependencies = Seq(
-			"org.webjars" %% "webjars-play" % "2.1.0-3",
-			"org.webjars" % "bootstrap" % "3.0.0",
-			"org.webjars" % "highlightjs" % "7.3-1"
+	lazy val main = play.Project( "play-tmpltr-documentation", settings = buildInfoSettings )
+		.settings(
+			libraryDependencies ++= Seq(
+				"org.webjars" %% "webjars-play" % "2.2.1",
+				"org.webjars" % "bootstrap" % "3.1.0",
+				"org.webjars" % "highlightjs" % "8.0-3"
+			),
+			scalacOptions ++= Seq( "-feature", "-language:implicitConversions" ),
+			templatesImport ++= Seq(
+				"com.taig.tmpltr._",
+				"com.taig.tmpltr.engine.html._",
+				"widget._",
+				"widget.{ bootstrap => bs }"
+			),
+			version := ( version in tmpltr ).value,
+			sourceGenerators in Compile <+= buildInfo,
+			buildInfoKeys := Seq[BuildInfoKey]( name, version, scalaVersion ),
+			buildInfoPackage := "com.taig"
 		)
-	).settings(
-		templatesImport ++= Seq(
-			"com.taig.tmpltr._",
-			"com.taig.tmpltr.engine.html._",
-			"com.taig.tmpltr.engine.{ bootstrap => bs }",
-			"widget._" ),
-		scalacOptions ++= Seq( "-feature", "-language:implicitConversions" )
-	).dependsOn( tmpltr ).aggregate( tmpltr )
+		.dependsOn( tmpltr )
+		.aggregate( tmpltr )
 }
