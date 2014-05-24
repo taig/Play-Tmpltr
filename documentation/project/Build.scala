@@ -4,9 +4,9 @@ import play.Project._
 
 object Build extends sbt.Build
 {
-	val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
+	lazy val tmpltr = ProjectRef( file( "../" ), "play-tmpltr" )
 
-	val main = play.Project( "documentation" )
+	lazy val main = play.Project( "play-tmpltr-documentation" )
 		.settings(
 			libraryDependencies ++= Seq(
 				"org.webjars" %% "webjars-play" % "2.2.1",
@@ -19,7 +19,8 @@ object Build extends sbt.Build
 				"com.taig.tmpltr.engine.html._",
 				"widget._",
 				"widget.{ bootstrap => bs }"
-			)
+			),
+			version := ( version in tmpltr ).value
 		)
 		.dependsOn( tmpltr )
 		.aggregate( tmpltr )
