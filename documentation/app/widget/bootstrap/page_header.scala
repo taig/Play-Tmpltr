@@ -1,4 +1,4 @@
-package com.taig.tmpltr.engine.bootstrap
+package widget.bootstrap
 
 import com.taig.tmpltr._
 import com.taig.tmpltr.engine.html
